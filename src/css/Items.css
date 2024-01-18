@@ -1,0 +1,21 @@
+.itemContainer {
+    position: absolute;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(38, 38, 38);
+    top: 0;
+    left: 0;
+    overflow-y: scroll;
+    scrollbar-color: rebeccapurple green;
+    scrollbar-width: thin;
+    border: 1px solid red;
+}
+
+.item {
+    margin: 0.5em;
+    min-height: 2em;
+    background-color: grey;
+    color: white;
+    cursor: pointer;
+}

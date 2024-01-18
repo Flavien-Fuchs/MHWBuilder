@@ -1,0 +1,62 @@
+.ItemShit {
+    position: relative;
+    width: 40%;
+    min-width: 432px;
+    height: 552px;
+    background-color: #250f03aa;
+    border-radius: 2em;
+}
+
+.ItemShit .Slot {
+    border: 1px solid white;
+    background-color: #482107aa;
+    border-radius: 1em;
+    width: 120px;
+    height: 160px;
+    color: white;
+    transition: 0.2s;
+    scale: 1;
+}
+
+.ItemShit .Slot:hover {
+    border: 1px solid rgb(39, 172, 101);
+    cursor: pointer;
+    transition: 0.2s;
+    scale: 1.1;
+}
+
+.ItemShit .head {
+    position: absolute;
+    top: 1em;
+    left: calc(50% - 60px);
+}
+
+.ItemShit .chest {
+    position: absolute;
+    top: calc(2em + 160px);
+    left: calc(50% - 60px);
+}
+
+.ItemShit .gloves {
+    position: absolute;
+    top: calc(2em + 160px);
+    left: calc(50% - (198px));
+}
+
+.ItemShit .waist {
+    position: absolute;
+    top: calc(2em + 160px);
+    right: calc(50% - (198px));
+}
+
+.ItemShit .legs {
+    position: absolute;
+    top: calc(3em + 320px);
+    left: calc(50% - 60px);
+}
+
+.ItemShit .Slot img {
+    width: 100%;
+    height: auto;
+
+}
