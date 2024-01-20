@@ -6,7 +6,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: url(../images/wallpaper-desktop.jpg);
+    background: url(../images/wallpaper-animated.gif);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -18,5 +18,4 @@
 
 .login img:nth-child(2) {
     width: 150px;
-    height: 150px;
 }
