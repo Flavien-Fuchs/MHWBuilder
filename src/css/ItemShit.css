@@ -1,21 +1,19 @@
 .ItemShit {
     position: relative;
-    width: 40%;
-    min-width: 432px;
+    width: 28em;
     height: 552px;
-    background-color: #250f03aa;
     border-radius: 2em;
 }
 
 .ItemShit .Slot {
-    border: 1px solid white;
-    background-color: #482107aa;
+    position: relative;
     border-radius: 1em;
-    width: 120px;
-    height: 160px;
+    width: 8em;
+    height: 8em;
     color: white;
     transition: 0.2s;
     scale: 1;
+    background-color: rgba(255, 255, 255, 0.6);
 }
 
 .ItemShit .Slot:hover {
@@ -28,31 +26,31 @@
 .ItemShit .head {
     position: absolute;
     top: 1em;
-    left: calc(50% - 60px);
+    left: calc(50% - 4em);
 }
 
 .ItemShit .chest {
     position: absolute;
-    top: calc(2em + 160px);
-    left: calc(50% - 60px);
+    top: calc(2em + 8em);
+    left: calc(50% - 4em);
 }
 
 .ItemShit .gloves {
     position: absolute;
-    top: calc(2em + 160px);
-    left: calc(50% - (198px));
+    top: calc(2em + 8em);
+    left: calc(50% - 13em);
 }
 
 .ItemShit .waist {
     position: absolute;
-    top: calc(2em + 160px);
-    right: calc(50% - (198px));
+    top: calc(2em + 8em);
+    left: calc(50% + 5em);
 }
 
 .ItemShit .legs {
     position: absolute;
-    top: calc(3em + 320px);
-    left: calc(50% - 60px);
+    top: calc(3em + 16em);
+    left: calc(50% - 4em);
 }
 
 .ItemShit .Slot img {
