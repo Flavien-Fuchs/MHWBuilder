@@ -20,5 +20,9 @@
 
 .defense li {
     list-style: none;
-    margin-left: 2em;
+}
+
+.icon {
+    height: 1em;
+    margin-right: .5em;
 }
