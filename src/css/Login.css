@@ -6,16 +6,23 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: url(../images/wallpaper-animated.gif);
+    background: url(../images/backgrounjpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
 
-.login img:nth-child(1) {
+.login>img {
     width: 350px;
 }
 
-.login img:nth-child(2) {
-    width: 150px;
+.loginContainer {
+    background-color: #250f03aa;
+    padding: 1em 2em;
+    border-radius: 1em;
+    color: white;
+}
+
+.loginContainer img {
+    width: 80px;
 }

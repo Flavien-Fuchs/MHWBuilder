@@ -11,50 +11,70 @@ function App() {
   //Appel API
 
   const [index, setIndex] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
   const [armors, setArmors] = useState(null);
   const [weapons, setWeapons] = useState(null);
   const [charms, setCharms] = useState(null);
+  const [skills, setSkills] = useState(null);
 
 
-  async function Api() {
-    const api1 = await ArmorApi()
-    const api2 = await WeaponApi()
-    const api3 = await CharmsApi()
+  const handleApi = () => {
+    setIsLoading(true)
 
-    if (armors) setIndex(false)
-
+    const promiseArmor = armorApi()
+    const promiseWeapon = weaponApi()
+    const promiseCharms = charmsApi()
+    const promiseSkills = skillsApi()
+    Promise.all([promiseArmor, promiseWeapon, promiseCharms, promiseSkills])
+      .then(() => {
+        setIndex(false)
+      })
   }
 
-  function ArmorApi() {
-    axios
+  const armorApi = () => {
+    return axios
       .get('https://mhw-db.com/armor')
       .then((response) => {
         setArmors(response)
       })
-    return true
+      .catch((err) => {
+        throw new Error('Problem whith API to download armor content : ', err)
+      })
   }
 
-  function WeaponApi() {
-    axios
+  const weaponApi = () => {
+    return axios
       .get('https://mhw-db.com/weapons')
       .then((response) => {
         setWeapons(response)
       })
-    return true;
+      .catch((err) => {
+        throw new Error('Problem whith API to download weapon content : ', err)
+      })
   }
 
-  function CharmsApi() {
-    axios
+  const charmsApi = () => {
+    return axios
       .get('https://mhw-db.com/charms')
       .then((response) => {
         setCharms(response)
       })
-    return true;
+      .catch((err) => {
+        throw new Error('Problem whith API to download charms content : ', err)
+      })
   }
 
-
-
-
+  const skillsApi = () => {
+    return axios
+      .get('https://mhw-db.com/skills')
+      .then((response) => {
+        setSkills(response)
+      })
+      .catch((err) => {
+        throw new Error('Problem whith API to download skills content : ', err)
+      })
+  }
 
   // 
 
@@ -82,6 +102,9 @@ function App() {
   // Functions for stats
 
   function addStats(armor, pastArmor, action) {
+
+    /* const prevArmorMax = pastArmor.defense.max */
+
     if (pastArmor !== null) {
       addDefense(action, pastArmor.defense.base, pastArmor.defense.max, pastArmor.defense.augmented, armor.defense.base, armor.defense.max, armor.defense.augmented)
       addRes(action, pastArmor.resistances.fire, pastArmor.resistances.water, pastArmor.resistances.ice, pastArmor.resistances.thunder, pastArmor.resistances.dragon, armor.resistances.fire, armor.resistances.water, armor.resistances.ice, armor.resistances.thunder, armor.resistances.dragon)
@@ -98,11 +121,11 @@ function App() {
   }
 
   function addRes(action, pastFire, pastWater, pastIce, pastThunder, pastDragon, fire, water, ice, thunder, dragon) {
-    action === "add" ? setResFire(resFire + fire) : ((action === "less") ? setResFire(resFire - fire) : null)
-    action === "add" ? setResWater(resWater + water) : ((action === "less") ? setResWater(resWater - water) : null)
-    action === "add" ? setResIce(resIce + ice) : ((action === "less") ? setResIce(resIce + ice) : null)
-    action === "add" ? setResThunder(resThunder + thunder) : ((action === "less") ? setResThunder(resThunder - thunder) : null)
-    action === "add" ? setResDragon(resDragon + dragon) : ((action === "less") ? setResDragon(resDragon - dragon) : null)
+    action === "add" ? setResFire(resFire + fire) : ((action === "less") ? setResFire(resFire - pastFire + fire) : null)
+    action === "add" ? setResWater(resWater + water) : ((action === "less") ? setResWater(resWater - pastWater + water) : null)
+    action === "add" ? setResIce(resIce + ice) : ((action === "less") ? setResIce(resIce - pastIce + ice) : null)
+    action === "add" ? setResThunder(resThunder + thunder) : ((action === "less") ? setResThunder(resThunder - pastThunder + thunder) : null)
+    action === "add" ? setResDragon(resDragon + dragon) : ((action === "less") ? setResDragon(resDragon - pastDragon + dragon) : null)
   }
 
   // Functions
@@ -135,9 +158,10 @@ function App() {
     setArmurPage(null)
   }
 
+
   return (
     <div>
-      {index && <div> <Login Api={Api} /> </div>}
+      {index && <div> <Login handleApi={handleApi} isLoading={isLoading} armor={armors} weapons={weapons} charms={charms} skills={skills} /> </div>}
 
       {!index && <div className='globalContainer'>
         <div className='title'><img src="./src/images/logo.png" alt="logo" /></div>
