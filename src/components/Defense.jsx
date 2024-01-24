@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import '../css/Defense.css'
+import '../css/Stats.css'
 
 
 function Defense({ baseDefense, maxDefense, AugDefense, resFire, resWater, resIce, resThunder, resDragon }) {
     return (
-        <div className="defense">
+        <div className="stats-card">
             <h3>Defensives stats</h3>
             <p><img className='icon' src="./src/images/icons/defense-icon.png" alt="fire" />Defense ({baseDefense}, {maxDefense}, {AugDefense})</p>
             <ul>

@@ -2,7 +2,7 @@
 import '../css/ItemShit.css'
 
 
-function ItemShit({ head, chest, gloves, waist, legs, setArmurPage }) {
+function ItemShit({ head, chest, gloves, waist, legs, weapon, setArmurPage, setWeaponPage }) {
     return (
         <div className="ItemShit">
 
@@ -29,6 +29,11 @@ function ItemShit({ head, chest, gloves, waist, legs, setArmurPage }) {
             <div className="Slot legs" onClick={() => { setArmurPage('legs') }}>
                 {/* <p>legs</p> */}
                 {legs && (!legs.assets ? <img src="./src/images/nullArmor.png" alt="armor" /> : ((legs.assets.imageMale) ? <img src={legs.assets.imageMale} alt="legs" /> : <img src={legs.assets.imageFemale} alt="legs" />))}
+            </div>
+
+            <div className="Slot weapon" onClick={setWeaponPage}>
+                {/* <p>weapon</p> */}
+                {weapon && (!weapon.assets ? <img src="./src/images/nullArmor.png" alt="weapon" /> : ((weapon.assets.image) ? <img src={weapon.assets.image} alt="legs" /> : <img src={weapon.assets.icon} alt="legs" />))}
             </div>
 
         </div>

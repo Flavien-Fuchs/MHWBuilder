@@ -2,8 +2,10 @@ import { useState } from 'react'
 import axios from 'axios'
 import './App.css'
 import Armors from './components/Armors'
+import Weapons from './components/Weapons'
 import ItemShit from './components/ItemShit'
 import Defense from './components/Defense'
+import Attack from './components/Attack'
 import Login from './components/Login'
 
 function App() {
@@ -83,8 +85,10 @@ function App() {
   const [gloves, setGloves] = useState(null)
   const [waist, setWaist] = useState(null)
   const [legs, setLegs] = useState(null)
+  const [weapon, setWeapon] = useState(null)
 
   const [armurPage, setArmurPage] = useState(null)
+  const [weaponPage, setWeaponPage] = useState(null)
 
   // States for stats
 
@@ -98,10 +102,14 @@ function App() {
   const [resThunder, setResThunder] = useState(0)
   const [resDragon, setResDragon] = useState(0)
 
+  const [attack, setAttack] = useState(0)
+  const [elementalAttack, setElementalAttack] = useState(null)
+
+
 
   // Functions for stats
 
-  function addStats(armor, pastArmor, action) {
+  function addDefStats(armor, pastArmor, action) {
 
     /* const prevArmorMax = pastArmor.defense.max */
 
@@ -132,32 +140,41 @@ function App() {
 
   const handleArmor = (armor, type) => {
     if (type === "head") {
-      (head !== null) ? addStats(armor, head, "less") : addStats(armor, null, "add")
+      (head !== null) ? addDefStats(armor, head, "less") : addDefStats(armor, null, "add")
       setHead(armor)
     }
     if (type === "chest") {
-      chest !== null ? addStats(armor, chest, "less") : addStats(armor, null, "add")
+      chest !== null ? addDefStats(armor, chest, "less") : addDefStats(armor, null, "add")
       setChest(armor)
     }
     if (type === "gloves") {
-      gloves !== null ? addStats(armor, gloves, "less") : addStats(armor, null, "add")
+      gloves !== null ? addDefStats(armor, gloves, "less") : addDefStats(armor, null, "add")
       setGloves(armor)
     }
     if (type === "waist") {
-      waist !== null ? addStats(armor, waist, "less") : addStats(armor, null, "add")
+      waist !== null ? addDefStats(armor, waist, "less") : addDefStats(armor, null, "add")
       setWaist(armor)
     }
     if (type === "legs") {
-      legs !== null ? addStats(armor, legs, "less") : addStats(armor, null, "add")
+      legs !== null ? addDefStats(armor, legs, "less") : addDefStats(armor, null, "add")
       setLegs(armor)
     }
     setArmurPage(null)
   }
 
-  const closePage = () => {
-    setArmurPage(null)
+  const handleWeapon = (weapon) => {
+    setWeapon(weapon)
+    setAttack(weapon.attack.display)
+    setElementalAttack(weapon.elements)
+    setWeaponPage(null)
   }
 
+  const closePage = () => {
+    setArmurPage(null)
+    setWeaponPage(null)
+  }
+
+  console.log(weapon)
 
   return (
     <div>
@@ -165,18 +182,25 @@ function App() {
 
       {!index && <div className='globalContainer'>
         <div className='title'><img src="./src/images/logo.png" alt="logo" /></div>
-        <ItemShit head={head} chest={chest} gloves={gloves} waist={waist} legs={legs} setArmurPage={setArmurPage} />
-        <Defense
-          baseDefense={baseDefense}
-          maxDefense={maxDefense}
-          AugDefense={AugDefense}
-          resFire={resFire}
-          resWater={resWater}
-          resIce={resIce}
-          resThunder={resThunder}
-          resDragon={resDragon}
-        />
+        <ItemShit head={head} chest={chest} gloves={gloves} waist={waist} legs={legs} weapon={weapon} setArmurPage={setArmurPage} setWeaponPage={setWeaponPage} />
+        <div className='stat-container'>
+          <Attack
+            attack={attack}
+            elementalAttack={elementalAttack}
+          />
+          <Defense
+            baseDefense={baseDefense}
+            maxDefense={maxDefense}
+            AugDefense={AugDefense}
+            resFire={resFire}
+            resWater={resWater}
+            resIce={resIce}
+            resThunder={resThunder}
+            resDragon={resDragon}
+          />
+        </div>
         {armurPage && <Armors armors={armors} handleArmor={handleArmor} type={armurPage} closePage={closePage} />}
+        {weaponPage && <Weapons weapons={weapons} handleWeapon={handleWeapon} closePage={closePage} />}
       </div>}
     </div>
   )

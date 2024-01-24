@@ -8,8 +8,8 @@
 .ItemShit .Slot {
     position: relative;
     border-radius: 1em;
-    width: 8em;
-    height: 8em;
+    width: 6em;
+    height: 6em;
     color: white;
     transition: 0.2s;
     scale: 1;
@@ -31,26 +31,32 @@
 
 .ItemShit .chest {
     position: absolute;
-    top: calc(2em + 8em);
+    top: calc(2em + 6em);
     left: calc(50% - 4em);
 }
 
 .ItemShit .gloves {
     position: absolute;
-    top: calc(2em + 8em);
-    left: calc(50% - 13em);
+    top: calc(2em + 6em);
+    left: calc(50% + 3em);
 }
 
 .ItemShit .waist {
     position: absolute;
-    top: calc(2em + 8em);
-    left: calc(50% + 5em);
+    top: calc(3em + 12em);
+    left: calc(50% - 4em);
 }
 
 .ItemShit .legs {
     position: absolute;
-    top: calc(3em + 16em);
+    top: calc(4em + 18em);
     left: calc(50% - 4em);
+}
+
+.ItemShit .weapon {
+    position: absolute;
+    top: calc(2em + 6em);
+    left: calc(50% - 11em);
 }
 
 .ItemShit .Slot img {
