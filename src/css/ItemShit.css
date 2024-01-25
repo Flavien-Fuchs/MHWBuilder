@@ -1,66 +1,33 @@
 .ItemShit {
-    position: relative;
-    width: 28em;
-    height: 552px;
-    border-radius: 2em;
+  position: relative;
+  width: 28em;
+
+  border-radius: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .ItemShit .Slot {
-    position: relative;
-    border-radius: 1em;
-    width: 6em;
-    height: 6em;
-    color: white;
-    transition: 0.2s;
-    scale: 1;
-    background-color: rgba(255, 255, 255, 0.6);
+  position: relative;
+  border-radius: 1em;
+  width: 6em;
+  height: 6em;
+  color: white;
+  transition: 0.2s;
+  scale: 1;
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 .ItemShit .Slot:hover {
-    border: 1px solid rgb(39, 172, 101);
-    cursor: pointer;
-    transition: 0.2s;
-    scale: 1.1;
+  border: 1px solid rgb(39, 172, 101);
+  cursor: pointer;
+  transition: 0.2s;
+  scale: 1.1;
 }
 
-.ItemShit .head {
-    position: absolute;
-    top: 1em;
-    left: calc(50% - 4em);
-}
-
-.ItemShit .chest {
-    position: absolute;
-    top: calc(2em + 6em);
-    left: calc(50% - 4em);
-}
-
-.ItemShit .gloves {
-    position: absolute;
-    top: calc(2em + 6em);
-    left: calc(50% + 3em);
-}
-
-.ItemShit .waist {
-    position: absolute;
-    top: calc(3em + 12em);
-    left: calc(50% - 4em);
-}
-
-.ItemShit .legs {
-    position: absolute;
-    top: calc(4em + 18em);
-    left: calc(50% - 4em);
-}
-
-.ItemShit .weapon {
-    position: absolute;
-    top: calc(2em + 6em);
-    left: calc(50% - 11em);
-}
-
-.ItemShit .Slot img {
-    width: 100%;
-    height: auto;
-
+.part {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
