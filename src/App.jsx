@@ -103,7 +103,7 @@ function App() {
   const [resDragon, setResDragon] = useState(0)
 
   const [attack, setAttack] = useState(0)
-  const [elementalAttack, setElementalAttack] = useState(null)
+  const [elementalAttack, setElementalAttack] = useState([])
 
 
 
