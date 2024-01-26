@@ -34,6 +34,11 @@ function App() {
       })
   }
 
+  const handleIndex = () => {
+    setIndex(true)
+    setIsLoading(false)
+  }
+
   const armorApi = () => {
     return axios
       .get('https://mhw-db.com/armor')
@@ -103,7 +108,8 @@ function App() {
   const [resDragon, setResDragon] = useState(0)
 
   const [attack, setAttack] = useState(0)
-  const [elementalAttack, setElementalAttack] = useState(null)
+  const [elementalAttack, setElementalAttack] = useState([])
+  /* [] add for avoid error */
 
 
 
@@ -181,7 +187,7 @@ function App() {
       {index && <div> <Login handleApi={handleApi} isLoading={isLoading} armor={armors} weapons={weapons} charms={charms} skills={skills} /> </div>}
 
       {!index && <div className='globalContainer'>
-        <div className='title'><img src="./src/images/logo.png" alt="logo" /></div>
+        <div className='title'><img src="./src/images/logo.png" alt="logo" onClick={handleIndex} /></div>
         <ItemShit head={head} chest={chest} gloves={gloves} waist={waist} legs={legs} weapon={weapon} setArmurPage={setArmurPage} setWeaponPage={setWeaponPage} />
         <div className='stat-container'>
           <Attack
