@@ -4,6 +4,7 @@ const translations = {
   play: "play",
   loading: "Loading",
   done: "done",
+  fight: "fight",
 };
 
 export default translations;
