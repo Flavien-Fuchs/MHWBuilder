@@ -1,17 +1,17 @@
-.stats-card {
+.statsCard {
     margin: 1em 0;
 }
 
-.stats-card h3 {
+.statsCard h3 {
     margin-bottom: 1em;
 }
 
-.stats-card p,
-.stats-card li {
+.statsCard p,
+.statsCard li {
     text-align: left;
 }
 
-.stats-card li {
+.statsCard li {
     list-style: none;
 }
 

@@ -17,7 +17,7 @@
   grid-auto-rows: min-content;
 }
 
-.type-container {
+.typeContainer {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -28,7 +28,7 @@
   position: sticky;
   width: 100%;
   top: 0;
-  background-color: grey;
+  background-color: var(-navbar);
   padding: 0.4em;
   grid-column: 1 / 4;
   grid-gap: 10px;
@@ -37,7 +37,7 @@
 .item {
   margin: 0.5em;
   min-height: 2em;
-  background-color: rgba(38, 38, 38, 0.5);
+  background-color: var(--background-item);
   padding: 1em;
   color: var(--neutral-white-color);
   cursor: pointer;

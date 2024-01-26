@@ -1,5 +1,9 @@
-:root{
-    --border-color : rgb(39, 172, 101);
-    --neutral-white-color : white;
-    --neutral-black-color : black;
+:root {
+  --border-color: rgb(39, 172, 101);
+  --neutral-white-color: white;
+  --neutral-black-color: black;
+  --background-item: rgba(38, 38, 38, 0.5);
+  --navbar: grey;
+  --background-slot :rgba(255, 255, 255, 0.6);
+  --background-login: #250f03aa;
 }

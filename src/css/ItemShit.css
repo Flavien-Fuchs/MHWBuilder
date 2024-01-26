@@ -1,4 +1,4 @@
-.item-shit {
+.itemShit {
   position: relative;
   width: 28em;
 
@@ -8,7 +8,7 @@
   gap: 10px;
 }
 
-.item-shit .Slot {
+.itemShit .Slot {
   position: relative;
   border-radius: 1em;
   width: 6em;
@@ -16,10 +16,10 @@
   color: var(--neutral-white-color);
   transition: 0.2s;
   scale: 1;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: var(--background-slot);
 }
 
-.item-shit .Slot:hover {
+.itemShit .Slot:hover {
   border: 1px solid var(--border-color);
   cursor: pointer;
   transition: 0.2s;

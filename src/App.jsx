@@ -312,7 +312,7 @@ function App() {
               setArmurPage={setArmurPage}
               setWeaponPage={setWeaponPage}
             />
-            <div className="stat-container">
+            <div className="statContainer">
               {/* <Attack attack={attack} elementalAttack={elementalAttack} /> */}
               <Defense
                 baseDefense={baseDefense}

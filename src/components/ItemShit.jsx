@@ -12,7 +12,7 @@ function ItemShit({
   setWeaponPage,
 }) {
   return (
-    <div className="item-shit">
+    <div className="itemShit">
       <div className="part">
         <div
           className="Slot head"
