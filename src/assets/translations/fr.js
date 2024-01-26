@@ -3,7 +3,7 @@ const translations = {
   english: "anglais",
   play: "jouer",
   loading: "chargement",
-  done: "fait",
+  done: "terminé",
   fight: "combat",
 };
 

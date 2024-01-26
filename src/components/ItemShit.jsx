@@ -12,7 +12,7 @@ function ItemShit({
   setWeaponPage,
 }) {
   return (
-    <div className="ItemShit">
+    <div className="item-shit">
       <div className="part">
         <div
           className="Slot head"
@@ -20,7 +20,7 @@ function ItemShit({
             setArmurPage("head");
           }}
         >
-          {/* <p>helm</p> */}
+
           {head &&
             (!head.assets ? (
               <img src="./src/images/nullArmor.png" alt="armor" />
@@ -33,7 +33,7 @@ function ItemShit({
       </div>
       <div className="part">
         <div className="Slot weapon" onClick={setWeaponPage}>
-          {/* <p>weapon</p> */}
+
           {weapon &&
             (!weapon.assets ? (
               <img src="./src/images/nullArmor.png" alt="weapon" />
@@ -49,7 +49,7 @@ function ItemShit({
             setArmurPage("chest");
           }}
         >
-          {/* <p>chest</p> */}
+
           {chest &&
             (!chest.assets ? (
               <img src="./src/images/nullArmor.png" alt="armor" />
@@ -65,7 +65,7 @@ function ItemShit({
             setArmurPage("gloves");
           }}
         >
-          {/* <p>gloves</p> */}
+
           {gloves &&
             (!gloves.assets ? (
               <img src="./src/images/nullArmor.png" alt="armor" />
@@ -83,7 +83,7 @@ function ItemShit({
             setArmurPage("waist");
           }}
         >
-          {/* <p>waist</p> */}
+
           {waist &&
             (!waist.assets ? (
               <img src="./src/images/nullArmor.png" alt="armor" />
@@ -101,7 +101,7 @@ function ItemShit({
             setArmurPage("legs");
           }}
         >
-          {/* <p>legs</p> */}
+
           {legs &&
             (!legs.assets ? (
               <img src="./src/images/nullArmor.png" alt="armor" />

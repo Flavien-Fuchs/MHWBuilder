@@ -7,12 +7,14 @@ import ItemShit from "./components/ItemShit";
 import Defense from "./components/Defense";
 import Attack from "./components/Attack";
 import Login from "./components/Login";
+import Game from "./components/Game";
 import { LanguageProvider } from "./utils/context/LanguageContext";
 
 function App() {
   //Appel API
 
   const [index, setIndex] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const [armors, setArmors] = useState(null);
@@ -33,6 +35,7 @@ function App() {
       promiseCharms,
       promiseSkills,
     ]).then(() => {
+      setIsLoading(false);
       setIndex(false);
     });
   };
@@ -294,7 +297,7 @@ function App() {
           </div>
         )}
 
-        {!index && (
+        {!index && !isPlaying && (
           <div className="globalContainer">
             <div className="title">
               <img src="./src/images/logo.png" alt="logo" />
@@ -337,6 +340,12 @@ function App() {
                 closePage={closePage}
               />
             )}
+          </div>
+        )}
+
+        {!index && isPlaying && (
+          <div className="globalContainer">
+            <Game />
           </div>
         )}
       </div>
