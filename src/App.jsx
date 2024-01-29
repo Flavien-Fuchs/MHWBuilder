@@ -98,18 +98,19 @@ function App() {
 
   // States for stats
 
-  const [baseDefense, setBaseDefense] = useState(0);
-  const [maxDefense, setMaxDefense] = useState(0);
-  const [AugDefense, setAugDefense] = useState(0);
+  const [baseDefense, setBaseDefense] = useState(0)
+  const [maxDefense, setMaxDefense] = useState(0)
+  const [AugDefense, setAugDefense] = useState(0)
 
-  const [resFire, setResFire] = useState(0);
-  const [resWater, setResWater] = useState(0);
-  const [resIce, setResIce] = useState(0);
-  const [resThunder, setResThunder] = useState(0);
-  const [resDragon, setResDragon] = useState(0);
+  const [resFire, setResFire] = useState(0)
+  const [resWater, setResWater] = useState(0)
+  const [resIce, setResIce] = useState(0)
+  const [resThunder, setResThunder] = useState(0)
+  const [resDragon, setResDragon] = useState(0)
 
-  const [attack, setAttack] = useState(0);
-  const [elementalAttack, setElementalAttack] = useState(null);
+  const [attack, setAttack] = useState(0)
+  const [elementalAttack, setElementalAttack] = useState([])
+
 
   // Functions for stats
 
