@@ -13,8 +13,8 @@ import { LanguageProvider } from "./utils/context/LanguageContext";
 function App() {
   //Appel API
 
-  const [index, setIndex] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [index, setIndex] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
   const [armors, setArmors] = useState(null);
