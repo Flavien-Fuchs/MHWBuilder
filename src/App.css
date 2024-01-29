@@ -65,13 +65,13 @@ body {
   flex-wrap: wrap;
 }
 
-.globalContainer>.title {
+.globalContainer > .title {
   margin: 1em;
   color: white;
   width: 100%;
 }
 
-.globalContainer>.title img {
+.globalContainer > .title img {
   width: 300px;
 }
 

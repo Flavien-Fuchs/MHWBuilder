@@ -24,10 +24,8 @@ function Armors({ armors, handleArmor, type, closePage }) {
                 handleArmor(armor, type);
               }}
             >
-              <p>
-                {armor.id} Armor Name: {armor.name}
-              </p>
-              <p>Rarity {armor.rarity}</p>
+              <p>{armor.name}</p>
+              <p className="rarity">Rarity {armor.rarity}</p>
               {!armor.assets ? (
                 <img src="./src/images/nullArmor.png" alt="armor" />
               ) : armor.assets.imageMale ? (
@@ -35,7 +33,7 @@ function Armors({ armors, handleArmor, type, closePage }) {
               ) : (
                 <img src={armor.assets.imageFemale} alt="armor" />
               )}
-              <p>
+              <p className="stats">
                 Defense : base {armor.defense.base} | max{armor.defense.max} |
                 augmented {armor.defense.augmented}
               </p>
@@ -66,8 +64,8 @@ function Armors({ armors, handleArmor, type, closePage }) {
               </ul>
               {armor.skills && armor.skills.length > 0 ? (
                 <div>
-                  <p>skills list</p>
-                  <ul>
+                  <p className="skillsList">skills list</p>
+                  <ul className="hideSkills">
                     {armor.skills.map((skill, key) => (
                       <li key={key}>
                         {skill.skillName} - {skill.level}
