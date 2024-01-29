@@ -284,7 +284,7 @@ function App() {
   return (
     <LanguageProvider>
       <div>
-        {index && (
+        {index ? (
           <div>
             <Login
               handleApi={handleApi}
@@ -295,9 +295,7 @@ function App() {
               skills={skills}
             />
           </div>
-        )}
-
-        {!index && !isPlaying && (
+        ) : !isPlaying ? (
           <div className="globalContainer">
             <div className="title">
               <img src="./src/images/logo.png" alt="logo" />
@@ -341,9 +339,7 @@ function App() {
               />
             )}
           </div>
-        )}
-
-        {!index && isPlaying && (
+        ) : (
           <div className="globalContainer">
             <Game />
           </div>
