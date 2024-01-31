@@ -75,6 +75,10 @@ body {
   width: 300px;
 }
 
+.title img:hover {
+  border-image: url(./images/logo.png) 55 / 50px / 30px stretch;
+}
+
 .stat-container {
   width: 40%;
   min-height: 250px;
