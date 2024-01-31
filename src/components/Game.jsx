@@ -177,7 +177,7 @@ function Game() {
 
           <div className="myPart">
             <div className="card" ref={cardRef}></div>
-            <LifeBar currentLife={currentLifePoint} MaxLife={maxLifePoint} />
+            <LifeBar currentLife={currentLifePoint} maxLife={maxLifePoint} />
           </div>
           <div className="adversairePart">
             <div className="card" ref={cardAdRef}></div>

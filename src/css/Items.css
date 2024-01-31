@@ -28,7 +28,7 @@
   position: sticky;
   width: 100%;
   top: 0;
-  background-color: var(-navbar);
+  background-color: var(--navbar);
   padding: 0.4em;
   grid-column: 1 / 4;
   grid-gap: 10px;
@@ -43,7 +43,7 @@
   cursor: pointer;
 }
 
-.item > img {
+.item>img {
   height: 8em;
 }
 

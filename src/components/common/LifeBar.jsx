@@ -1,17 +1,17 @@
 import React, { useEffect, useState, useRef } from "react";
 import "../../css/common/LifeBar.css";
 
-function LifeBar({ currentLife, MaxLife }) {
+function LifeBar({ currentLife, maxLife }) {
   const [currentLifePoint, setCurrentLifePoint] = useState(
-    (currentLife / MaxLife) * 100
+    (currentLife / maxLife) * 100
   );
   const progressBarRef = useRef(null);
 
   useEffect(() => {
-    const value = Math.floor((currentLife / MaxLife) * 100);
+    const value = Math.floor((currentLife / maxLife) * 100);
     setCurrentLifePoint(value);
     changeStyle(value);
-  }, [currentLife, MaxLife]);
+  }, [currentLife, maxLife]);
 
   const changeStyle = (value) => {
     if (!progressBarRef.current) return;

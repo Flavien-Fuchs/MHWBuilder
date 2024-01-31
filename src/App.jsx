@@ -11,32 +11,52 @@ import Game from "./components/Game";
 import { LanguageProvider } from "./utils/context/LanguageContext";
 
 function App() {
-  //Appel API
 
+  //states for pages
   const [index, setIndex] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [builder, setBuilder] = useState(false);
+  const [playing, setPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [armorPage, setArmorPage] = useState(null);
+  const [weaponPage, setWeaponPage] = useState(null);
+  //states for API results
   const [armors, setArmors] = useState(null);
   const [weapons, setWeapons] = useState(null);
   const [charms, setCharms] = useState(null);
   const [skills, setSkills] = useState(null);
+  //states for Equipments
+  const [head, setHead] = useState(null);
+  const [chest, setChest] = useState(null);
+  const [gloves, setGloves] = useState(null);
+  const [waist, setWaist] = useState(null);
+  const [legs, setLegs] = useState(null);
+  const [weapon, setWeapon] = useState(null);
+  // States for User stats
+  const [baseDefense, setBaseDefense] = useState(0);
+  const [maxDefense, setMaxDefense] = useState(0);
+  const [augDefense, setAugDefense] = useState(0);
+  const [resFire, setResFire] = useState(0);
+  const [resWater, setResWater] = useState(0);
+  const [resIce, setResIce] = useState(0);
+  const [resThunder, setResThunder] = useState(0);
+  const [resDragon, setResDragon] = useState(0);
+  const [attack, setAttack] = useState(0);
+  const [elementalAttack, setElementalAttack] = useState([]);
+
+  //Function for API
 
   const handleApi = () => {
     setIsLoading(true);
 
-    const promiseArmor = armorApi();
-    const promiseWeapon = weaponApi();
-    const promiseCharms = charmsApi();
-    const promiseSkills = skillsApi();
     Promise.all([
-      promiseArmor,
-      promiseWeapon,
-      promiseCharms,
-      promiseSkills,
+      armorApi(),
+      weaponApi(),
+      charmsApi(),
+      skillsApi(),
     ]).then(() => {
       setIsLoading(false);
       setIndex(false);
+      setBuilder(true);
     });
   };
 
@@ -84,38 +104,10 @@ function App() {
       });
   };
 
-  //
-
-  const [head, setHead] = useState(null);
-  const [chest, setChest] = useState(null);
-  const [gloves, setGloves] = useState(null);
-  const [waist, setWaist] = useState(null);
-  const [legs, setLegs] = useState(null);
-  const [weapon, setWeapon] = useState(null);
-
-  const [armurPage, setArmurPage] = useState(null);
-  const [weaponPage, setWeaponPage] = useState(null);
-
-  // States for stats
-
-  const [baseDefense, setBaseDefense] = useState(0);
-  const [maxDefense, setMaxDefense] = useState(0);
-  const [AugDefense, setAugDefense] = useState(0);
-
-  const [resFire, setResFire] = useState(0);
-  const [resWater, setResWater] = useState(0);
-  const [resIce, setResIce] = useState(0);
-  const [resThunder, setResThunder] = useState(0);
-  const [resDragon, setResDragon] = useState(0);
-
-  const [attack, setAttack] = useState(0);
-  const [elementalAttack, setElementalAttack] = useState([]);
 
   // Functions for stats
 
   function addDefStats(armor, pastArmor, action) {
-    /* const prevArmorMax = pastArmor.defense.max */
-
     if (pastArmor !== null) {
       addDefense(
         action,
@@ -177,18 +169,18 @@ function App() {
     action === "add"
       ? setBaseDefense(baseDefense + baseDef)
       : action === "less"
-      ? setBaseDefense(baseDefense - pastBaseDef + baseDef)
-      : null;
+        ? setBaseDefense(baseDefense - pastBaseDef + baseDef)
+        : null;
     action === "add"
       ? setMaxDefense(maxDefense + maxDef)
       : action === "less"
-      ? setMaxDefense(maxDefense - pastMaxDef + maxDef)
-      : null;
+        ? setMaxDefense(maxDefense - pastMaxDef + maxDef)
+        : null;
     action === "add"
-      ? setAugDefense(AugDefense + augDef)
+      ? setAugDefense(augDefense + augDef)
       : action === "less"
-      ? setAugDefense(AugDefense - pastAugDef + augDef)
-      : null;
+        ? setAugDefense(augDefense - pastAugDef + augDef)
+        : null;
   }
 
   function addRes(
@@ -207,31 +199,31 @@ function App() {
     action === "add"
       ? setResFire(resFire + fire)
       : action === "less"
-      ? setResFire(resFire - pastFire + fire)
-      : null;
+        ? setResFire(resFire - pastFire + fire)
+        : null;
     action === "add"
       ? setResWater(resWater + water)
       : action === "less"
-      ? setResWater(resWater - pastWater + water)
-      : null;
+        ? setResWater(resWater - pastWater + water)
+        : null;
     action === "add"
       ? setResIce(resIce + ice)
       : action === "less"
-      ? setResIce(resIce - pastIce + ice)
-      : null;
+        ? setResIce(resIce - pastIce + ice)
+        : null;
     action === "add"
       ? setResThunder(resThunder + thunder)
       : action === "less"
-      ? setResThunder(resThunder - pastThunder + thunder)
-      : null;
+        ? setResThunder(resThunder - pastThunder + thunder)
+        : null;
     action === "add"
       ? setResDragon(resDragon + dragon)
       : action === "less"
-      ? setResDragon(resDragon - pastDragon + dragon)
-      : null;
+        ? setResDragon(resDragon - pastDragon + dragon)
+        : null;
   }
 
-  // Functions
+  // Functions on click
 
   const handleArmor = (armor, type) => {
     if (type === "head") {
@@ -264,7 +256,7 @@ function App() {
         : addDefStats(armor, null, "add");
       setLegs(armor);
     }
-    setArmurPage(null);
+    setArmorPage(null);
   };
 
   const handleWeapon = (weapon) => {
@@ -275,27 +267,27 @@ function App() {
   };
 
   const closePage = () => {
-    setArmurPage(null);
+    setArmorPage(null);
     setWeaponPage(null);
   };
-
-  console.log(weapon);
 
   return (
     <LanguageProvider>
       <div>
-        {index ? (
+        {index && (
           <div>
             <Login
               handleApi={handleApi}
               isLoading={isLoading}
-              armor={armors}
+              armors={armors}
               weapons={weapons}
               charms={charms}
               skills={skills}
             />
           </div>
-        ) : !isPlaying ? (
+        )}
+
+        {builder && (
           <div className="globalContainer">
             <div className="title">
               <img src="./src/images/logo.png" alt="logo" />
@@ -307,15 +299,18 @@ function App() {
               waist={waist}
               legs={legs}
               weapon={weapon}
-              setArmurPage={setArmurPage}
+              setArmorPage={setArmorPage}
               setWeaponPage={setWeaponPage}
             />
             <div className="statContainer">
-              {/* <Attack attack={attack} elementalAttack={elementalAttack} /> */}
+              <Attack
+                attack={attack}
+                elementalAttack={elementalAttack}
+              />
               <Defense
                 baseDefense={baseDefense}
                 maxDefense={maxDefense}
-                AugDefense={AugDefense}
+                augDefense={augDefense}
                 resFire={resFire}
                 resWater={resWater}
                 resIce={resIce}
@@ -323,11 +318,11 @@ function App() {
                 resDragon={resDragon}
               />
             </div>
-            {armurPage && (
+            {armorPage && (
               <Armors
                 armors={armors}
                 handleArmor={handleArmor}
-                type={armurPage}
+                type={armorPage}
                 closePage={closePage}
               />
             )}
@@ -339,7 +334,9 @@ function App() {
               />
             )}
           </div>
-        ) : (
+        )}
+
+        {playing && (
           <div className="globalContainer">
             <Game />
           </div>

@@ -8,18 +8,21 @@
   gap: 10px;
 }
 
-.itemShit .Slot {
+.itemShit .slot {
   position: relative;
   border-radius: 1em;
   width: 6em;
   height: 6em;
   color: var(--neutral-white-color);
   transition: 0.2s;
-  scale: 1;
   background-color: var(--background-slot);
+
+  img {
+    width: 100%;
+  }
 }
 
-.itemShit .Slot:hover {
+.itemShit .slot:hover {
   border: 1px solid var(--border-color);
   cursor: pointer;
   transition: 0.2s;

@@ -6,8 +6,8 @@ function Weapons({ weapons, handleWeapon, closePage }) {
   const [typeChosen, setTypeChosen] = useState(false);
   const [weaponType, setWeaponType] = useState(null);
 
-  const handleCHoiseType = (type) => {
-    setWeaponType(() => type);
+  const handleChoiseType = (type) => {
+    setWeaponType(type);
     setTypeChosen(true);
   };
 
@@ -25,63 +25,63 @@ function Weapons({ weapons, handleWeapon, closePage }) {
               <button onClick={backWeapon}>Choise weapon&apos;s type</button>
             )}
           </div>
-          <div className="item" onClick={() => handleCHoiseType("great-sword")}>
+          <div className="item" onClick={() => handleChoiseType("great-sword")}>
             Great Sword
           </div>
           <div
             className="item"
-            onClick={() => handleCHoiseType("sword-and-shield")}
+            onClick={() => handleChoiseType("sword-and-shield")}
           >
             Sword & Shield
           </div>
-          <div className="item" onClick={() => handleCHoiseType("dual-blades")}>
+          <div className="item" onClick={() => handleChoiseType("dual-blades")}>
             Dual Blades
           </div>
-          <div className="item" onClick={() => handleCHoiseType("long-sword")}>
+          <div className="item" onClick={() => handleChoiseType("long-sword")}>
             Long Sword
           </div>
-          <div className="item" onClick={() => handleCHoiseType("hammer")}>
+          <div className="item" onClick={() => handleChoiseType("hammer")}>
             Hammer
           </div>
           <div
             className="item"
-            onClick={() => handleCHoiseType("hunting-horn")}
+            onClick={() => handleChoiseType("hunting-horn")}
           >
             Hunting Horn
           </div>
-          <div className="item" onClick={() => handleCHoiseType("lance")}>
+          <div className="item" onClick={() => handleChoiseType("lance")}>
             Lance
           </div>
-          <div className="item" onClick={() => handleCHoiseType("gunlance")}>
+          <div className="item" onClick={() => handleChoiseType("gunlance")}>
             Gunlance
           </div>
-          <div className="item" onClick={() => handleCHoiseType("switch-axe")}>
+          <div className="item" onClick={() => handleChoiseType("switch-axe")}>
             Switch Axe
           </div>
           <div
             className="item"
-            onClick={() => handleCHoiseType("charge-blade")}
+            onClick={() => handleChoiseType("charge-blade")}
           >
             Charge Blade
           </div>
           <div
             className="item"
-            onClick={() => handleCHoiseType("insect-glaive")}
+            onClick={() => handleChoiseType("insect-glaive")}
           >
             Insect Glaive
           </div>
-          <div className="item" onClick={() => handleCHoiseType("bow")}>
+          <div className="item" onClick={() => handleChoiseType("bow")}>
             Bow
           </div>
           <div
             className="item"
-            onClick={() => handleCHoiseType("light-bowgun")}
+            onClick={() => handleChoiseType("light-bowgun")}
           >
             Light Bowgun
           </div>
           <div
             className="item"
-            onClick={() => handleCHoiseType("heavy-bowgun")}
+            onClick={() => handleChoiseType("heavy-bowgun")}
           >
             Heavy Bowgun
           </div>
