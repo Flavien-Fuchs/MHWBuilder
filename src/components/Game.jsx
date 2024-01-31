@@ -8,6 +8,7 @@ function Game() {
   const [tour, setTour] = useState(0);
   const [isShowMessage, setIsShowMessage] = useState(false);
   const messageRef = useRef(null);
+  const [message, setMessage] = useState("");
 
   const [maxLifePoint, setMaxLifePoint] = useState(1000);
   const [currentLifePoint, setCurrentLifePoint] = useState(maxLifePoint);
@@ -68,11 +69,11 @@ function Game() {
     console.log(
       `Vous avez fait une (${choice}) et l'adversaire une (${choiceAdversaire}).`
     );
+    setMessage(
+      `Vous avez fait une (${choice}) et l'adversaire une (${choiceAdversaire}).`
+    );
     setIsShowMessage(true);
-    if (messageRef.current) {
-      messageRef.current.textContent = `Vous avez fait une (${choice}) et l'adversaire une (${choiceAdversaire}).`;
-      setTimeout(() => setIsShowMessage(false), 500);
-    }
+    setTimeout(() => setIsShowMessage(false), 2000);
     actions[choice][choiceAdversaire]();
     verificationDead();
     setTour((prevKey) => prevKey + 1);
@@ -135,20 +136,16 @@ function Game() {
 
   const handleTimeout = () => {
     console.log("Temps écoulé, sélectionnez à nouveau.");
+    setMessage(`Votre tour est passer et l'adversaire vous a attquer.`);
     setIsShowMessage(true);
-    if (messageRef.current) {
-      messageRef.current.textContent = `Votre tour est passer et l'adversaire vous a attquer.`;
-      setTimeout(() => setIsShowMessage(false), 500);
-    }
-    setIsShowMessage(true);
-    setTimeout(() => setIsShowMessage(false), 500);
+    setTimeout(() => setIsShowMessage(false), 2000);
     degat(50, true);
     verificationDead();
     setTour((prevKey) => prevKey + 1);
   };
 
   const handleStopTimer = () => {
-    console.log("Minuteur arrêté depuis le composant Game");
+    const isPlaying = true;
     // Exécutez votre logique spécifique ici lorsque le minuteur est arrêté
   };
 
@@ -174,7 +171,7 @@ function Game() {
         <div className="body">
           {isShowMessage && (
             <div className="message">
-              <div ref={messageRef}></div>
+              <div ref={messageRef}>{message}</div>
             </div>
           )}
 
