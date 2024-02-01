@@ -9,6 +9,7 @@ import Attack from "./components/Attack";
 import Login from "./components/Login";
 import Game from "./components/Game";
 import { LanguageProvider } from "./utils/context/LanguageContext";
+import Skills from "./components/Skills";
 
 function App() {
 
@@ -32,6 +33,8 @@ function App() {
   const [legs, setLegs] = useState(null);
   const [weapon, setWeapon] = useState(null);
   // States for User stats
+  const [health, setHealth] = useState(100);
+  const [stamina, setStamina] = useState(100);
   const [baseDefense, setBaseDefense] = useState(0);
   const [maxDefense, setMaxDefense] = useState(0);
   const [augDefense, setAugDefense] = useState(0);
@@ -42,6 +45,11 @@ function App() {
   const [resDragon, setResDragon] = useState(0);
   const [attack, setAttack] = useState(0);
   const [elementalAttack, setElementalAttack] = useState([]);
+  const [affinity, setAffinity] = useState(0);
+  const [criticalBoost, setCriticalBoost] = useState(125);
+  const [sharpness, setSharpness] = useState([]);
+  const [playerSkills, setPlayerSkills] = useState([]);
+
 
   //Function for API
 
@@ -130,7 +138,9 @@ function App() {
         armor.resistances.ice,
         armor.resistances.thunder,
         armor.resistances.dragon
-      );
+      )
+
+      addSkills(action, pastArmor.skills, armor.skills);
     } else {
       addDefense(
         action,
@@ -154,6 +164,8 @@ function App() {
         armor.resistances.thunder,
         armor.resistances.dragon
       );
+      addSkills(action, null, armor.skills);
+
     }
   }
 
@@ -223,9 +235,92 @@ function App() {
         : null;
   }
 
+  function addSkills(action, pastSkills, selectSkills) {
+
+
+    if (action === "less") {
+      let newPlayerSkills = []
+
+      if (pastSkills[0]) {
+        newPlayerSkills = playerSkills.map(playerSkill => {
+          if (pastSkills.some(pastSkill => pastSkill.id === playerSkill.id)) {
+            pastSkills.map(pastSkill => {
+              if (pastSkill.id === playerSkill.id) {
+                if (playerSkill.level - pastSkill.level <= 0) {
+                  return null
+                } else {
+                  return {
+                    ...playerSkill,
+                    level: playerSkill.level - pastSkill.level
+                  }
+                }
+              }
+            })
+          } else {
+            return playerSkill
+          }
+        })
+      } else {
+        newPlayerSkills = playerSkills
+      }
+
+      if (selectSkills[0]) {
+        newPlayerSkills.map(playerSkill => {
+          if (selectSkills.some(selectSkill => selectSkill.id === playerSkill.id)) {
+            selectSkills.map(selectSkill => {
+              if (playerSkill.id === selectSkill.id) {
+                return {
+                  ...playerSkill,
+                  level: playerSkill.level + selectSkill.level
+                }
+              }
+            })
+          } else {
+            return playerSkill
+          }
+        })
+        selectSkills.map(selectSkill => {
+          if (!newPlayerSkills.some(newPlayerSkill => newPlayerSkill.id === selectSkill.id)) {
+            newPlayerSkills.push(selectSkill)
+          }
+        })
+        setPlayerSkills(newPlayerSkills)
+      }
+    }
+
+
+    else {
+
+      if (selectSkills[0]) {
+        const newPlayerSkills = playerSkills.map(playerSkill => {
+          if (selectSkills.some(selectSkill => selectSkill.id === playerSkill.id)) {
+            selectSkills.map(selectSkill => {
+              if (playerSkill.id === selectSkill.id) {
+                return {
+                  ...playerSkill,
+                  level: playerSkill.level + selectSkill.level
+                }
+              }
+            })
+          } else {
+            return playerSkill
+          }
+        })
+        selectSkills.map(selectSkill => {
+          if (!newPlayerSkills.some(newPlayerSkill => newPlayerSkill.id === selectSkill.id)) {
+            newPlayerSkills.push(selectSkill)
+          }
+        })
+        setPlayerSkills(newPlayerSkills)
+      }
+    }
+  }
+
+
   // Functions on click
 
-  const handleArmor = (armor, type) => {
+  const handleArmor = (selectedArmor, type) => {
+    let armor = selectedArmor
     if (type === "head") {
       head !== null
         ? addDefStats(armor, head, "less")
@@ -256,6 +351,8 @@ function App() {
         : addDefStats(armor, null, "add");
       setLegs(armor);
     }
+
+
     setArmorPage(null);
   };
 
@@ -263,6 +360,8 @@ function App() {
     setWeapon(weapon);
     setAttack(weapon.attack.display);
     setElementalAttack(weapon.elements);
+    weapon.attributes.affinity ? setAffinity(weapon.attributes.affinity) : setAffinity(0);
+    weapon.durability ? setSharpness(weapon.durability[0]) : setSharpness([]);
     setWeaponPage(null);
   };
 
@@ -270,6 +369,8 @@ function App() {
     setArmorPage(null);
     setWeaponPage(null);
   };
+
+  /* console.log(playerSkills) */
 
   return (
     <LanguageProvider>
@@ -306,8 +407,13 @@ function App() {
               <Attack
                 attack={attack}
                 elementalAttack={elementalAttack}
+                affinity={affinity}
+                criticalBoost={criticalBoost}
+                sharpness={sharpness}
               />
               <Defense
+                health={health}
+                stamina={stamina}
                 baseDefense={baseDefense}
                 maxDefense={maxDefense}
                 augDefense={augDefense}
@@ -317,6 +423,7 @@ function App() {
                 resThunder={resThunder}
                 resDragon={resDragon}
               />
+              <Skills playerSkills={playerSkills} />
             </div>
             {armorPage && (
               <Armors

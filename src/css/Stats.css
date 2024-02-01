@@ -11,6 +11,26 @@
     text-align: left;
 }
 
+
+.statsCard>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .1em .6em;
+    transition: .1s;
+}
+
+.statsCard>div:hover {
+    scale: 1.05;
+    transition: .1s;
+    background-color: rgba(220, 10, 10, 0.5);
+
+}
+
+.statsCard .bgOn {
+    background-color: var(--bg-stat);
+}
+
 .statsCard li {
     list-style: none;
 }
@@ -18,4 +38,40 @@
 .icon {
     height: 1em;
     margin-right: .5em;
+}
+
+.statsCard .sharpnessContainer {
+    display: flex;
+}
+
+.statsCard .sharpness {
+    height: 10px;
+}
+
+.statsCard .red {
+    background-color: red;
+}
+
+.statsCard .orange {
+    background-color: orange;
+}
+
+.statsCard .yellow {
+    background-color: yellow;
+}
+
+.statsCard .green {
+    background-color: green;
+}
+
+.statsCard .blue {
+    background-color: blue;
+}
+
+.statsCard .white {
+    background-color: white;
+}
+
+.statsCard .purple {
+    background-color: purple;
 }

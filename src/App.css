@@ -65,21 +65,21 @@ body {
   flex-wrap: wrap;
 }
 
-.globalContainer > .title {
+.globalContainer>.title {
   margin: 1em;
   color: var(--neutral-white-color);
   width: 100%;
 }
 
-.globalContainer > .title img {
+.globalContainer>.title img {
   width: 300px;
 }
 
 .statContainer {
-  width: 40%;
-  min-height: 250px;
+  width: 100%;
+  max-width: 400px;
   background-color: var(--background-login);
-  border-radius: 2em;
+  border-radius: 10px;
   padding: 1em;
   margin: 0 1em;
   color: var(--neutral-white-color);

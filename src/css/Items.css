@@ -54,3 +54,46 @@
 .resistance li {
   list-style: none;
 }
+
+.sharpnessContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: .4em 0;
+
+  .sharpness {
+    height: 1em;
+  }
+
+  p {
+    margin-right: 1em;
+  }
+}
+
+.sharpnessContainer .red {
+  background-color: red;
+}
+
+.sharpnessContainer .orange {
+  background-color: orange;
+}
+
+.sharpnessContainer .yellow {
+  background-color: yellow;
+}
+
+.sharpnessContainer .green {
+  background-color: green;
+}
+
+.sharpnessContainer .blue {
+  background-color: blue;
+}
+
+.sharpnessContainer .white {
+  background-color: white;
+}
+
+.sharpnessContainer .purple {
+  background-color: purple;
+}
