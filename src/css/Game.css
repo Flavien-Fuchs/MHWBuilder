@@ -38,7 +38,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        & div{
+        & div {
           width: 100%;
           padding: 20px;
           background-color: rgba(0, 0, 0, 0.541);
@@ -52,12 +52,27 @@
         gap: 10px;
         & .card {
           height: 30%;
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           background-color: green;
           box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
             rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
             rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
           &.animate {
             animation: glitch 0.5s linear;
+          }
+
+          & .containerAnimation {
+            position: absolute;
+            width: 100%;
+            left: 20%;
+            img {
+              width: 130%;
+              height: "auto";
+              transform: scaleX(-1);
+            }
           }
         }
       }
@@ -68,12 +83,26 @@
         gap: 10px;
         & .card {
           height: 30%;
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           background-color: red;
           box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
             rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
             rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
           &.animate {
             animation: glitch 0.5s linear;
+          }
+
+          & .containerAnimation {
+            position: absolute;
+            width: 100%;
+            right: 50%;
+            img {
+              width: 130%;
+              height: "auto";
+            }
           }
         }
       }

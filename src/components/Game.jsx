@@ -1,11 +1,16 @@
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import "../css/Game.css";
-import Timer from "./common/Timer";
 import LifeBar from "./common/LifeBar";
+import gifSuperAttack from "../images/attack.gif";
+
+const SECONDS = 10;
+const choices = ["defense", "attack", "superAttack"];
 
 function Game() {
   const [tour, setTour] = useState(0);
+  const [timeRemaining, setTimeRemaining] = useState(SECONDS);
+  const [isPlaying, setIsPlaying] = useState(true);
+
   const [isShowMessage, setIsShowMessage] = useState(false);
   const messageRef = useRef(null);
   const [message, setMessage] = useState("");
@@ -13,56 +18,47 @@ function Game() {
   const [maxLifePoint, setMaxLifePoint] = useState(1000);
   const [currentLifePoint, setCurrentLifePoint] = useState(maxLifePoint);
   const cardRef = useRef(null);
+  const [isAttacked, setIsAttacked] = useState(false);
 
   const [maxLifePointAd, setMaxLifePointAd] = useState(1000);
   const [currentLifePointAd, setCurrentLifePointAd] = useState(maxLifePointAd);
   const cardAdRef = useRef(null);
+  const [isAttackedAd, setIsAttackedAd] = useState(false);
 
-  // const [choices, setChoices] = useState([]);
-  const choices = ["defense", "attack", "superAttack"];
+  useEffect(() => {
+    if (isPlaying) {
+      const timer = setInterval(() => {
+        setTimeRemaining((prevTime) => {
+          if (prevTime === 1) {
+            clearInterval(timer);
+            handleTimeout();
+            return SECONDS;
+          }
+          return prevTime - 1;
+        });
+      }, 1000);
 
-  const SECONDS = 10;
+      return () => clearInterval(timer);
+    }
+  }, [tour]);
 
   const actions = {
     attack: {
-      defense: () => {
-        degat(50, false);
-      },
-      attack: () => {
-        degat(100, true), degat(100, false);
-      },
-      superAttack: () => {
-        degat(100, false), degat(200, true);
-      },
+      defense: () => degat(50, false),
+      attack: () => degat(100, true) && degat(100, false),
+      superAttack: () => degat(100, false) && degat(200, true),
     },
     defense: {
-      defense: () => {
-        console.log("se passe rien");
-      },
-      attack: () => {
-        degat(50, true);
-      },
-      superAttack: () => {
-        degat(200, false);
-      },
+      defense: () => console.log("se passe rien"),
+      attack: () => degat(50, true),
+      superAttack: () => degat(200, false),
     },
     superAttack: {
-      defense: () => {
-        degat(200, true);
-      },
-      attack: () => {
-        degat(100, true), degat(200, false);
-      },
-      superAttack: () => {
-        degat(200, true), degat(200, false);
-      },
+      defense: () => degat(200, true),
+      attack: () => degat(100, true) && degat(200, false),
+      superAttack: () => degat(200, true) && degat(200, false),
     },
   };
-
-  // useEffect(() => {
-  //   const value = Object.keys(actions);
-  //   setChoices(value);
-  // }, []);
 
   const handleClickAction = (choice) => {
     const choiceAdversaire = randomChoice();
@@ -75,77 +71,56 @@ function Game() {
     setIsShowMessage(true);
     setTimeout(() => setIsShowMessage(false), 2000);
     actions[choice][choiceAdversaire]();
-    verificationDead();
-    setTour((prevKey) => prevKey + 1);
+    isDead();
   };
 
-  const randomChoice = () => {
-    const indexAleatoire = Math.floor(Math.random() * choices.length);
-    const result = choices[indexAleatoire];
-    return result;
-  };
+  const randomChoice = () =>
+    choices[Math.floor(Math.random() * choices.length)];
 
-  // heal
   const degat = (pourcentage, isMe) => {
-    if (isMe) {
-      // calcule pourcentage par rapport a l'arme de lenemie
-      // ....
-      // Fin
-      const value = currentLifePoint - pourcentage;
-      setCurrentLifePoint(value);
-      cardRef.current.classList.add("animate");
-      cardRef.current.addEventListener(
-        "animationend",
-        () => {
-          cardRef.current.classList.remove("animate");
-        },
-        { once: true }
-      );
-    } else {
-      // calcule pourcentage par rapport a mon arme l'arme
-      // ....
-      // Fin
-      const value = currentLifePointAd - pourcentage;
-      setCurrentLifePointAd(value);
-      cardAdRef.current.classList.add("animate");
-
-      cardAdRef.current.addEventListener(
-        "animationend",
-        () => {
-          cardAdRef.current.classList.remove("animate");
-        },
-        { once: true }
-      );
-    }
+    const value = isMe
+      ? currentLifePoint - pourcentage
+      : currentLifePointAd - pourcentage;
+    isMe ? setCurrentLifePoint(value) : setCurrentLifePointAd(value);
+    animateCard(isMe ? cardRef : cardAdRef);
   };
 
-  const verificationDead = () => {
+  const animateCard = (ref) => {
+    ref.current.classList.add("animate");
+    ref.current.addEventListener(
+      "animationend",
+      () => ref.current.classList.remove("animate"),
+      { once: true }
+    );
+  };
+
+  const isDead = () => {
     if (currentLifePoint <= 0 && currentLifePointAd <= 0) {
       console.log(`Egalité`);
-      handleStopTimer();
-    }
-    if (currentLifePoint <= 0) {
-      console.log(`Vous etes mort`);
-      handleStopTimer();
-    }
-    if (currentLifePointAd <= 0) {
+    } else if (currentLifePoint <= 0) {
+      console.log(`Vous êtes mort`);
+    } else if (currentLifePointAd <= 0) {
       console.log(`Adversaire mort`);
-      handleStopTimer();
+    } else {
+      setTour((prevKey) => prevKey + 1);
+      setTimeRemaining(SECONDS);
+      return;
     }
+
+    StopTimer();
   };
 
   const handleTimeout = () => {
     console.log("Temps écoulé, sélectionnez à nouveau.");
-    setMessage(`Votre tour est passer et l'adversaire vous a attquer.`);
+    setMessage(`Votre tour est passé et l'adversaire vous a attaqué.`);
     setIsShowMessage(true);
     setTimeout(() => setIsShowMessage(false), 2000);
     degat(50, true);
-    verificationDead();
-    setTour((prevKey) => prevKey + 1);
+    isDead();
   };
 
-  const handleStopTimer = () => {
-    const isPlaying = true;
+  const StopTimer = () => {
+    setIsPlaying(true);
     // Exécutez votre logique spécifique ici lorsque le minuteur est arrêté
   };
 
@@ -156,14 +131,7 @@ function Game() {
         <div className="header">
           <div className="top">
             <div>stat</div>
-            <div>
-              <Timer
-                key={tour}
-                seconds={SECONDS}
-                onTimeout={handleTimeout}
-                onStopTimer={handleStopTimer}
-              />
-            </div>
+            <div>Temps restant : {timeRemaining} secondes</div>
             <div>menu</div>
           </div>
           <div className="bottom">Tour {tour}</div>
@@ -176,18 +144,36 @@ function Game() {
           )}
 
           <div className="myPart">
-            <div className="card" ref={cardRef}></div>
+            <div className="card" ref={cardRef}>
+              <div className="containerAnimation">
+                {isAttacked ?? (
+                  <img
+                    src={gifSuperAttack}
+                    alt="gifSuperAttack"
+                    onAnimationEnd={() => setIsAttacked(false)}
+                  />
+                )}
+              </div>
+            </div>
             <LifeBar currentLife={currentLifePoint} MaxLife={maxLifePoint} />
           </div>
           <div className="adversairePart">
-            <div className="card" ref={cardAdRef}></div>
+            <div className="card" ref={cardAdRef}>
+              <div className="containerAnimation">
+                {isAttackedAd ?? (
+                  <img
+                    src={gifSuperAttack}
+                    alt="gifSuperAttack"
+                    onAnimationEnd={() => setIsAttackedAd(false)}
+                  />
+                )}
+              </div>
+            </div>
             <LifeBar
               currentLife={currentLifePointAd}
               MaxLife={maxLifePointAd}
             />
           </div>
-          {/* <div>{`${currentLifePoint}/${maxLifePoint}`}</div>
-          <div>{`${currentLifePointAd}/${maxLifePointAd}`}</div> */}
         </div>
         <div className="footer">
           {choices.map((choice) => (
