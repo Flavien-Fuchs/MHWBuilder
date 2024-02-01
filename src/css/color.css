@@ -1,0 +1,16 @@
+:root {
+  --border-color: rgb(39, 172, 101);
+  --neutral-white-color: white;
+  --neutral-black-color: black;
+  --background-item: rgba(38, 38, 38, 0.5);
+  --navbar: grey;
+  --background-slot: rgba(255, 255, 255, 0.6);
+  --background-login: #250f03aa;
+  --game-main-bg-color: #333;
+  --game-second-bg-color: #f3e600;
+  --game-main-color: white;
+  --game-transparent-bg: rgba(0, 0, 0, 0.541);
+  --game-box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}

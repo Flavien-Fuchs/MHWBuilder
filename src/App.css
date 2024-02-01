@@ -65,22 +65,22 @@ body {
   flex-wrap: wrap;
 }
 
-.globalContainer>.title {
+.globalContainer > .title {
   margin: 1em;
-  color: white;
+  color: var(--neutral-white-color);
   width: 100%;
 }
 
-.globalContainer>.title img {
+.globalContainer > .title img {
   width: 300px;
 }
 
-.stat-container {
+.statContainer {
   width: 40%;
   min-height: 250px;
-  background-color: #250f0366;
+  background-color: var(--background-login);
   border-radius: 2em;
   padding: 1em;
   margin: 0 1em;
-  color: white;
+  color: var(--neutral-white-color);
 }
