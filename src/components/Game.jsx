@@ -7,7 +7,7 @@ const SECONDS = 10;
 const choices = ["defense", "attack", "superAttack"];
 
 function Game() {
-  const [tour, setTour] = useState(0);
+  const [tour, setTour] = useState(1);
   const [timeRemaining, setTimeRemaining] = useState(SECONDS);
   const [isPlaying, setIsPlaying] = useState(true);
 
@@ -18,16 +18,22 @@ function Game() {
   const [maxLifePoint, setMaxLifePoint] = useState(1000);
   const [currentLifePoint, setCurrentLifePoint] = useState(maxLifePoint);
   const cardRef = useRef(null);
+  const [imDead, setImDead] = useState(false);
   const [isAttacked, setIsAttacked] = useState(false);
 
   const [maxLifePointAd, setMaxLifePointAd] = useState(1000);
   const [currentLifePointAd, setCurrentLifePointAd] = useState(maxLifePointAd);
   const cardAdRef = useRef(null);
+  const [isDeadAd, setIsDeadAd] = useState(false);
   const [isAttackedAd, setIsAttackedAd] = useState(false);
 
   useEffect(() => {
+    let timer;
+    console.log("timer");
     if (isPlaying) {
-      const timer = setInterval(() => {
+      console.log("in if");
+      clearInterval(timer);
+      timer = setInterval(() => {
         setTimeRemaining((prevTime) => {
           if (prevTime === 1) {
             clearInterval(timer);
@@ -37,10 +43,13 @@ function Game() {
           return prevTime - 1;
         });
       }, 1000);
-
-      return () => clearInterval(timer);
+    } else {
+      console.log("off timer");
+      clearInterval(timer);
     }
-  }, [tour]);
+
+    return () => clearInterval(timer);
+  }, [tour, isPlaying]);
 
   const actions = {
     attack: {
@@ -62,9 +71,9 @@ function Game() {
 
   const handleClickAction = (choice) => {
     const choiceAdversaire = randomChoice();
-    console.log(
-      `Vous avez fait une (${choice}) et l'adversaire une (${choiceAdversaire}).`
-    );
+    // console.log(
+    //   `Vous avez fait une (${choice}) et l'adversaire une (${choiceAdversaire}).`
+    // );
     setMessage(
       `Vous avez fait une (${choice}) et l'adversaire une (${choiceAdversaire}).`
     );
@@ -78,10 +87,22 @@ function Game() {
     choices[Math.floor(Math.random() * choices.length)];
 
   const degat = (pourcentage, isMe) => {
-    const value = isMe
-      ? currentLifePoint - pourcentage
-      : currentLifePointAd - pourcentage;
-    isMe ? setCurrentLifePoint(value) : setCurrentLifePointAd(value);
+    let value = isMe
+      ? Math.floor(currentLifePoint - pourcentage)
+      : Math.floor(currentLifePointAd - pourcentage);
+    if (value <= 0) {
+      value = 0;
+    }
+    console.log("value", value);
+    console.log("currentLifePoint", currentLifePoint);
+    console.log("currentLifePointAd", currentLifePointAd);
+    isMe
+      ? setCurrentLifePoint((previousValue) =>
+          previousValue !== value ? value : previousValue
+        )
+      : setCurrentLifePointAd((previousValue) =>
+          previousValue !== value ? value : previousValue
+        );
     animateCard(isMe ? cardRef : cardAdRef);
   };
 
@@ -95,19 +116,27 @@ function Game() {
   };
 
   const isDead = () => {
+    // console.log("currentLifePoint", currentLifePoint);
+    // console.log("currentLifePointAd", currentLifePointAd);
     if (currentLifePoint <= 0 && currentLifePointAd <= 0) {
       console.log(`Egalité`);
+      setIsDeadAd(true);
+      setImDead(true);
+      setIsPlaying(false);
     } else if (currentLifePoint <= 0) {
       console.log(`Vous êtes mort`);
+      setImDead(true);
+      setIsPlaying(false);
     } else if (currentLifePointAd <= 0) {
       console.log(`Adversaire mort`);
+      setIsDeadAd(true);
     } else {
       setTour((prevKey) => prevKey + 1);
       setTimeRemaining(SECONDS);
       return;
     }
 
-    StopTimer();
+    setIsPlaying(false);
   };
 
   const handleTimeout = () => {
@@ -117,11 +146,6 @@ function Game() {
     setTimeout(() => setIsShowMessage(false), 2000);
     degat(50, true);
     isDead();
-  };
-
-  const StopTimer = () => {
-    setIsPlaying(true);
-    // Exécutez votre logique spécifique ici lorsque le minuteur est arrêté
   };
 
   return (
@@ -155,7 +179,7 @@ function Game() {
                 )}
               </div>
             </div>
-            <LifeBar currentLife={currentLifePoint} MaxLife={maxLifePoint} />
+            <LifeBar currentLife={currentLifePoint} maxLife={maxLifePoint} />
           </div>
           <div className="adversairePart">
             <div className="card" ref={cardAdRef}>
@@ -171,20 +195,21 @@ function Game() {
             </div>
             <LifeBar
               currentLife={currentLifePointAd}
-              MaxLife={maxLifePointAd}
+              maxLife={maxLifePointAd}
             />
           </div>
         </div>
         <div className="footer">
           {choices.map((choice) => (
-            <div
+            <button
+              disabled={!isPlaying}
               key={choice}
               onClick={() => {
                 handleClickAction(choice);
               }}
             >
               {choice}
-            </div>
+            </button>
           ))}
         </div>
       </div>

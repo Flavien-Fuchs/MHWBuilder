@@ -13,9 +13,9 @@ import { LanguageProvider } from "./utils/context/LanguageContext";
 function App() {
 
   //states for pages
-  const [index, setIndex] = useState(true);
+  const [index, setIndex] = useState(false);
   const [builder, setBuilder] = useState(false);
-  const [playing, setPlaying] = useState(false);
+  const [playing, setPlaying] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [armorPage, setArmorPage] = useState(null);
   const [weaponPage, setWeaponPage] = useState(null);

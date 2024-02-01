@@ -20,7 +20,7 @@ function LifeBar({ currentLife, maxLife }) {
     if (value > 60) {
       color = "green";
     } else if (value > 30) {
-      color = "yellow";
+      color = "#C38E00";
     } else {
       color = "red";
     }
