@@ -8,18 +8,17 @@ function ItemShit({
   waist,
   legs,
   weapon,
-  setArmurPage,
+  setArmorPage,
   setWeaponPage,
 }) {
   return (
     <div className="itemShit">
       <div className="part">
         <div
-          className="Slot head"
+          className="slot head"
           onClick={() => {
-            setArmurPage("head");
-          }}
-        >
+            setArmorPage("head")
+          }}>
 
           {head &&
             (!head.assets ? (
@@ -32,8 +31,7 @@ function ItemShit({
         </div>
       </div>
       <div className="part">
-        <div className="Slot weapon" onClick={setWeaponPage}>
-
+        <div className="slot weapon" onClick={setWeaponPage}>
           {weapon &&
             (!weapon.assets ? (
               <img src="./src/images/nullArmor.png" alt="weapon" />
@@ -44,9 +42,9 @@ function ItemShit({
             ))}
         </div>
         <div
-          className="Slot chest"
+          className="slot chest"
           onClick={() => {
-            setArmurPage("chest");
+            setArmorPage("chest");
           }}
         >
 
@@ -60,9 +58,9 @@ function ItemShit({
             ))}
         </div>
         <div
-          className="Slot gloves"
+          className="slot gloves"
           onClick={() => {
-            setArmurPage("gloves");
+            setArmorPage("gloves");
           }}
         >
 
@@ -78,9 +76,9 @@ function ItemShit({
       </div>
       <div className="part">
         <div
-          className="Slot waist"
+          className="slot waist"
           onClick={() => {
-            setArmurPage("waist");
+            setArmorPage("waist");
           }}
         >
 
@@ -96,9 +94,9 @@ function ItemShit({
       </div>
       <div className="part">
         <div
-          className="Slot legs"
+          className="slot legs"
           onClick={() => {
-            setArmurPage("legs");
+            setArmorPage("legs");
           }}
         >
 
