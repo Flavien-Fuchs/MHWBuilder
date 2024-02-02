@@ -17,9 +17,9 @@ function ItemShit({
         <div
           className="slot head"
           onClick={() => {
-            setArmorPage("head")
-          }}>
-
+            setArmorPage("head");
+          }}
+        >
           {head &&
             (!head.assets ? (
               <img src="./src/images/nullArmor.png" alt="armor" />
@@ -47,7 +47,6 @@ function ItemShit({
             setArmorPage("chest");
           }}
         >
-
           {chest &&
             (!chest.assets ? (
               <img src="./src/images/nullArmor.png" alt="armor" />
@@ -63,7 +62,6 @@ function ItemShit({
             setArmorPage("gloves");
           }}
         >
-
           {gloves &&
             (!gloves.assets ? (
               <img src="./src/images/nullArmor.png" alt="armor" />
@@ -81,7 +79,6 @@ function ItemShit({
             setArmorPage("waist");
           }}
         >
-
           {waist &&
             (!waist.assets ? (
               <img src="./src/images/nullArmor.png" alt="armor" />
@@ -99,7 +96,6 @@ function ItemShit({
             setArmorPage("legs");
           }}
         >
-
           {legs &&
             (!legs.assets ? (
               <img src="./src/images/nullArmor.png" alt="armor" />
