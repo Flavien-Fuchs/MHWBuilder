@@ -236,8 +236,6 @@ function App() {
   }
 
   function addSkills(action, pastSkills, selectSkills) {
-
-
     if (action === "less") {
       let newPlayerSkills = []
 
@@ -287,27 +285,27 @@ function App() {
         setPlayerSkills(newPlayerSkills)
       }
     }
-
-
     else {
 
-      if (selectSkills[0]) {
-        const newPlayerSkills = playerSkills.map(playerSkill => {
-          if (selectSkills.some(selectSkill => selectSkill.id === playerSkill.id)) {
-            selectSkills.map(selectSkill => {
-              if (playerSkill.id === selectSkill.id) {
+
+      if (selectSkills.length > 0) {
+        let newPlayerSkills = [...playerSkills]
+        selectSkills.map(selectSkill => {
+          if (newPlayerSkills.some(newPlayerSkill => newPlayerSkill.skillName === selectSkill.skillName)) {
+
+            newPlayerSkills = newPlayerSkills.map(newPlayerSkill => {
+              if (newPlayerSkill.skillName === selectSkill.skillName) {
+
                 return {
-                  ...playerSkill,
-                  level: playerSkill.level + selectSkill.level
+                  ...newPlayerSkill,
+                  level: newPlayerSkill.level + selectSkill.level
                 }
+              }
+              else {
+                return newPlayerSkill
               }
             })
           } else {
-            return playerSkill
-          }
-        })
-        selectSkills.map(selectSkill => {
-          if (!newPlayerSkills.some(newPlayerSkill => newPlayerSkill.id === selectSkill.id)) {
             newPlayerSkills.push(selectSkill)
           }
         })
