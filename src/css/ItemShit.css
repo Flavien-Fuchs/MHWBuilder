@@ -27,6 +27,230 @@
   }
 }
 
+.itemShit .head.empty {
+    position: relative;
+    border-radius: 1em;
+    width: 6em;
+    height: 6em;
+    color: var(--neutral-white-color);
+    transition: 0.2s;
+    background-color: var(--background-slot);
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+    background-image: url('../assets/AmorsIcons/teteArmor3.png');
+    background-size: contain;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.itemShit .head {
+    position: relative;
+    border-radius: 1em;
+    width: 6em;
+    height: 6em;
+    color: var(--neutral-white-color);
+    transition: 0.2s;
+    background-color: var(--background-slot);
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+}
+
+.itemShit .chest.empty {
+    position: relative;
+  border-radius: 1em;
+  width: 6em;
+  height: 6em;
+  color: var(--neutral-white-color);
+  transition: 0.2s;
+  background-color: var(--background-slot);
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+    background-image: url('../assets/AmorsIcons/torseArmor.png');
+    background-size: contain;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.itemShit .chest {
+    position: relative;
+    border-radius: 1em;
+    width: 6em;
+    height: 6em;
+    color: var(--neutral-white-color);
+    transition: 0.2s;
+    background-color: var(--background-slot);
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+}
+
+.itemShit .gloves.empty {
+    position: relative;
+    border-radius: 1em;
+    width: 6em;
+    height: 6em;
+    color: var(--neutral-white-color);
+    transition: 0.2s;
+    background-color: var(--background-slot);
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+    background-image: url('../assets/AmorsIcons/mainArmor.png');
+    background-size: contain;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.itemShit .gloves {
+    position: relative;
+    border-radius: 1em;
+    width: 6em;
+    height: 6em;
+    color: var(--neutral-white-color);
+    transition: 0.2s;
+    background-color: var(--background-slot);
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+}
+
+.itemShit .waist.empty {
+    position: relative;
+    border-radius: 1em;
+    width: 6em;
+    height: 6em;
+    color: var(--neutral-white-color);
+    transition: 0.2s;
+    background-color: var(--background-slot);
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+    background-image: url('../assets/AmorsIcons/tailleArmor.png');
+    background-size: contain;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.itemShit .waist {
+    position: relative;
+    border-radius: 1em;
+    width: 6em;
+    height: 6em;
+    color: var(--neutral-white-color);
+    transition: 0.2s;
+    background-color: var(--background-slot);
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+}
+
+.itemShit .legs.empty {
+    position: relative;
+    border-radius: 1em;
+    width: 6em;
+    height: 6em;
+    color: var(--neutral-white-color);
+    transition: 0.2s;
+    background-color: var(--background-slot);
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+    background-image: url('../assets/AmorsIcons/jambeArmor.png');
+    background-size: contain;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.itemShit .legs {
+    position: relative;
+    border-radius: 1em;
+    width: 6em;
+    height: 6em;
+    color: var(--neutral-white-color);
+    transition: 0.2s;
+    background-color: var(--background-slot);
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+
+}
+
+.itemShit .weapon.empty {
+    position: relative;
+    border-radius: 1em;
+    width: 6em;
+    height: 6em;
+    color: var(--neutral-white-color);
+    transition: 0.2s;
+    background-color: var(--background-slot);
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+    background-image: url('../assets/AmorsIcons/epee.png');
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.itemShit .weapon {
+    position: relative;
+    border-radius: 1em;
+    width: 6em;
+    height: 6em;
+    color: var(--neutral-white-color);
+    transition: 0.2s;
+    background-color: var(--background-slot);
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+
+}
+
+
 .itemShit .slot:hover {
   border: 1px solid var(--border-color);
   cursor: pointer;
