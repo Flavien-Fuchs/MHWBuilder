@@ -45,7 +45,7 @@
   border-radius: 10px;
 }
 
-.globalInfos > img {
+.imageInfos > img {
   height: 8em;
   filter: saturate() drop-shadow(2px 4px 6px black);
 }
@@ -78,13 +78,16 @@ ul.resistance {
   text-align: left;
 }
 
-.stats,
-p.skilllsList {
+.stats {
   margin-bottom: 0.9em;
 }
 
-.hideSkills {
-  color: mediumslateblue;
+p.skillsList {
+  margin-top: 10px;
+}
+
+.skillsList {
+  color: var(--color-dark-text);
 }
 
 .item > img {
@@ -99,37 +102,54 @@ p.skilllsList {
   list-style: none;
 }
 
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+  .itemContainer {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 @media screen and (max-width: 600px) {
+  .allInfos {
+    display: flex;
+    flex-direction: row;
+  }
   .itemContainer {
     grid-template-columns: repeat(1, 1fr);
     margin-top: 10%;
   }
 
-  .item,
-  .detailsInfos {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    padding: 1em;
+  .textInfos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .imageInfos {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
   }
 
   .detailsInfos {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    width: 50%;
   }
 
-  .globalInfos > img {
-    height: 7em;
+  ul.resistance {
+    padding-right: 20%;
   }
-
-  p,
-  .resistance {
-    font-size: 13px;
-    margin-top: 5%;
-  }
-
-  .skillsList,
-  .hideSkills {
+  .stats {
+    font-size: 11px;
     text-align: left;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+    padding-left: 10%;
+  }
+
+  .skillsList {
+    text-align: center;
   }
 }
