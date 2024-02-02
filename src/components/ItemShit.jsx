@@ -14,6 +14,7 @@ function ItemShit({
   return (
     <div className="itemShit">
       <div className="part">
+        {/* Retirer la classe empty lorsque un item est selectionné pour retirer l'icone de l'item */}
       <div className={`slot head ${head ? '' : 'empty'}`}
           onClick={() => {
             setArmorPage("head");
