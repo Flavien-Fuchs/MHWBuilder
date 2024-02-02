@@ -74,6 +74,9 @@ body {
 .globalContainer > .title img {
   width: 300px;
 }
+.title img:hover {
+  scale: 1.1;
+}
 
 .statContainer {
   width: 40%;

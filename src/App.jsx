@@ -11,7 +11,6 @@ import Game from "./components/Game";
 import { LanguageProvider } from "./utils/context/LanguageContext";
 
 function App() {
-
   //states for pages
   const [index, setIndex] = useState(true);
   const [builder, setBuilder] = useState(false);
@@ -48,16 +47,18 @@ function App() {
   const handleApi = () => {
     setIsLoading(true);
 
-    Promise.all([
-      armorApi(),
-      weaponApi(),
-      charmsApi(),
-      skillsApi(),
-    ]).then(() => {
-      setIsLoading(false);
-      setIndex(false);
-      setBuilder(true);
-    });
+    Promise.all([armorApi(), weaponApi(), charmsApi(), skillsApi()]).then(
+      () => {
+        setIsLoading(false);
+        setIndex(false);
+        setBuilder(true);
+      }
+    );
+  };
+
+  const handleIndex = () => {
+    setIndex(true);
+    setIsLoading(false);
   };
 
   const armorApi = () => {
@@ -103,7 +104,6 @@ function App() {
         throw new Error("Problem whith API to download skills content : ", err);
       });
   };
-
 
   // Functions for stats
 
@@ -169,18 +169,18 @@ function App() {
     action === "add"
       ? setBaseDefense(baseDefense + baseDef)
       : action === "less"
-        ? setBaseDefense(baseDefense - pastBaseDef + baseDef)
-        : null;
+      ? setBaseDefense(baseDefense - pastBaseDef + baseDef)
+      : null;
     action === "add"
       ? setMaxDefense(maxDefense + maxDef)
       : action === "less"
-        ? setMaxDefense(maxDefense - pastMaxDef + maxDef)
-        : null;
+      ? setMaxDefense(maxDefense - pastMaxDef + maxDef)
+      : null;
     action === "add"
       ? setAugDefense(augDefense + augDef)
       : action === "less"
-        ? setAugDefense(augDefense - pastAugDef + augDef)
-        : null;
+      ? setAugDefense(augDefense - pastAugDef + augDef)
+      : null;
   }
 
   function addRes(
@@ -199,28 +199,28 @@ function App() {
     action === "add"
       ? setResFire(resFire + fire)
       : action === "less"
-        ? setResFire(resFire - pastFire + fire)
-        : null;
+      ? setResFire(resFire - pastFire + fire)
+      : null;
     action === "add"
       ? setResWater(resWater + water)
       : action === "less"
-        ? setResWater(resWater - pastWater + water)
-        : null;
+      ? setResWater(resWater - pastWater + water)
+      : null;
     action === "add"
       ? setResIce(resIce + ice)
       : action === "less"
-        ? setResIce(resIce - pastIce + ice)
-        : null;
+      ? setResIce(resIce - pastIce + ice)
+      : null;
     action === "add"
       ? setResThunder(resThunder + thunder)
       : action === "less"
-        ? setResThunder(resThunder - pastThunder + thunder)
-        : null;
+      ? setResThunder(resThunder - pastThunder + thunder)
+      : null;
     action === "add"
       ? setResDragon(resDragon + dragon)
       : action === "less"
-        ? setResDragon(resDragon - pastDragon + dragon)
-        : null;
+      ? setResDragon(resDragon - pastDragon + dragon)
+      : null;
   }
 
   // Functions on click
@@ -290,7 +290,11 @@ function App() {
         {builder && (
           <div className="globalContainer">
             <div className="title">
-              <img src="./src/images/logo.png" alt="logo" />
+              <img
+                src="./src/images/logo.png"
+                alt="logo"
+                onClick={handleIndex}
+              />
             </div>
             <ItemShit
               head={head}
@@ -303,10 +307,7 @@ function App() {
               setWeaponPage={setWeaponPage}
             />
             <div className="statContainer">
-              <Attack
-                attack={attack}
-                elementalAttack={elementalAttack}
-              />
+              <Attack attack={attack} elementalAttack={elementalAttack} />
               <Defense
                 baseDefense={baseDefense}
                 maxDefense={maxDefense}

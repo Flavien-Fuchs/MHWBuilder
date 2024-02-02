@@ -10,11 +10,12 @@
   top: 0;
   left: 0;
   overflow-y: scroll;
-  scrollbar-color: rebeccapurple green;
+  scrollbar-color: rgb(255, 255, 255);
   scrollbar-width: thin;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-auto-rows: min-content;
+  margin-top: 4%;
 }
 
 .typeContainer {
@@ -25,7 +26,7 @@
 }
 
 .itemContainer .itemNavBar {
-  position: sticky;
+  position: fixed;
   width: 100%;
   top: 0;
   background-color: var(--navbar);
@@ -41,9 +42,52 @@
   padding: 1em;
   color: var(--neutral-white-color);
   cursor: pointer;
+  border-radius: 10px;
 }
 
-.item>img {
+.globalInfos > img {
+  height: 8em;
+  filter: saturate() drop-shadow(2px 4px 6px black);
+}
+
+.resistance li img {
+  height: 1em;
+}
+
+.resistance li,
+li {
+  list-style: none;
+  font-size: 12px;
+}
+
+p {
+  font-size: 14px;
+}
+
+.paragrapheList,
+.stats,
+.skillsList {
+  text-transform: uppercase;
+}
+
+.rarity {
+  color: gold;
+}
+
+ul.resistance {
+  text-align: left;
+}
+
+.stats,
+p.skilllsList {
+  margin-bottom: 0.9em;
+}
+
+.hideSkills {
+  color: mediumslateblue;
+}
+
+.item > img {
   height: 8em;
 }
 
@@ -53,4 +97,39 @@
 
 .resistance li {
   list-style: none;
+}
+
+@media screen and (max-width: 600px) {
+  .itemContainer {
+    grid-template-columns: repeat(1, 1fr);
+    margin-top: 10%;
+  }
+
+  .item,
+  .detailsInfos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1em;
+  }
+
+  .detailsInfos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .globalInfos > img {
+    height: 7em;
+  }
+
+  p,
+  .resistance {
+    font-size: 13px;
+    margin-top: 5%;
+  }
+
+  .skillsList,
+  .hideSkills {
+    text-align: left;
+  }
 }
