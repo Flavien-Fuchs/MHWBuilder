@@ -1,15 +1,28 @@
 /* eslint-disable react/prop-types */
 import '../css/Items.css'
+import { useState } from 'react'
 /* import ItemArmor from './ItemArmor'; */
 
 
 
 function Armors({ armors, handleArmor, type, closePage }) {
+  const [searchTerm, setSearchterm] = useState("")
+  const [showBar, setShowBar] = useState(false)
+
+  const handleShowBar = ()=>{
+    setShowBar(true)
+  }
+
+  const handleSearchTerm = (event)=>{
+    setSearchterm(event.target.value)
+  }
 
 
     let newArmors = []
-    armors.data.map((item) => {
-        if (item.type === type) newArmors.push(item)
+    armors.data.filter((item) => {
+        if (item.type === type && item.name.toLowerCase().includes(searchTerm.toLowerCase())) {  
+          return newArmors.push(item)
+        }
     })
 
 
@@ -18,6 +31,13 @@ function Armors({ armors, handleArmor, type, closePage }) {
             <div className="itemContainer">
                 <div className='itemNavBar'>
                     <button onClick={closePage}>Close Page</button>
+                    <button className='search-button' onClick={handleShowBar}><img src='src\images\icons\loupe.png'/></button>
+                    {showBar && (<input 
+                    name='search-bar'
+                    id='search-bar'
+                    value={searchTerm}
+                    onChange={handleSearchTerm}
+                    ></input>)}
                 </div>
 
                 {newArmors.map((armor, key) => {
