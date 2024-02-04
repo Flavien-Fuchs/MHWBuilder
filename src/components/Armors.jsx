@@ -6,6 +6,7 @@ import { useState } from 'react'
 function Armors({ armors, handleArmor, type, closePage }) {
   const [searchTerm, setSearchterm] = useState("")
   const [showBar, setShowBar] = useState(false)
+  const [searchType, setSearchType] = useState("armor")
 
   const handleShowBar = ()=>{
     setShowBar(true)
@@ -23,6 +24,21 @@ function Armors({ armors, handleArmor, type, closePage }) {
         }
     })
 
+    
+
+    {searchType === "skill" && (
+      armors.data.filter((item)=>{
+        item.skills.filter((skill)=> {
+          if(item.type === type && skill.skillName.toLowerCase().includes(searchTerm.toLowerCase())) {  
+            return newArmors.push(item)
+          } 
+      })})
+    )
+
+    }
+
+  
+
 
     return (
         <>
@@ -30,12 +46,27 @@ function Armors({ armors, handleArmor, type, closePage }) {
                 <div className='itemNavBar'>
                     <button onClick={closePage}>Close Page</button>
                     <button className='search-button' onClick={handleShowBar}><img src='src\images\icons\loupe.png'/></button>
-                    {showBar && (<input 
+                    {showBar && 
+                    <>
+                    (<input 
                     name='search-bar'
                     id='search-bar'
                     value={searchTerm}
                     onChange={handleSearchTerm}
-                    ></input>)}
+                    ></input>
+                    <label>
+                <input type='radio' name='search-type' value='armor' checked={searchType === 'armor'} onChange={() => setSearchType('armor')} />
+                Armor
+            </label>
+            <label>
+                <input type='radio' name='search-type' value='skill' checked={searchType === 'skill'} onChange={() => setSearchType('skill')} />
+                Skill
+            </label>
+            
+                    )
+                    
+                    </>}
+                    
                 </div>
 
         {newArmors.map((armor, key) => {

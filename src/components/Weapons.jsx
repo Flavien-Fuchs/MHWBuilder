@@ -5,6 +5,21 @@ import "../css/Items.css";
 function Weapons({ weapons, handleWeapon, closePage }) {
   const [typeChosen, setTypeChosen] = useState(false);
   const [weaponType, setWeaponType] = useState(null);
+  const [searchTerm, setSearchterm] = useState("")
+  const [showBar, setShowBar] = useState(false)
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const handleSelectOption = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
+  const handleShowBar = ()=>{
+    setShowBar(!showBar)
+    }
+
+  const handleSearchTerm = (event)=>{
+    setSearchterm(event.target.value)
+    }
 
   const handleChoiseType = (type) => {
     setWeaponType(type);
@@ -14,6 +29,12 @@ function Weapons({ weapons, handleWeapon, closePage }) {
   const backWeapon = () => {
     setTypeChosen(false);
   };
+
+let newWeapons = weapons.data.filter((weapon) => weapon.type === weaponType && weapon.name.toLowerCase().includes(searchTerm.toLowerCase()) && weapon.elements.find(element => element.type === selectedOption) || weapon.type === weaponType && weapon.name.toLowerCase().includes(searchTerm.toLowerCase()) && selectedOption === "") 
+            
+  weapons.data.map((weapon)=>{
+    weapon.elements.map((element)=> console.log("Types :",element.type))
+    })
 
   return (
     <>
@@ -91,12 +112,37 @@ function Weapons({ weapons, handleWeapon, closePage }) {
           <div className="itemNavBar">
             <button onClick={closePage}>Close Page</button>
             {typeChosen && (
-              <button onClick={backWeapon}>Choise weapon&apos;stype</button>
+                <>
+                    <button onClick={backWeapon}>Choise weapon&apos;stype</button>
+                    <button className='search-button' onClick={handleShowBar}><img src='src\images\icons\loupe.png'/></button>
+                    <select value={selectedOption} onChange={handleSelectOption}>
+                        <option value="">All Elements</option>
+                        <option value="fire">Fire</option>
+                        <option value="poison">Poison</option>
+                        <option value="dragon">Dragon</option>
+                        <option value="ice">Ice</option>
+                        <option value="thunder">Thunder</option>
+                        <option value="sleep">Sleep</option>
+                        <option value="paralysis">Paralysis</option>
+                        <option value="blast">Blast</option>
+                        <option value="undefined">None</option>
+                    </select>
+                     
+                    {showBar &&  
+                    <>
+                        (<input 
+                        name='search-bar'
+                        id='search-bar'
+                        value={searchTerm}
+                        onChange={handleSearchTerm}
+                        >
+                        </input>)
+                    </>
+                    }
+              </>
             )}
           </div>
-          {weapons.data
-            .filter((weapon) => weapon.type === weaponType)
-            .map((weapon, key) => (
+          {newWeapons.map((weapon, key) => (
               <div
                 key={key}
                 className="item"
