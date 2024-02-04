@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import '../css/Stats.css'
+
 function ItemSheetSingle({
     type,
     head,
@@ -7,8 +9,10 @@ function ItemSheetSingle({
     waist,
     legs,
     weapon,
+    charm,
     setArmorPage,
     setWeaponPage,
+    setCharmsPage,
     toggleDisplayItem,
     deleteItem
 }) {
@@ -32,40 +36,83 @@ function ItemSheetSingle({
         case "weapon":
             actualItem = weapon
             break;
+        case "charm":
+            actualItem = charm
+            break;
 
         default:
             actualItem = null
             break;
     }
+
     return (
         <div className="ItemSheetSingleContainer">
             <div className="ISSButtons">
-                <button onClick={() => deleteItem(type)}>Delete item</button>
-                {type === "weapon" ? (
+                <button onClick={() => deleteItem(actualItem, type)}>Delete item</button>
+                {type === "weapon" && (
                     <button onClick={() => {
                         toggleDisplayItem(null)
                         setWeaponPage(true)
                     }}>Change item</button>
-                ) : (
+                )}
+                {type === "charm" && (
+                    <button onClick={() => {
+                        toggleDisplayItem(null)
+                        setCharmsPage(type)
+                    }}>Change item</button>
+                )}
+                {(type !== "charm" && type !== "weapon") && (
                     <button onClick={() => {
                         toggleDisplayItem(null)
                         setArmorPage(type)
                     }}>Change item</button>
-                )
-                }
+                )}
                 <button className="ISSingleClose" onClick={() => toggleDisplayItem(null)}>Back</button>
             </div>
             <div className="ISSView">
                 <h3>{actualItem.name}</h3>
-                <p>Rarity {actualItem.rarity}</p>
+                {actualItem.rarity ? <p>Rarity {actualItem.rarity}</p> : <p>Rarity {actualItem.ranks[actualItem.ranks.length - 1].rarity} </p>}
                 {type === "weapon" ? (
-                    (!actualItem.assets ? (
-                        <img src="./src/images/nullArmor.png" alt="weapon" />
-                    ) : actualItem.assets.image ? (
-                        <img src={weapon.assets.image} alt="weapon" />
-                    ) : (
-                        <img src={weapon.assets.icon} alt="weapon" />
-                    ))
+                    <div className="ISSDescription">
+                        {(!actualItem.assets ? (
+                            <img src="./src/images/nullArmor.png" alt="weapon" />
+                        ) : actualItem.assets.image ? (
+                            <img src={weapon.assets.image} alt="weapon" />
+                        ) : (
+                            <img src={weapon.assets.icon} alt="weapon" />
+                        ))}
+                        <div className="ISSStats">
+                            <ul className='resistance'>
+                                <li>Attack : {actualItem.attack.display}</li>
+                                {actualItem.elements[0] ? (<li>Element : {actualItem.elements[0].damage} ({actualItem.elements[0].type})</li>) : (<li>Element : 0</li>)}
+                                {actualItem.attributes.affinity ? (<li>Affinity : {actualItem.attributes.affinity}%</li>) : (<li>Affinity : 0%</li>)}
+                                {actualItem.durability && <div>
+                                    <li>Sharpness :</li>
+                                    <div className="sharpnessContainer">
+                                        <div className="sharpness red" style={{ "width": `${actualItem.durability[0].red / 3}px` }}></div>
+                                        <div className="sharpness orange" style={{ "width": `${actualItem.durability[0].orange / 3}px` }}></div>
+                                        <div className="sharpness yellow" style={{ "width": `${actualItem.durability[0].yellow / 3}px` }}></div>
+                                        <div className="sharpness green" style={{ "width": `${actualItem.durability[0].green / 3}px` }}></div>
+                                        <div className="sharpness blue" style={{ "width": `${actualItem.durability[0].blue / 3}px` }}></div>
+                                        <div className="sharpness white" style={{ "width": `${actualItem.durability[0].white / 3}px` }}></div>
+                                        <div className="sharpness purple" style={{ "width": `${actualItem.durability[0].purple / 3}px` }}></div>
+                                    </div>
+                                </div>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                ) : (type === "charm" ? (
+                    <div className="ISSDescription">
+
+                        <div className="ISSSkillsList">
+                            <img className='ISSImgCharm' src="./src/images/charm-icon.png" alt="armor" />
+                            <p>Skills list</p>
+                            <ul>
+                                {actualItem.ranks[actualItem.ranks.length - 1].skills.map((skill, key) => { return <li key={key}>{skill.skillName} - {skill.level}</li> })}
+                            </ul>
+                        </div>
+                    </div>
                 ) : (
                     <div className="ISSDescription">
                         {(!actualItem.assets ? (
@@ -94,7 +141,7 @@ function ItemSheetSingle({
                                 </div>}
                         </div>
                     </div>
-                )
+                ))
                 }
             </div>
         </div>

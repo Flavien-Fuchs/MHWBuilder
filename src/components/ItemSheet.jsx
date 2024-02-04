@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import "../css/ItemSheet.css";
 import ItemSheetSingle from "./ItemSheetSingle";
-import { useState } from "react";
 
 
 
@@ -12,11 +11,14 @@ function ItemSheet({
   waist,
   legs,
   weapon,
+  charm,
   setArmorPage,
   setWeaponPage,
-  deleteItem
+  setCharmsPage,
+  deleteItem,
+  displayItem,
+  setDisplayItem
 }) {
-  const [displayItem, setDisplayItem] = useState(null)
 
   const toggleDisplayItem = (type) => {
     setDisplayItem(type)
@@ -32,8 +34,10 @@ function ItemSheet({
         waist={waist}
         legs={legs}
         weapon={weapon}
+        charm={charm}
         setArmorPage={setArmorPage}
         setWeaponPage={setWeaponPage}
+        setCharmsPage={setCharmsPage}
         toggleDisplayItem={toggleDisplayItem}
         deleteItem={deleteItem}
       />}
@@ -52,6 +56,17 @@ function ItemSheet({
           ) : (
 
             <div className="slot head" onClick={() => { setArmorPage("head") }}>
+            </div>
+          )}
+
+        {charm ?
+          (
+            <div className="charm" onClick={() => { toggleDisplayItem("charm") }}>
+              <img src="./src/images/charm-icon.png" alt="armor" />
+            </div>
+          ) : (
+
+            <div className="charm" onClick={() => { setCharmsPage("charm") }}>
             </div>
           )}
       </div>

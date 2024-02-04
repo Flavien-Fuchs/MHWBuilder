@@ -45,8 +45,8 @@ function Skills({ playerSkills, skills }) {
                                         <span key={skill.id} className="skillRank">
                                             {
                                                 skill.ranks.map((rank, index) => {
-                                                    if (index < playerSkill.level) return (<div className="rank skillOn"></div>)
-                                                    else return (<div className="rank skillOff"></div>)
+                                                    if (index < playerSkill.level) return (<div key={index} className="rank skillOn"></div>)
+                                                    else return (<div key={index} className="rank skillOff"></div>)
                                                 })
                                             }
                                         </span>

@@ -9,6 +9,7 @@ import Attack from "./components/Attack";
 import Login from "./components/Login";
 import Game from "./components/Game";
 import Skills from "./components/Skills";
+import Charms from "./components/Charms";
 
 
 function App() {
@@ -18,7 +19,9 @@ function App() {
   const [playing, setPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [armorPage, setArmorPage] = useState(null);
+  const [charmsPage, setCharmsPage] = useState(null);
   const [weaponPage, setWeaponPage] = useState(null);
+  const [displayItem, setDisplayItem] = useState(null)
   //states for API results
   const [armors, setArmors] = useState(null);
   const [weapons, setWeapons] = useState(null);
@@ -31,6 +34,7 @@ function App() {
   const [waist, setWaist] = useState(null);
   const [legs, setLegs] = useState(null);
   const [weapon, setWeapon] = useState(null);
+  const [charm, setCharm] = useState(null);
   // States for User stats
   const [health, setHealth] = useState(100);
   const [stamina, setStamina] = useState(100);
@@ -71,7 +75,7 @@ function App() {
     return axios
       .get("https://mhw-db.com/armor")
       .then((response) => {
-        setArmors(response);
+        setArmors(response.data);
       })
       .catch((err) => {
         throw new Error("Problem whith API to download armor content : ", err);
@@ -82,7 +86,7 @@ function App() {
     return axios
       .get("https://mhw-db.com/weapons")
       .then((response) => {
-        setWeapons(response);
+        setWeapons(response.data);
       })
       .catch((err) => {
         throw new Error("Problem whith API to download weapon content : ", err);
@@ -93,7 +97,7 @@ function App() {
     return axios
       .get("https://mhw-db.com/charms")
       .then((response) => {
-        setCharms(response);
+        setCharms(response.data);
       })
       .catch((err) => {
         throw new Error("Problem whith API to download charms content : ", err);
@@ -110,7 +114,6 @@ function App() {
         throw new Error("Problem whith API to download skills content : ", err);
       });
   };
-
 
   // Functions for stats
 
@@ -177,21 +180,22 @@ function App() {
     maxDef,
     augDef
   ) {
-    action === "add"
-      ? setBaseDefense(baseDefense + baseDef)
-      : action === "less"
-        ? setBaseDefense(baseDefense - pastBaseDef + baseDef)
-        : null;
-    action === "add"
-      ? setMaxDefense(maxDefense + maxDef)
-      : action === "less"
-        ? setMaxDefense(maxDefense - pastMaxDef + maxDef)
-        : null;
-    action === "add"
-      ? setAugDefense(augDefense + augDef)
-      : action === "less"
-        ? setAugDefense(augDefense - pastAugDef + augDef)
-        : null;
+    if (action === "add") {
+      setBaseDefense(baseDefense + baseDef);
+      setMaxDefense(maxDefense + maxDef);
+      setAugDefense(augDefense + augDef);
+    }
+
+    if (action === "less") {
+      setBaseDefense(baseDefense - pastBaseDef + baseDef);
+      setMaxDefense(maxDefense - pastMaxDef + maxDef);
+      setAugDefense(augDefense - pastAugDef + augDef);
+    }
+    if (action === "delete") {
+      setBaseDefense(baseDefense - pastBaseDef);
+      setMaxDefense(maxDefense - pastMaxDef);
+      setAugDefense(augDefense - pastAugDef);
+    }
   }
 
   function addRes(
@@ -207,38 +211,36 @@ function App() {
     thunder,
     dragon
   ) {
-    action === "add"
-      ? setResFire(resFire + fire)
-      : action === "less"
-        ? setResFire(resFire - pastFire + fire)
-        : null;
-    action === "add"
-      ? setResWater(resWater + water)
-      : action === "less"
-        ? setResWater(resWater - pastWater + water)
-        : null;
-    action === "add"
-      ? setResIce(resIce + ice)
-      : action === "less"
-        ? setResIce(resIce - pastIce + ice)
-        : null;
-    action === "add"
-      ? setResThunder(resThunder + thunder)
-      : action === "less"
-        ? setResThunder(resThunder - pastThunder + thunder)
-        : null;
-    action === "add"
-      ? setResDragon(resDragon + dragon)
-      : action === "less"
-        ? setResDragon(resDragon - pastDragon + dragon)
-        : null;
+
+    if (action === "add") {
+      setResFire(resFire + fire);
+      setResWater(resWater + water);
+      setResIce(resIce + ice);
+      setResThunder(resThunder + thunder)
+      setResDragon(resDragon + dragon)
+    }
+    if (action === "less") {
+      setResFire(resFire - pastFire + fire);
+      setResWater(resWater - pastWater + water);
+      setResIce(resIce - pastIce + ice);
+      setResThunder(resThunder - pastThunder + thunder)
+      setResDragon(resDragon - pastDragon + dragon)
+    }
+    if (action === "delete") {
+      setResFire(resFire - pastFire);
+      setResWater(resWater - pastWater);
+      setResIce(resIce - pastIce);
+      setResThunder(resThunder - pastThunder)
+      setResDragon(resDragon - pastDragon)
+    }
+
   }
 
   function addSkills(action, pastSkills, selectSkills) {
 
     let newPlayerSkills = [...playerSkills]
 
-    if (action === "less") {
+    if (action === "less" || action === "delete") {
       if (pastSkills.length > 0) {
 
         pastSkills.map(pastSkill => {
@@ -272,7 +274,7 @@ function App() {
     }
     newPlayerSkills.filter(removeValue)
 
-    if (selectSkills.length > 0) {
+    if (selectSkills.length > 0 && action !== "delete") {
       selectSkills.map(selectSkill => {
         if (newPlayerSkills.some(newPlayerSkill => newPlayerSkill.skillName === selectSkill.skillName)) {
 
@@ -292,48 +294,89 @@ function App() {
           newPlayerSkills.push(selectSkill)
         }
       })
-      setPlayerSkills(newPlayerSkills)
     }
-
+    setPlayerSkills(newPlayerSkills)
   }
 
 
   // Functions on click
 
+  const deleteItem = (selectedStuff, type) => {
+    switch (type) {
+      case "head":
+        addDefStats(selectedStuff, selectedStuff, "delete")
+        setHead(null)
+        break;
+      case "chest":
+        addDefStats(selectedStuff, selectedStuff, "delete")
+        setChest(null)
+        break;
+      case "gloves":
+        addDefStats(selectedStuff, selectedStuff, "delete")
+        setGloves(null)
+        break;
+      case "waist":
+        addDefStats(selectedStuff, selectedStuff, "delete")
+        setWaist(null)
+        break;
+      case "legs":
+        addDefStats(selectedStuff, selectedStuff, "delete")
+        setLegs(null)
+        break;
+      case "weapon":
+        setWeapon(null)
+        setAttack(0)
+        setElementalAttack([])
+        setAffinity(0)
+        setCriticalBoost(125)
+        setSharpness([])
+        break;
+      case "charm":
+        addSkills("delete", selectedStuff.ranks[selectedStuff.ranks.length - 1].skills, selectedStuff.ranks[selectedStuff.ranks.length - 1].skills)
+        setCharm(null)
+        break;
+      default:
+        break;
+    }
+    setDisplayItem(null)
+  }
+
   const handleArmor = (selectedArmor, type) => {
     let armor = selectedArmor
-    if (type === "head") {
-      head !== null
-        ? addDefStats(armor, head, "less")
-        : addDefStats(armor, null, "add");
-      setHead(armor);
+    switch (type) {
+      case "head":
+        head !== null
+          ? addDefStats(armor, head, "less")
+          : addDefStats(armor, null, "add");
+        setHead(armor);
+        break;
+      case "chest":
+        chest !== null
+          ? addDefStats(armor, chest, "less")
+          : addDefStats(armor, null, "add");
+        setChest(armor);
+        break;
+      case "gloves":
+        gloves !== null
+          ? addDefStats(armor, gloves, "less")
+          : addDefStats(armor, null, "add");
+        setGloves(armor);
+        break;
+      case "waist":
+        waist !== null
+          ? addDefStats(armor, waist, "less")
+          : addDefStats(armor, null, "add");
+        setWaist(armor);
+        break;
+      case "legs":
+        legs !== null
+          ? addDefStats(armor, legs, "less")
+          : addDefStats(armor, null, "add");
+        setLegs(armor);
+        break;
+      default:
+        break;
     }
-    if (type === "chest") {
-      chest !== null
-        ? addDefStats(armor, chest, "less")
-        : addDefStats(armor, null, "add");
-      setChest(armor);
-    }
-    if (type === "gloves") {
-      gloves !== null
-        ? addDefStats(armor, gloves, "less")
-        : addDefStats(armor, null, "add");
-      setGloves(armor);
-    }
-    if (type === "waist") {
-      waist !== null
-        ? addDefStats(armor, waist, "less")
-        : addDefStats(armor, null, "add");
-      setWaist(armor);
-    }
-    if (type === "legs") {
-      legs !== null
-        ? addDefStats(armor, legs, "less")
-        : addDefStats(armor, null, "add");
-      setLegs(armor);
-    }
-
-
     setArmorPage(null);
   };
 
@@ -346,15 +389,20 @@ function App() {
     setWeaponPage(null);
   };
 
-  const deleteItem = (type) => {
-    if (type === "weapon") {
-      return null
-    }
+  const handleCharms = (selectCharm) => {
+    setCharm(selectCharm)
+    charm ? (
+      addSkills("less", charm.ranks[charm.ranks.length - 1].skills, selectCharm.ranks[charm.ranks.length - 1].skills)
+    ) : (
+      addSkills("add", null, selectCharm.ranks[selectCharm.ranks.length - 1].skills)
+    )
+    setCharmsPage(null);
   }
 
   const closePage = () => {
     setArmorPage(null);
     setWeaponPage(null);
+    setCharmsPage(null);
   };
 
   /* console.log(playerSkills) */
@@ -387,9 +435,13 @@ function App() {
               waist={waist}
               legs={legs}
               weapon={weapon}
+              charm={charm}
               setArmorPage={setArmorPage}
               setWeaponPage={setWeaponPage}
+              setCharmsPage={setCharmsPage}
               deleteItem={deleteItem}
+              displayItem={displayItem}
+              setDisplayItem={setDisplayItem}
             />
             <div className="statContainer">
               <Attack
@@ -425,6 +477,13 @@ function App() {
               <Weapons
                 weapons={weapons}
                 handleWeapon={handleWeapon}
+                closePage={closePage}
+              />
+            )}
+            {charmsPage && (
+              <Charms
+                charms={charms}
+                handleCharms={handleCharms}
                 closePage={closePage}
               />
             )}

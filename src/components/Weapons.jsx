@@ -94,7 +94,7 @@ function Weapons({ weapons, handleWeapon, closePage }) {
               <button onClick={backWeapon}>Choise weapon&apos;stype</button>
             )}
           </div>
-          {weapons.data
+          {weapons
             .filter((weapon) => weapon.type === weaponType)
             .map((weapon, key) => (
               <div

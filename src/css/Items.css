@@ -10,8 +10,6 @@
   top: 0;
   left: 0;
   overflow-y: scroll;
-  scrollbar-color: rebeccapurple green;
-  scrollbar-width: thin;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: min-content;
@@ -44,15 +42,19 @@
 }
 
 .item>img {
-  height: 8em;
+  max-height: 8em;
 }
 
 .resistance li img {
   height: 1em;
 }
 
-.resistance li {
+li {
   list-style: none;
+}
+
+.imgCharm {
+  width: 50px;
 }
 
 .sharpnessContainer {
