@@ -3,16 +3,15 @@ import axios from "axios";
 import "./App.css";
 import Armors from "./components/Armors";
 import Weapons from "./components/Weapons";
-import ItemShit from "./components/ItemShit";
+import ItemSheet from "./components/ItemSheet";
 import Defense from "./components/Defense";
 import Attack from "./components/Attack";
 import Login from "./components/Login";
 import Game from "./components/Game";
-import { LanguageProvider } from "./utils/context/LanguageContext";
 import Skills from "./components/Skills";
 
-function App() {
 
+function App() {
   //states for pages
   const [index, setIndex] = useState(true);
   const [builder, setBuilder] = useState(false);
@@ -105,7 +104,7 @@ function App() {
     return axios
       .get("https://mhw-db.com/skills")
       .then((response) => {
-        setSkills(response);
+        setSkills(response.data);
       })
       .catch((err) => {
         throw new Error("Problem whith API to download skills content : ", err);
@@ -236,82 +235,66 @@ function App() {
   }
 
   function addSkills(action, pastSkills, selectSkills) {
+
+    let newPlayerSkills = [...playerSkills]
+
     if (action === "less") {
-      let newPlayerSkills = []
+      if (pastSkills.length > 0) {
 
-      if (pastSkills[0]) {
-        newPlayerSkills = playerSkills.map(playerSkill => {
-          if (pastSkills.some(pastSkill => pastSkill.id === playerSkill.id)) {
-            pastSkills.map(pastSkill => {
-              if (pastSkill.id === playerSkill.id) {
-                if (playerSkill.level - pastSkill.level <= 0) {
-                  return null
-                } else {
-                  return {
-                    ...playerSkill,
-                    level: playerSkill.level - pastSkill.level
-                  }
-                }
-              }
-            })
-          } else {
-            return playerSkill
-          }
-        })
-      } else {
-        newPlayerSkills = playerSkills
-      }
-
-      if (selectSkills[0]) {
-        newPlayerSkills.map(playerSkill => {
-          if (selectSkills.some(selectSkill => selectSkill.id === playerSkill.id)) {
-            selectSkills.map(selectSkill => {
-              if (playerSkill.id === selectSkill.id) {
-                return {
-                  ...playerSkill,
-                  level: playerSkill.level + selectSkill.level
-                }
-              }
-            })
-          } else {
-            return playerSkill
-          }
-        })
-        selectSkills.map(selectSkill => {
-          if (!newPlayerSkills.some(newPlayerSkill => newPlayerSkill.id === selectSkill.id)) {
-            newPlayerSkills.push(selectSkill)
-          }
-        })
-        setPlayerSkills(newPlayerSkills)
-      }
-    }
-    else {
-
-
-      if (selectSkills.length > 0) {
-        let newPlayerSkills = [...playerSkills]
-        selectSkills.map(selectSkill => {
-          if (newPlayerSkills.some(newPlayerSkill => newPlayerSkill.skillName === selectSkill.skillName)) {
-
-            newPlayerSkills = newPlayerSkills.map(newPlayerSkill => {
-              if (newPlayerSkill.skillName === selectSkill.skillName) {
-
+        pastSkills.map(pastSkill => {
+          newPlayerSkills = newPlayerSkills.map(newPlayerSkill => {
+            if (newPlayerSkill.skillName === pastSkill.skillName) {
+              if (newPlayerSkill.level - pastSkill.level > 0) {
                 return {
                   ...newPlayerSkill,
-                  level: newPlayerSkill.level + selectSkill.level
+                  level: newPlayerSkill.level - pastSkill.level
                 }
               }
               else {
-                return newPlayerSkill
+                return null
               }
-            })
-          } else {
-            newPlayerSkills.push(selectSkill)
-          }
+            }
+            else {
+              return newPlayerSkill
+            }
+
+          })
         })
-        setPlayerSkills(newPlayerSkills)
       }
     }
+
+    function removeValue(value, index, arr) {
+      if (value === null) {
+        arr.splice(index, 1);
+        return true;
+      }
+      return false;
+    }
+    newPlayerSkills.filter(removeValue)
+
+    if (selectSkills.length > 0) {
+      selectSkills.map(selectSkill => {
+        if (newPlayerSkills.some(newPlayerSkill => newPlayerSkill.skillName === selectSkill.skillName)) {
+
+          newPlayerSkills = newPlayerSkills.map(newPlayerSkill => {
+            if (newPlayerSkill.skillName === selectSkill.skillName) {
+
+              return {
+                ...newPlayerSkill,
+                level: newPlayerSkill.level + selectSkill.level
+              }
+            }
+            else {
+              return newPlayerSkill
+            }
+          })
+        } else {
+          newPlayerSkills.push(selectSkill)
+        }
+      })
+      setPlayerSkills(newPlayerSkills)
+    }
+
   }
 
 
@@ -363,6 +346,12 @@ function App() {
     setWeaponPage(null);
   };
 
+  const deleteItem = (type) => {
+    if (type === "weapon") {
+      return null
+    }
+  }
+
   const closePage = () => {
     setArmorPage(null);
     setWeaponPage(null);
@@ -371,27 +360,27 @@ function App() {
   /* console.log(playerSkills) */
 
   return (
-    <LanguageProvider>
-      <div>
-        {index && (
-          <div>
-            <Login
-              handleApi={handleApi}
-              isLoading={isLoading}
-              armors={armors}
-              weapons={weapons}
-              charms={charms}
-              skills={skills}
-            />
-          </div>
-        )}
+    <div>
+      {index && (
+        <div>
+          <Login
+            handleApi={handleApi}
+            isLoading={isLoading}
+            armors={armors}
+            weapons={weapons}
+            charms={charms}
+            skills={skills}
+          />
+        </div>
+      )}
 
-        {builder && (
+      {builder && (
+        <div className="body">
+          <div className="title">
+            <img src="./src/images/logo.png" alt="logo" />
+          </div>
           <div className="globalContainer">
-            <div className="title">
-              <img src="./src/images/logo.png" alt="logo" />
-            </div>
-            <ItemShit
+            <ItemSheet
               head={head}
               chest={chest}
               gloves={gloves}
@@ -400,6 +389,7 @@ function App() {
               weapon={weapon}
               setArmorPage={setArmorPage}
               setWeaponPage={setWeaponPage}
+              deleteItem={deleteItem}
             />
             <div className="statContainer">
               <Attack
@@ -421,7 +411,7 @@ function App() {
                 resThunder={resThunder}
                 resDragon={resDragon}
               />
-              <Skills playerSkills={playerSkills} />
+              <Skills playerSkills={playerSkills} skills={skills} />
             </div>
             {armorPage && (
               <Armors
@@ -439,15 +429,15 @@ function App() {
               />
             )}
           </div>
-        )}
+        </div>
+      )}
 
-        {playing && (
-          <div className="globalContainer">
-            <Game />
-          </div>
-        )}
-      </div>
-    </LanguageProvider>
+      {playing && (
+        <div className="globalContainer">
+          <Game />
+        </div>
+      )}
+    </div>
   );
 }
 

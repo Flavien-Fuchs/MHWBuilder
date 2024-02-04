@@ -75,3 +75,50 @@
 .statsCard .purple {
     background-color: purple;
 }
+
+.statsCard .skillRank {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.statsCard .rank {
+    height: 1em;
+    width: 1em;
+    margin: 0 .2em;
+}
+
+.statsCard .skillOn {
+    background-color: var(--rank-on);
+}
+
+.statsCard .skillOff {
+    background-color: var(--rank-off);
+}
+
+.statPopup {
+    max-width: 380px;
+    margin-bottom: .5em;
+    background-color: var(--rank-popup);
+    color: var(--neutral-white-color);
+    padding: .5em;
+    border: 1px solid var(--neutral-white-color);
+    border-radius: 10px;
+}
+
+.statPopup h3 {
+    margin: .3em 0 .3em 1em;
+}
+
+.statPopup .popupDescription {
+    font-style: italic;
+    text-align: center;
+}
+
+.popupRank {
+    margin: .3em 0
+}
+
+.popupActualRank {
+    color: var(--rank-on)
+}

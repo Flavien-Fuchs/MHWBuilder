@@ -13,7 +13,7 @@ function Login({ handleApi, isLoading, armors, weapons, charms, skills }) {
       {isLoading ? (
         <div className="loginContainer">
           <p>
-            Armor :{" "}
+            {getTranslation("armors")} :{" "}
             {!armors ? (
               <span style={{ color: "red" }}>
                 {getTranslation("loading")}...
@@ -23,7 +23,7 @@ function Login({ handleApi, isLoading, armors, weapons, charms, skills }) {
             )}
           </p>
           <p>
-            Weapons :{" "}
+            {getTranslation("weapons")} :{" "}
             {!weapons ? (
               <span style={{ color: "red" }}>
                 {getTranslation("loading")}...
@@ -33,7 +33,7 @@ function Login({ handleApi, isLoading, armors, weapons, charms, skills }) {
             )}
           </p>
           <p>
-            Charms :{" "}
+            {getTranslation("charms")} :{" "}
             {!charms ? (
               <span style={{ color: "red" }}>
                 {getTranslation("loading")}...
@@ -43,7 +43,7 @@ function Login({ handleApi, isLoading, armors, weapons, charms, skills }) {
             )}
           </p>
           <p>
-            Skills :{" "}
+            {getTranslation("skills")} :{" "}
             {!skills ? (
               <span style={{ color: "red" }}>
                 {getTranslation("loading")}...

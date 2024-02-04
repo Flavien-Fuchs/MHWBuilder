@@ -1,10 +1,16 @@
 const translations = {
-  french: "francais",
-  english: "anglais",
-  play: "jouer",
-  loading: "chargement",
-  done: "terminé",
-  fight: "combat",
+  // Login
+  french: "Francais",
+  english: "Anglais",
+  play: "Jouer",
+  armors: "Armure",
+  weapons: "Armure",
+  charms: "Charmes",
+  skills: "Compétences",
+  loading: "Chargement",
+  done: "Terminé",
+  // App
+  fight: "Combat",
 };
 
 export default translations;
