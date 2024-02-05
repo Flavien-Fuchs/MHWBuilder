@@ -8,10 +8,10 @@ function Weapons({ weapons, handleWeapon, closePage }) {
   const [searchTerm, setSearchterm] = useState("")
   const [showBar, setShowBar] = useState(false)
   const [selectedOption, setSelectedOption] = useState("");
-  const [filterBytype, setFilterByType] = useState(null)
+  const [filterByType, setfilterByType] = useState(null)
 
-  const handleFilterByType = (event) => {
-    setFilterByType(event.target.value);
+  const handlefilterByType = (event) => {
+    setfilterByType(event.target.value);
   };
 
   const handleSelectOption = (event) => {
@@ -44,10 +44,18 @@ function Weapons({ weapons, handleWeapon, closePage }) {
   selectedOption === "0" && weapon.elements.length === 0)
 );
 
-{filterBytype === 'Attack' && 
+{filterByType === 'Attack' && 
 (newWeapons.sort((a, b) => b.attack.display - a.attack.display))}
 
-{filterBytype === 'Alphabetically' && 
+{filterByType === 'Damage' && 
+  newWeapons.sort((a, b) => {
+    const damageA = a.elements[0]?.damage || 0;
+    const damageB = b.elements[0]?.damage || 0;
+    return damageB - damageA;
+  })
+}
+
+{filterByType === 'Alphabetically' && 
 (newWeapons.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase())))
   }
 
@@ -162,9 +170,10 @@ function Weapons({ weapons, handleWeapon, closePage }) {
                         <option value="0">None</option>
                     </select>
                     <label htmlFor="filterByType">Filter by</label>
-                    <select value={filterBytype} onChange={handleFilterByType}>
+                    <select value={filterByType} onChange={handlefilterByType}>
                         <option value=""></option>
                         <option value="Attack">Attack</option>
+                        <option value="Damage">Damage</option>
                         <option value="Alphabetically">Alphabetically</option>
                     </select>
                      

@@ -77,7 +77,7 @@ function Armors({ armors, handleArmor, type, closePage }) {
 
     
     {filterByResistance === "dragon" && 
-    (newArmors.sort((a, b) => b.resistances.dragon - a.resistances.dragont))}
+    (newArmors.sort((a, b) => b.resistances.dragon - a.resistances.dragon))}
 
     
 
