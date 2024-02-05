@@ -8,6 +8,11 @@ function Weapons({ weapons, handleWeapon, closePage }) {
   const [searchTerm, setSearchterm] = useState("")
   const [showBar, setShowBar] = useState(false)
   const [selectedOption, setSelectedOption] = useState("");
+  const [filterBytype, setFilterByType] = useState(null)
+
+  const handleFilterByType = (event) => {
+    setFilterByType(event.target.value);
+  };
 
   const handleSelectOption = (event) => {
     setSelectedOption(event.target.value);
@@ -30,7 +35,24 @@ function Weapons({ weapons, handleWeapon, closePage }) {
     setTypeChosen(false);
   };
 
-let newWeapons = weapons.data.filter((weapon) => weapon.type === weaponType && weapon.name.toLowerCase().includes(searchTerm.toLowerCase()) && weapon.elements.find(element => element.type === selectedOption) || weapon.type === weaponType && weapon.name.toLowerCase().includes(searchTerm.toLowerCase()) && selectedOption === "") 
+  let newWeapons = weapons.data.filter((weapon) => 
+  (weapon.type === weaponType && weapon.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+  weapon.elements.find(element => element.type === selectedOption)) || 
+  (weapon.type === weaponType && weapon.name.toLowerCase().includes(searchTerm.toLowerCase()) && 
+  selectedOption === "") ||
+  (weapon.type === weaponType && weapon.name.toLowerCase().includes(searchTerm.toLowerCase()) && 
+  selectedOption === "0" && weapon.elements.length === 0)
+);
+
+{filterBytype === 'Attack' && 
+(newWeapons.sort((a, b) => b.attack.display - a.attack.display))}
+
+{filterBytype === 'Alphabetically' && 
+(newWeapons.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase())))
+  }
+
+
+ 
             
   weapons.data.map((weapon)=>{
     weapon.elements.map((element)=> console.log("Types :",element.type))
@@ -115,19 +137,6 @@ let newWeapons = weapons.data.filter((weapon) => weapon.type === weaponType && w
                 <>
                     <button onClick={backWeapon}>Choise weapon&apos;stype</button>
                     <button className='search-button' onClick={handleShowBar}><img src='src\images\icons\loupe.png'/></button>
-                    <select value={selectedOption} onChange={handleSelectOption}>
-                        <option value="">All Elements</option>
-                        <option value="fire">Fire</option>
-                        <option value="poison">Poison</option>
-                        <option value="dragon">Dragon</option>
-                        <option value="ice">Ice</option>
-                        <option value="thunder">Thunder</option>
-                        <option value="sleep">Sleep</option>
-                        <option value="paralysis">Paralysis</option>
-                        <option value="blast">Blast</option>
-                        <option value="undefined">None</option>
-                    </select>
-                     
                     {showBar &&  
                     <>
                         (<input 
@@ -139,6 +148,27 @@ let newWeapons = weapons.data.filter((weapon) => weapon.type === weaponType && w
                         </input>)
                     </>
                     }
+                    <label htmlFor="Elements">Element</label>
+                    <select value={selectedOption} onChange={handleSelectOption}>
+                        <option value=""></option>
+                        <option value="fire">Fire</option>
+                        <option value="poison">Poison</option>
+                        <option value="dragon">Dragon</option>
+                        <option value="ice">Ice</option>
+                        <option value="thunder">Thunder</option>
+                        <option value="sleep">Sleep</option>
+                        <option value="paralysis">Paralysis</option>
+                        <option value="blast">Blast</option>
+                        <option value="0">None</option>
+                    </select>
+                    <label htmlFor="filterByType">Filter by</label>
+                    <select value={filterBytype} onChange={handleFilterByType}>
+                        <option value=""></option>
+                        <option value="Attack">Attack</option>
+                        <option value="Alphabetically">Alphabetically</option>
+                    </select>
+                     
+                    
               </>
             )}
           </div>

@@ -7,9 +7,20 @@ function Armors({ armors, handleArmor, type, closePage }) {
   const [searchTerm, setSearchterm] = useState("")
   const [showBar, setShowBar] = useState(false)
   const [searchType, setSearchType] = useState("armor")
+  const [filterByDefense, setFilterByDefense] = useState(null)
+  const [filterByResistance, setFilterByResistance] = useState(null)
+
+
+  const handleFilterByDefense = (event) => {
+    setFilterByDefense(event.target.value);
+  };
+
+  const handleFilterByResistance = (event) => {
+    setFilterByResistance(event.target.value);
+  };
 
   const handleShowBar = ()=>{
-    setShowBar(true)
+    setShowBar(!showBar)
   }
 
   const handleSearchTerm = (event)=>{
@@ -18,11 +29,13 @@ function Armors({ armors, handleArmor, type, closePage }) {
 
 
     let newArmors = []
+
+    {searchType === "armor" && (
     armors.data.filter((item) => {
         if (item.type === type && item.name.toLowerCase().includes(searchTerm.toLowerCase())) {  
           return newArmors.push(item)
         }
-    })
+    }))}
 
     
 
@@ -33,9 +46,42 @@ function Armors({ armors, handleArmor, type, closePage }) {
             return newArmors.push(item)
           } 
       })})
-    )
+    )}
 
-    }
+    {filterByDefense === "base" && 
+    (newArmors.sort((a, b) => b.defense.base - a.defense.base))}
+
+    
+    {filterByDefense === "max" && 
+    (newArmors.sort((a, b) => b.defense.max - a.defense.max))}
+
+    
+    {filterByDefense === "augmented" && 
+    (newArmors.sort((a, b) => b.defense.augmented - a.defense.augmented))}
+
+    
+    {filterByResistance === "fire" && 
+    (newArmors.sort((a, b) => b.resistances.fire - a.resistances.fire))}
+
+    
+    {filterByResistance === "water" && 
+    (newArmors.sort((a, b) => b.resistances.water - a.resistances.water))}
+
+    
+    {filterByResistance === "ice" && 
+    (newArmors.sort((a, b) => b.resistances.ice - a.resistances.ice))}
+
+    
+    {filterByResistance === "thunder" && 
+    (newArmors.sort((a, b) => b.resistances.thunder - a.resistances.thunder))}
+
+    
+    {filterByResistance === "dragon" && 
+    (newArmors.sort((a, b) => b.resistances.dragon - a.resistances.dragont))}
+
+    
+
+    
 
   
 
@@ -66,6 +112,23 @@ function Armors({ armors, handleArmor, type, closePage }) {
                     )
                     
                     </>}
+                    <label htmlFor="FilterByType">Filter by Defense</label>
+                    <select value={filterByDefense} onChange={handleFilterByDefense}>
+                        <option value=""></option>
+                        <option value="base">Base</option>
+                        <option value="max">Max</option>
+                        <option value="augmented">Augmented</option>
+                    </select>
+                    <label htmlFor="FilterByType">Filter by Resistance</label>
+                    <select value={filterByResistance} onChange={handleFilterByResistance}>
+                        <option value=""></option>
+                        <option value="fire">Fire</option>
+                        <option value="water">Water</option>
+                        <option value="ice">Ice</option>
+                        <option value="thunder">Thunder</option>
+                        <option value="dragon">Dragon</option>
+                    </select>
+                     
                     
                 </div>
 
