@@ -71,7 +71,7 @@ p {
 }
 
 .rarity {
-  color: gold;
+  color: var(--rarity-color);
 }
 
 ul.resistance {
