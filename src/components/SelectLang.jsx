@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLanguage } from "../utils/context/LanguageContext";
-import styles from "../css/SelectLang.module.css";
+import styles from "../assets/css/SelectLang.module.css";
 
 function SelectLang() {
   const [isShowSelectLanguage, setIsShowSelectLanguage] = useState(false);
@@ -25,7 +25,7 @@ function SelectLang() {
         onClick={handleClickOpenSelectLanguage}
         className={styles.toggleOpenModal}
       >
-        <img src={`./src/images/${currentLanguage}.png`} alt="language" />
+        <img src={`./src/assets/images/${currentLanguage}.png`} alt="language" />
       </div>
       {isShowSelectLanguage && (
         <div className={styles.modal}>
@@ -36,7 +36,7 @@ function SelectLang() {
               disabled={currentLanguage === language.init}
             >
               <div>
-                <img src={`./src/images/${language.init}.png`} alt="language" />
+                <img src={`./src/assets/images/${language.init}.png`} alt="language" />
               </div>
               <div>{getTranslation(language.name)}</div>
             </div>

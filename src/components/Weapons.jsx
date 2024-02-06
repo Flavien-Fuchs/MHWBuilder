@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import "../css/Items.css";
+import "../assets/css/Items.css";
 
 function Weapons({ weapons, handleWeapon, closePage }) {
   const [typeChosen, setTypeChosen] = useState(false);
@@ -109,7 +109,7 @@ function Weapons({ weapons, handleWeapon, closePage }) {
                 </p>
                 <p>Rarity {weapon.rarity}</p>
                 {!weapon.assets ? (
-                  <img src="./src/images/nullArmor.png" alt="weapon" />
+                  <img src="./src/assets/images/nullArmor.png" alt="weapon" />
                 ) : weapon.assets.image ? (
                   <img src={weapon.assets.image} alt="weapon" />
                 ) : (

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "../css/ItemShit.css";
+import "../assets/css/ItemShit.css";
 
 function ItemShit({
   head,
@@ -22,7 +22,7 @@ function ItemShit({
 
           {head &&
             (!head.assets ? (
-              <img src="./src/images/nullArmor.png" alt="armor" />
+              <img src="./src/assets/images/nullArmor.png" alt="armor" />
             ) : head.assets.imageMale ? (
               <img src={head.assets.imageMale} alt="head" />
             ) : (
@@ -34,7 +34,7 @@ function ItemShit({
         <div className="slot weapon" onClick={setWeaponPage}>
           {weapon &&
             (!weapon.assets ? (
-              <img src="./src/images/nullArmor.png" alt="weapon" />
+              <img src="./src/assets/images/nullArmor.png" alt="weapon" />
             ) : weapon.assets.image ? (
               <img src={weapon.assets.image} alt="legs" />
             ) : (
@@ -50,7 +50,7 @@ function ItemShit({
 
           {chest &&
             (!chest.assets ? (
-              <img src="./src/images/nullArmor.png" alt="armor" />
+              <img src="./src/assets/images/nullArmor.png" alt="armor" />
             ) : chest.assets.imageMale ? (
               <img src={chest.assets.imageMale} alt="chest" />
             ) : (
@@ -66,7 +66,7 @@ function ItemShit({
 
           {gloves &&
             (!gloves.assets ? (
-              <img src="./src/images/nullArmor.png" alt="armor" />
+              <img src="./src/assets/images/nullArmor.png" alt="armor" />
             ) : gloves.assets.imageMale ? (
               <img src={gloves.assets.imageMale} alt="gloves" />
             ) : (
@@ -84,7 +84,7 @@ function ItemShit({
 
           {waist &&
             (!waist.assets ? (
-              <img src="./src/images/nullArmor.png" alt="armor" />
+              <img src="./src/assets/images/nullArmor.png" alt="armor" />
             ) : waist.assets.imageMale ? (
               <img src={waist.assets.imageMale} alt="waist" />
             ) : (
@@ -102,7 +102,7 @@ function ItemShit({
 
           {legs &&
             (!legs.assets ? (
-              <img src="./src/images/nullArmor.png" alt="armor" />
+              <img src="./src/assets/images/nullArmor.png" alt="armor" />
             ) : legs.assets.imageMale ? (
               <img src={legs.assets.imageMale} alt="legs" />
             ) : (

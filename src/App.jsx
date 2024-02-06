@@ -7,13 +7,13 @@ import ItemShit from "./components/ItemShit";
 import Defense from "./components/Defense";
 import Attack from "./components/Attack";
 import Login from "./components/Login";
-import Game from "./components/Game";
+import Game from "./pages/game/Game";
 import { LanguageProvider } from "./utils/context/LanguageContext";
 
 function App() {
 
   //states for pages
-  const [index, setIndex] = useState(false);
+  const [index, setIndex] = useState(true);
   const [builder, setBuilder] = useState(false);
   const [playing, setPlaying] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -290,7 +290,7 @@ function App() {
         {builder && (
           <div className="globalContainer">
             <div className="title">
-              <img src="./src/images/logo.png" alt="logo" />
+              <img src="./src/assets/images/logo.png" alt="logo" />
             </div>
             <ItemShit
               head={head}
