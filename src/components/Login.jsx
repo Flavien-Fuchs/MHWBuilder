@@ -1,62 +1,54 @@
 /* eslint-disable react/prop-types */
 import "../css/Login.css";
-import { useLanguage } from "../utils/context/LanguageContext";
-import SelectLang from "./SelectLang";
 
 function Login({ handleApi, isLoading, armors, weapons, charms, skills }) {
-  const { getTranslation } = useLanguage();
 
   return (
     <div className="login">
-      <SelectLang />
-      <img src="./src/images/logo.png" alt="logo" />
-      {isLoading ? (
-        <div className="loginContainer">
-          <p>
-            Armor :{" "}
-            {!armors ? (
-              <span style={{ color: "red" }}>
-                {getTranslation("loading")}...
-              </span>
-            ) : (
-              <span style={{ color: "green" }}>{getTranslation("done")}!</span>
-            )}
-          </p>
-          <p>
-            Weapons :{" "}
-            {!weapons ? (
-              <span style={{ color: "red" }}>
-                {getTranslation("loading")}...
-              </span>
-            ) : (
-              <span style={{ color: "green" }}>{getTranslation("done")}!</span>
-            )}
-          </p>
-          <p>
-            Charms :{" "}
-            {!charms ? (
-              <span style={{ color: "red" }}>
-                {getTranslation("loading")}...
-              </span>
-            ) : (
-              <span style={{ color: "green" }}>{getTranslation("done")}!</span>
-            )}
-          </p>
-          <p>
-            Skills :{" "}
-            {!skills ? (
-              <span style={{ color: "red" }}>
-                {getTranslation("loading")}...
-              </span>
-            ) : (
-              <span style={{ color: "green" }}>{getTranslation("done")}!</span>
-            )}
-          </p>
-          <img src="./src/images/loading.gif" alt="loading" />
-        </div>
-      ) : (
-        <button onClick={handleApi}>{getTranslation("play")}</button>
-      )}
+      <div className="container">
+        <img src="./src/images/logo.png" alt="logo" />
+        {isLoading ? (
+          <div className="loginContainer">
+            <p>
+              Armors :
+              {!armors ? (
+                <span style={{ color: "red" }}>Loading... </span>
+              ) : (
+                <span style={{ color: "green" }}>Done!</span>
+              )}
+            </p>
+            <p>Weapons :
+              {!weapons ? (
+                <span style={{ color: "red" }}>Loading...</span>
+              ) : (
+                <span style={{ color: "green" }}>Done!</span>
+              )}
+            </p>
+            <p>
+              Charms :
+              {!charms ? (
+                <span style={{ color: "red" }}>Loading...</span>
+              ) : (
+                <span style={{ color: "green" }}>Done!</span>
+              )}
+            </p>
+            <p>Skills :
+              {!skills ? (
+                <span style={{ color: "red" }}>Loading...</span>
+              ) : (
+                <span style={{ color: "green" }}>Done!</span>
+              )}
+            </p>
+            <img src="./src/images/loading.gif" alt="loading" />
+          </div>
+        ) : (
+          <button onClick={handleApi}>Play</button>
+        )}
+      </div>
+      <footer>
+        <p>©WCSWebDevMob All rights reserved, 2024</p>
+        <p>All Datas and images are Monster Hunter: World and Capcom propriety.</p>
+      </footer>
     </div>
   );
 }

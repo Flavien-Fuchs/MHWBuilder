@@ -1,0 +1,151 @@
+.itemShit {
+  position: relative;
+  width: 28em;
+
+  border-radius: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.itemShit .slot {
+  position: relative;
+  border-radius: 1em;
+  width: 6em;
+  height: 6em;
+  color: var(--neutral-white-color);
+  transition: 0.2s;
+  background-color: var(--background-slot);
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  img {
+    width: 100%;
+    animation: .5s unScale;
+  }
+}
+
+.head.empty {
+  background-image: url(../images/backgroundItems/teteArmor3.png);
+}
+
+.chest.empty {
+  background-image: url(../images/backgroundItems/torseArmor.png);
+}
+
+.gloves.empty {
+  background-image: url(../images/backgroundItems/mainArmor.png);
+}
+
+.waist.empty {
+  background-image: url(../images/backgroundItems/tailleArmor.png);
+}
+
+.legs.empty {
+  background-image: url(../images/backgroundItems/jambeArmor.png);
+}
+
+.weapon.empty {
+  background-image: url(../images/backgroundItems/epee.png);
+}
+
+.charm.empty {
+  background-image: url(../images/backgroundItems/amulette.png);
+  background-size: 90%;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(20);
+}
+
+@keyframes unScale {
+  from {
+    transform: scale(3);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+
+.itemShit .slot:hover,
+.charm:hover {
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: 0.2s;
+  scale: 1.1;
+}
+
+.part {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.part:nth-child(1) {
+  padding-left: 3.5em;
+  align-items: flex-end;
+}
+
+.charm {
+  border-radius: 1em;
+  width: 3em;
+  height: 3em;
+  color: var(--neutral-white-color);
+  transition: 0.2s;
+  background-color: var(--background-slot);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 80%;
+    animation: .5s unScale;
+  }
+}
+
+.ItemSheetSingleContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: var(--rank-popup);
+  color: var(--neutral-white-color);
+  border: 1px solid var(--neutral-white-color);
+  border-radius: 10px;
+}
+
+.ISSView {
+  margin-top: 2em;
+}
+
+.ISSButtons {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: .5em;
+}
+
+.ISSDescription {
+  display: flex;
+  margin-top: 1em;
+  align-items: center;
+  justify-content: space-around;
+  text-align: left;
+}
+
+.ISSStats {
+  margin-left: 2em;
+}
+
+.ISSSkillsList {
+  text-align: center;
+  margin-top: .5em;
+
+  li {
+    list-style: none;
+  }
+}

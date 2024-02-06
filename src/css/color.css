@@ -6,6 +6,17 @@
   --navbar: grey;
   --background-slot: rgba(255, 255, 255, 0.6);
   --background-login: #250f03aa;
+  --bg-stat: rgba(134, 69, 23, 0.4);
+  --sharpness-red: red;
+  --sharpness-orange: orange;
+  --sharpness-yellow: yellow;
+  --sharpness-green: green;
+  --sharpness-blue: blue;
+  --sharpness-white: white;
+  --sharpness-purple: purple;
+  --rank-on: rgb(58, 179, 215);
+  --rank-off: rgb(150, 150, 150);
+  --rank-popup: rgb(66, 35, 13);
   --game-main-bg-color: #333;
   --game-second-bg-color: #f3e600;
   --game-main-color: white;

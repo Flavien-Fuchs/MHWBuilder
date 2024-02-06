@@ -6,8 +6,8 @@ function SelectLang() {
   const [isShowSelectLanguage, setIsShowSelectLanguage] = useState(false);
   const { currentLanguage, setLanguage, getTranslation } = useLanguage();
   const languages = [
-    { name: "francais", init: "fr" },
-    { name: "anglais", init: "en" },
+    { name: "Francais", init: "fr" },
+    { name: "English", init: "en" },
   ];
 
   const handleClickOpenSelectLanguage = () => {

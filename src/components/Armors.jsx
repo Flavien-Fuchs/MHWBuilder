@@ -1,137 +1,84 @@
 /* eslint-disable react/prop-types */
 import '../css/Items.css'
 import { useState } from 'react'
-/* import ItemArmor from './ItemArmor'; */
+import { ImCross } from "react-icons/im";
+
 
 function Armors({ armors, handleArmor, type, closePage }) {
   const [searchTerm, setSearchterm] = useState("")
-  const [showBar, setShowBar] = useState(false)
-  const [searchType, setSearchType] = useState("armor")
   const [filterByDefense, setFilterByDefense] = useState(null)
   const [filterByResistance, setFilterByResistance] = useState(null)
 
-
-  const handleFilterByDefense = (event) => {
-    setFilterByDefense(event.target.value);
-  };
-
-  const handleFilterByResistance = (event) => {
-    setFilterByResistance(event.target.value);
-  };
-
-  const handleShowBar = ()=>{
-    setShowBar(!showBar)
-  }
-
-  const handleSearchTerm = (event)=>{
-    setSearchterm(event.target.value)
-  }
+  const handleFilterByDefense = (event) => setFilterByDefense(event.target.value)
+  const handleFilterByResistance = (event) => setFilterByResistance(event.target.value)
+  const handleSearchTerm = (event) => setSearchterm(event.target.value)
 
 
-    let newArmors = []
+  let newArmors = [];
 
-    {searchType === "armor" && (
-    armors.data.filter((item) => {
-        if (item.type === type && item.name.toLowerCase().includes(searchTerm.toLowerCase())) {  
-          return newArmors.push(item)
-        }
-    }))}
+  armors.filter((item) => {
+    item.skills.filter((skill) => {
+      if (item.type === type && item.assets &&
+        (
 
-    
-
-    {searchType === "skill" && (
-      armors.data.filter((item)=>{
-        item.skills.filter((skill)=> {
-          if(item.type === type && skill.skillName.toLowerCase().includes(searchTerm.toLowerCase())) {  
-            return newArmors.push(item)
-          } 
-      })})
-    )}
-
-    {filterByDefense === "base" && 
-    (newArmors.sort((a, b) => b.defense.base - a.defense.base))}
-
-    
-    {filterByDefense === "max" && 
-    (newArmors.sort((a, b) => b.defense.max - a.defense.max))}
-
-    
-    {filterByDefense === "augmented" && 
-    (newArmors.sort((a, b) => b.defense.augmented - a.defense.augmented))}
-
-    
-    {filterByResistance === "fire" && 
-    (newArmors.sort((a, b) => b.resistances.fire - a.resistances.fire))}
-
-    
-    {filterByResistance === "water" && 
-    (newArmors.sort((a, b) => b.resistances.water - a.resistances.water))}
-
-    
-    {filterByResistance === "ice" && 
-    (newArmors.sort((a, b) => b.resistances.ice - a.resistances.ice))}
-
-    
-    {filterByResistance === "thunder" && 
-    (newArmors.sort((a, b) => b.resistances.thunder - a.resistances.thunder))}
-
-    
-    {filterByResistance === "dragon" && 
-    (newArmors.sort((a, b) => b.resistances.dragon - a.resistances.dragon))}
-
-    
-
-    
-
-  
+          skill.skillName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      ) newArmors.push(item)
+    })
+  })
 
 
-    return (
-        <>
-            <div className="itemContainer">
-                <div className='itemNavBar'>
-                    <button onClick={closePage}>Close Page</button>
-                    <button className='search-button' onClick={handleShowBar}><img src='src\images\icons\loupe.png'/></button>
-                    {showBar && 
-                    <>
-                    (<input 
-                    name='search-bar'
-                    id='search-bar'
-                    value={searchTerm}
-                    onChange={handleSearchTerm}
-                    ></input>
-                    <label>
-                <input type='radio' name='search-type' value='armor' checked={searchType === 'armor'} onChange={() => setSearchType('armor')} />
-                Armor
-            </label>
-            <label>
-                <input type='radio' name='search-type' value='skill' checked={searchType === 'skill'} onChange={() => setSearchType('skill')} />
-                Skill
-            </label>
-            
-                    )
-                    
-                    </>}
-                    <label htmlFor="FilterByType">Filter by Defense</label>
-                    <select value={filterByDefense} onChange={handleFilterByDefense}>
-                        <option value=""></option>
-                        <option value="base">Base</option>
-                        <option value="max">Max</option>
-                        <option value="augmented">Augmented</option>
-                    </select>
-                    <label htmlFor="FilterByType">Filter by Resistance</label>
-                    <select value={filterByResistance} onChange={handleFilterByResistance}>
-                        <option value=""></option>
-                        <option value="fire">Fire</option>
-                        <option value="water">Water</option>
-                        <option value="ice">Ice</option>
-                        <option value="thunder">Thunder</option>
-                        <option value="dragon">Dragon</option>
-                    </select>
-                     
-                    
-                </div>
+  filterByDefense === "base" && (newArmors.sort((a, b) => b.defense.base - a.defense.base))
+  filterByDefense === "max" && (newArmors.sort((a, b) => b.defense.max - a.defense.max))
+  filterByDefense === "augmented" && (newArmors.sort((a, b) => b.defense.augmented - a.defense.augmented))
+  filterByResistance === "fire" && (newArmors.sort((a, b) => b.resistances.fire - a.resistances.fire))
+  filterByResistance === "water" && (newArmors.sort((a, b) => b.resistances.water - a.resistances.water))
+  filterByResistance === "ice" && (newArmors.sort((a, b) => b.resistances.ice - a.resistances.ice))
+  filterByResistance === "thunder" && (newArmors.sort((a, b) => b.resistances.thunder - a.resistances.thunder))
+  filterByResistance === "dragon" && (newArmors.sort((a, b) => b.resistances.dragon - a.resistances.dragon))
 
+  return (
+
+    <div className="GlobalItemContainer">
+      <div className='itemNavBar'>
+        <div className='closeButton' onClick={closePage} >
+          <ImCross />
+        </div>
+
+        <div className="searchBar">
+          <input
+            name='search-bar'
+            id='search-bar'
+            value={searchTerm}
+            onChange={handleSearchTerm}
+            placeholder='Search item by name or skill'
+          />
+          <div className="filters">
+            <span>Filter by :</span>
+
+            <div>
+              <select name="defense" value={filterByDefense} onChange={handleFilterByDefense}>
+                <option value="">Defense</option>
+                <option value="base">Base</option>
+                <option value="max">Max</option>
+                <option value="augmented">Augmented</option>
+              </select>
+
+              <select name="resistance" value={filterByResistance} onChange={handleFilterByResistance}>
+                <option value="">Resistance</option>
+                <option value="fire">Fire</option>
+                <option value="water">Water</option>
+                <option value="ice">Ice</option>
+                <option value="thunder">Thunder</option>
+                <option value="dragon">Dragon</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div className="itemContainer">
         {newArmors.map((armor, key) => {
           return (
             <div
@@ -202,7 +149,7 @@ function Armors({ armors, handleArmor, type, closePage }) {
           );
         })}
       </div>
-    </>
+    </div>
   );
 }
 
