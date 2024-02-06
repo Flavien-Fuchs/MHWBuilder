@@ -2,18 +2,23 @@
   width: 100vw;
   height: 100vh;
   z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background: url(../images/wallpaper-desktop.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 
-.login>img {
-  width: 350px;
+.login .container {
+  height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container>img {
+  width: 80%;
+  max-width: 350px;
 }
 
 .loginContainer {
@@ -25,4 +30,15 @@
 
 .loginContainer img {
   width: 80px;
+}
+
+footer {
+  font-size: .8em;
+  height: 60px;
+  background-color: var(--rank-popup);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--neutral-white-color)
 }

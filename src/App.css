@@ -1,6 +1,7 @@
 #root {
   text-align: center;
   min-height: 100vh;
+  width: 100vw;
 }
 
 * {
@@ -55,32 +56,62 @@ body {
   color: #888;
 }
 
-.globalContainer {
-  width: 100vw;
-  min-height: 100vh;
+.body {
   position: relative;
+}
+
+.globalContainer {
+  min-height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: top;
+  align-items: center;
   flex-wrap: wrap;
 }
 
-.globalContainer > .title {
-  margin: 1em;
+.body>.title {
+  margin: 1em 0;
   color: var(--neutral-white-color);
   width: 100%;
 }
 
-.globalContainer > .title img {
-  width: 300px;
+.body>.title img {
+  max-width: 300px;
+}
+
+.title img {
+  transition: .2s;
+}
+
+.title img:hover {
+  scale: 1.1;
+  transition: .2s;
 }
 
 .statContainer {
-  width: 40%;
-  min-height: 250px;
-  background-color: var(--background-login);
-  border-radius: 2em;
+  width: 100%;
+  max-width: 400px;
+  max-height: 620px;
+  margin: 0.5em 1em;
   padding: 1em;
-  margin: 0 1em;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--navbar) var(--background-login);
+  background-color: var(--background-login);
+  border-radius: 10px;
   color: var(--neutral-white-color);
+}
+
+.statContainer::-webkit-scrollbar {
+  width: 12px;
+}
+
+.statContainer::-webkit-scrollbar-track {
+  background: var(--background-login);
+}
+
+.statContainer::-webkit-scrollbar-thumb {
+  background-color: var(--navbar);
+  border-radius: 20px;
+  border: 3px solid var(--background-login);
 }

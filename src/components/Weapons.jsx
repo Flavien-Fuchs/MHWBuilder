@@ -94,7 +94,7 @@ function Weapons({ weapons, handleWeapon, closePage }) {
               <button onClick={backWeapon}>Choise weapon&apos;stype</button>
             )}
           </div>
-          {weapons.data
+          {weapons
             .filter((weapon) => weapon.type === weaponType)
             .map((weapon, key) => (
               <div
@@ -122,6 +122,17 @@ function Weapons({ weapons, handleWeapon, closePage }) {
                     {weapon.elements[0].type})
                   </p>
                 )}
+                <p>Affinity : {weapon.attributes.affinity ? (`${weapon.attributes.affinity}%`) : ("0%")}</p>
+                {weapon.durability && <div className="sharpnessContainer">
+                  <p>Sharpness : </p>
+                  <div className="sharpness red" style={{ "width": `${weapon.durability[0].red / 3}px` }}></div>
+                  <div className="sharpness orange" style={{ "width": `${weapon.durability[0].orange / 3}px` }}></div>
+                  <div className="sharpness yellow" style={{ "width": `${weapon.durability[0].yellow / 3}px` }}></div>
+                  <div className="sharpness green" style={{ "width": `${weapon.durability[0].green / 3}px` }}></div>
+                  <div className="sharpness blue" style={{ "width": `${weapon.durability[0].blue / 3}px` }}></div>
+                  <div className="sharpness white" style={{ "width": `${weapon.durability[0].white / 3}px` }}></div>
+                  <div className="sharpness purple" style={{ "width": `${weapon.durability[0].purple / 3}px` }}></div>
+                </div>}
               </div>
             ))}
         </div>

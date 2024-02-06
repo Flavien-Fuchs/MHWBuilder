@@ -1,17 +1,12 @@
 /* eslint-disable react/prop-types */
 import '../css/Items.css'
-/* import ItemArmor from './ItemArmor'; */
-
-
 
 function Armors({ armors, handleArmor, type, closePage }) {
 
-
     let newArmors = []
-    armors.data.map((item) => {
+    armors.map((item) => {
         if (item.type === type) newArmors.push(item)
     })
-
 
     return (
         <>
