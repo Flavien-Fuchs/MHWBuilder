@@ -122,6 +122,23 @@ button.buttonClose {
   
 }
 
+.item.greatSword,
+.item.swordAndShield,
+.item.dualBlades,
+.item.longSword,
+.item.hammer,
+.item.huntingHorn,
+.item.lance,
+.item.gunlance,
+.item.switchAxe,
+.item.chargeBlade,
+.item.insectGlaive,
+.item.bow,
+.item.lightBowgun,
+.item.heavyBowgun {
+  background-color: var(--background-weapons-category);
+}
+
 @media screen and (min-width: 601px) and (max-width: 1024px) {
   .itemContainer {
     grid-template-columns: repeat(4, 1fr);
