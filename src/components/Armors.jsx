@@ -12,8 +12,8 @@ function Armors({ armors, handleArmor, type, closePage }) {
     <>
       <div className="itemContainer">
         <div className="itemNavBar">
-          <button onClick={closePage}>
-            {/* <img src="./src/images/buttonClose.png" alt="button" /> */} X
+          <button className="buttonClose" onClick={closePage}>
+            <img src="src/images/delete.png" alt="button" />
           </button>
         </div>
 
@@ -42,6 +42,11 @@ function Armors({ armors, handleArmor, type, closePage }) {
                 </span>
                 <div className="detailsInfos">
                   <p className="stats">
+                    <img
+                      className="defenseImage"
+                      src="./src/images/icons/defense-icon.png"
+                      alt="defense"
+                    />
                     Defense : base {armor.defense.base} | max{armor.defense.max}{" "}
                     | augmented {armor.defense.augmented}
                   </p>
@@ -78,7 +83,7 @@ function Armors({ armors, handleArmor, type, closePage }) {
                   </ul>
                 </div>
               </div>
-              {armor.skills && armor.skills.length > 0 ? (
+              {armor.skills && armor.skills.length > 0 && (
                 <div>
                   <p className="skillsList">skills list</p>
                   <ul className="hideSkills">
@@ -89,7 +94,7 @@ function Armors({ armors, handleArmor, type, closePage }) {
                     ))}
                   </ul>
                 </div>
-              ) : null}
+              )}
             </div>
           );
         })}

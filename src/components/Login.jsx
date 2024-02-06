@@ -55,7 +55,9 @@ function Login({ handleApi, isLoading, armors, weapons, charms, skills }) {
           <img src="./src/images/loading.gif" alt="loading" />
         </div>
       ) : (
-        <button onClick={handleApi}>{getTranslation("play")}</button>
+        <button className="playButton" onClick={handleApi}>
+          {getTranslation("play")}
+        </button>
       )}
     </div>
   );
