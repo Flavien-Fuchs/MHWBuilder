@@ -1,62 +1,48 @@
 /* eslint-disable react/prop-types */
 import "../css/Login.css";
-import { useLanguage } from "../utils/context/LanguageContext";
-import SelectLang from "./SelectLang";
 
 function Login({ handleApi, isLoading, armors, weapons, charms, skills }) {
-  const { getTranslation } = useLanguage();
 
   return (
     <div className="login">
       <div className="container">
-        <SelectLang />
         <img src="./src/images/logo.png" alt="logo" />
         {isLoading ? (
           <div className="loginContainer">
             <p>
-              {getTranslation("armors")} :{" "}
+              Armors :
               {!armors ? (
-                <span style={{ color: "red" }}>
-                  {getTranslation("loading")}...
-                </span>
+                <span style={{ color: "red" }}>Loading... </span>
               ) : (
-                <span style={{ color: "green" }}>{getTranslation("done")}!</span>
+                <span style={{ color: "green" }}>Done!</span>
               )}
             </p>
-            <p>
-              {getTranslation("weapons")} :{" "}
+            <p>Weapons :
               {!weapons ? (
-                <span style={{ color: "red" }}>
-                  {getTranslation("loading")}...
-                </span>
+                <span style={{ color: "red" }}>Loading...</span>
               ) : (
-                <span style={{ color: "green" }}>{getTranslation("done")}!</span>
+                <span style={{ color: "green" }}>Done!</span>
               )}
             </p>
             <p>
-              {getTranslation("charms")} :{" "}
+              Charms :
               {!charms ? (
-                <span style={{ color: "red" }}>
-                  {getTranslation("loading")}...
-                </span>
+                <span style={{ color: "red" }}>Loading...</span>
               ) : (
-                <span style={{ color: "green" }}>{getTranslation("done")}!</span>
+                <span style={{ color: "green" }}>Done!</span>
               )}
             </p>
-            <p>
-              {getTranslation("skills")} :{" "}
+            <p>Skills :
               {!skills ? (
-                <span style={{ color: "red" }}>
-                  {getTranslation("loading")}...
-                </span>
+                <span style={{ color: "red" }}>Loading...</span>
               ) : (
-                <span style={{ color: "green" }}>{getTranslation("done")}!</span>
+                <span style={{ color: "green" }}>Done!</span>
               )}
             </p>
             <img src="./src/images/loading.gif" alt="loading" />
           </div>
         ) : (
-          <button onClick={handleApi}>{getTranslation("play")}</button>
+          <button onClick={handleApi}>Play</button>
         )}
       </div>
       <footer>

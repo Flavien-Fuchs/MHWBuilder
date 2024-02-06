@@ -73,29 +73,29 @@ li {
 }
 
 .sharpnessContainer .red {
-  background-color: red;
+  background-color: var(--sharpness-red);
 }
 
 .sharpnessContainer .orange {
-  background-color: orange;
+  background-color: var(--sharpness-orange);
 }
 
 .sharpnessContainer .yellow {
-  background-color: yellow;
+  background-color: var(--sharpness-yellow);
 }
 
 .sharpnessContainer .green {
-  background-color: green;
+  background-color: var(--sharpness-green);
 }
 
 .sharpnessContainer .blue {
-  background-color: blue;
+  background-color: var(--sharpness-blue);
 }
 
 .sharpnessContainer .white {
-  background-color: white;
+  background-color: var(--sharpness-white);
 }
 
 .sharpnessContainer .purple {
-  background-color: purple;
+  background-color: var(--sharpness-purple);
 }

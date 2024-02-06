@@ -1,6 +1,13 @@
 /* eslint-disable react/prop-types */
 import "../css/ItemSheet.css";
 import ItemSheetSingle from "./ItemSheetSingle";
+import ItemCharm from "./Parts/ItemCharm";
+import ItemChest from "./Parts/ItemChest";
+import ItemGloves from "./Parts/ItemGloves";
+import ItemHead from "./Parts/ItemHead";
+import ItemLegs from "./Parts/ItemLegs";
+import ItemWaist from "./Parts/ItemWaist";
+import ItemWeapon from "./Parts/ItemWeapon";
 
 
 
@@ -42,119 +49,24 @@ function ItemSheet({
         deleteItem={deleteItem}
       />}
       <div className="part">
-        {head ?
-          (
-            <div className="slot head" onClick={() => { toggleDisplayItem("head") }}>
-              {(!head.assets ? (
-                <img src="./src/images/nullArmor.png" alt="armor" />
-              ) : head.assets.imageMale ? (
-                <img src={head.assets.imageMale} alt="head" />
-              ) : (
-                <img src={head.assets.imageFemale} alt="head" />
-              ))}
-            </div>
-          ) : (
-
-            <div className="slot head" onClick={() => { setArmorPage("head") }}>
-            </div>
-          )}
-
-        {charm ?
-          (
-            <div className="charm" onClick={() => { toggleDisplayItem("charm") }}>
-              <img src="./src/images/charm-icon.png" alt="armor" />
-            </div>
-          ) : (
-
-            <div className="charm" onClick={() => { setCharmsPage("charm") }}>
-            </div>
-          )}
+        <ItemHead head={head} toggleDisplayItem={toggleDisplayItem} setArmorPage={setArmorPage} />
+        <ItemCharm charm={charm} toggleDisplayItem={toggleDisplayItem} setCharmsPage={setCharmsPage} />
       </div>
 
       <div className="part">
-
-        {weapon ?
-          (
-            <div className="slot weapon" onClick={() => toggleDisplayItem("weapon")}>
-              {(!weapon.assets ? (
-                <img src="./src/images/nullArmor.png" alt="weapon" />
-              ) : weapon.assets.image ? (
-                <img src={weapon.assets.image} alt="legs" />
-              ) : (
-                <img src={weapon.assets.icon} alt="legs" />
-              ))}
-            </div>
-          ) : (
-            <div className="slot weapon" onClick={setWeaponPage}>
-            </div>)
-        }
-
-        {chest ? (
-          <div className="slot chest" onClick={() => { toggleDisplayItem("chest") }}>
-            {(!chest.assets ? (
-              <img src="./src/images/nullArmor.png" alt="armor" />
-            ) : chest.assets.imageMale ? (
-              <img src={chest.assets.imageMale} alt="chest" />
-            ) : (
-              <img src={chest.assets.imageFemale} alt="chest" />
-            ))}
-          </div>
-        ) : (
-          <div className="slot chest" onClick={() => { setArmorPage("chest") }}>
-          </div>
-        )}
-
-        {gloves ? (
-          <div className="slot gloves" onClick={() => { toggleDisplayItem("gloves"); }}>
-            {(!gloves.assets ? (
-              <img src="./src/images/nullArmor.png" alt="armor" />
-            ) : gloves.assets.imageMale ? (
-              <img src={gloves.assets.imageMale} alt="gloves" />
-            ) : (
-              <img src={gloves.assets.imageFemale} alt="gloves" />
-            ))}
-          </div>
-        ) : (
-          <div className="slot gloves" onClick={() => { setArmorPage("gloves"); }}>
-          </div>
-        )}
+        <ItemWeapon weapon={weapon} toggleDisplayItem={toggleDisplayItem} setWeaponPage={setWeaponPage} />
+        <ItemChest chest={chest} toggleDisplayItem={toggleDisplayItem} setArmorPage={setArmorPage} />
+        <ItemGloves gloves={gloves} toggleDisplayItem={toggleDisplayItem} setArmorPage={setArmorPage} />
       </div>
 
       <div className="part">
-
-        {waist ? (
-          <div className="slot waist" onClick={() => { toggleDisplayItem("waist"); }}>
-            {(!waist.assets ? (
-              <img src="./src/images/nullArmor.png" alt="armor" />
-            ) : waist.assets.imageMale ? (
-              <img src={waist.assets.imageMale} alt="waist" />
-            ) : (
-              <img src={waist.assets.imageFemale} alt="waist" />
-            ))}
-          </div>
-        ) : (<div className="slot waist" onClick={() => { setArmorPage("waist"); }}>
-        </div>
-        )}
-
+        <ItemWaist waist={waist} toggleDisplayItem={toggleDisplayItem} setArmorPage={setArmorPage} />
       </div>
+
       <div className="part">
-
-        {legs ? (
-          <div className="slot legs" onClick={() => { toggleDisplayItem("legs"); }}>
-            {(!legs.assets ? (
-              <img src="./src/images/nullArmor.png" alt="armor" />
-            ) : legs.assets.imageMale ? (
-              <img src={legs.assets.imageMale} alt="legs" />
-            ) : (
-              <img src={legs.assets.imageFemale} alt="legs" />
-            ))}
-          </div>
-        ) : (
-          <div className="slot legs" onClick={() => { setArmorPage("legs"); }}>
-          </div>
-        )}
-
+        <ItemLegs legs={legs} toggleDisplayItem={toggleDisplayItem} setArmorPage={setArmorPage} />
       </div>
+
     </div>
   );
 }
