@@ -15,6 +15,11 @@
   grid-auto-rows: min-content;
 }
 
+.scrollTopButton {
+  color: aqua;
+  top: 0;
+}
+
 .typeContainer {
   width: 100%;
   display: grid;
@@ -41,7 +46,7 @@
   cursor: pointer;
 }
 
-.item>img {
+.item > img {
   max-height: 8em;
 }
 
@@ -61,7 +66,7 @@ li {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: .4em 0;
+  margin: 0.4em 0;
 
   .sharpness {
     height: 1em;
