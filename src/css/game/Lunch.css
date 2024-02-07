@@ -1,0 +1,256 @@
+.gameContainer {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    filter: contrast(135%);
+    overflow: hidden;
+  
+    & .game {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+  
+      & .header {
+        & .bottom {
+          display: flex;
+        }
+  
+        & .top {
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+  
+      & .body {
+        position: relative;
+        flex: 1;
+        display: flex;
+        justify-content: space-around;
+        gap: 20px;
+        padding: 20px;
+  
+        & .myPart {
+          display: flex;
+          flex-direction: column;
+          justify-content: end;
+          width: 100%;
+          max-width: 208px;
+  
+          & .card {
+            position: relative;
+            display: flex;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--game-box-shadow);
+            figure {
+              padding: 0;
+            }
+            & .charactere {
+              width: 100%;
+              height: auto;
+              max-width: 100%;
+              &.dead{
+                filter: grayscale(1)
+              }
+            }
+  
+            &.animate {
+              animation: glitch 0.5s linear;
+            }
+  
+            & .containerAnimation {
+              position: absolute;
+              width: 120%;
+              height: 80%;
+              right: -50%;
+              transform: scaleX(-1);
+              background-repeat: no-repeat;
+              background-size: contain;
+              background-position: center;
+              /* background-color: aqua; */
+  
+              &.lowAttack {
+                animation: lowAttack 0.5s linear;
+              }
+              &.normalAttack {
+                animation: normalAttack 0.5s linear;
+              }
+              &.criticalAttack {
+                animation: criticalAttack 0.5s linear;
+              }
+            }
+          }
+        }
+  
+        & .adversairePart {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          max-width: 208px;
+  
+          & .card {
+            position: relative;
+            display: flex;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+  
+            figure {
+              background-color: var(--neutral-white-color);
+              box-shadow: var(--game-box-shadow);
+              overflow: visible;
+            }
+            & .charactere {
+              transform: translate(-20%);
+              width: 250%;
+              height: auto;
+              &.dead{
+                filter: grayscale(1)
+              }
+            }
+  
+            &.animate {
+              animation: glitch 0.5s linear;
+            }
+  
+            & .containerAnimation {
+              position: absolute;
+              width: 120%;
+              height: 80%;
+              right: 50%;
+              background-repeat: no-repeat;
+              background-size: contain;
+              background-position: center;
+  
+              &.lowAttack {
+                animation: lowAttack 0.5s linear;
+              }
+              &.normalAttack {
+                animation: normalAttack 0.5s linear;
+              }
+              &.criticalAttack {
+                animation: criticalAttack 0.5s linear;
+              }
+            }
+          }
+  
+          & .actionText {
+            font-weight: 700;
+            text-transform: uppercase;
+            color: red;
+          }
+        }
+      }
+  
+      & .footer {
+        display: flex;
+        justify-content: space-around;
+        padding: 20px;
+      }
+    }
+  }
+  
+  @keyframes glitch {
+    0%,
+    50% {
+      transform: translate(0, 0);
+    }
+  
+    10% {
+      transform: translate(-5%, -10%);
+    }
+  
+    20% {
+      transform: translate(10%, 30%);
+    }
+  
+    30% {
+      transform: translate(-43%, 10%);
+    }
+  
+    40% {
+      transform: translate(2%, -23%);
+    }
+  }
+  
+  @keyframes lowAttack {
+    0%,
+    10% {
+      background-image: url(src/assets/images/swordSlashes/WhiteSlashThin/File1.png);
+    }
+  
+    20% {
+      background-image: url(src/assets/images/swordSlashes/WhiteSlashThin/File2.png);
+    }
+  
+    30% {
+      background-image: url(src/assets/images/swordSlashes/WhiteSlashThin/File3.png);
+    }
+  
+    40% {
+      background-image: url(src/assets/images/swordSlashes/WhiteSlashThin/File4.png);
+    }
+  
+    50% {
+      background-image: url(src/assets/images/swordSlashes/WhiteSlashThin/File5.png);
+    }
+  
+    60% {
+      background-image: url(src/assets/images/swordSlashes/WhiteSlashThin/File6.png);
+    }
+  }
+  
+  @keyframes normalAttack {
+    0%,
+    10% {
+      background-image: url(src/assets/images/swordSlashes/BlueSlashThin/File1.png);
+    }
+  
+    20% {
+      background-image: url(src/assets/images/swordSlashes/BlueSlashThin/File2.png);
+    }
+  
+    30% {
+      background-image: url(src/assets/images/swordSlashes/BlueSlashThin/File3.png);
+    }
+  
+    40% {
+      background-image: url(src/assets/images/swordSlashes/BlueSlashThin/File4.png);
+    }
+  
+    50% {
+      background-image: url(src/assets/images/swordSlashes/BlueSlashThin/File5.png);
+    }
+  
+    60% {
+      background-image: url(src/assets/images/swordSlashes/BlueSlashThin/File6.png);
+    }
+  }
+  
+  @keyframes criticalAttack {
+    0%,
+    10% {
+      background-image: url(src/assets/images/swordSlashes/RedSlashWide/File1.png);
+    }
+  
+    20% {
+      background-image: url(src/assets/images/swordSlashes/RedSlashWide/File2.png);
+    }
+  
+    30% {
+      background-image: url(src/assets/images/swordSlashes/RedSlashWide/File3.png);
+    }
+  
+    40% {
+      background-image: url(src/assets/images/swordSlashes/RedSlashWide/File4.png);
+    }
+  
+    50% {
+      background-image: url(src/assets/images/swordSlashes/RedSlashWide/File5.png);
+    }
+  
+    60% {
+      background-image: url(src/assets/images/swordSlashes/RedSlashWide/File6.png);
+    }
+  }

@@ -14,9 +14,9 @@ import Charms from "./components/Charms";
 
 function App() {
   //states for pages
-  const [index, setIndex] = useState(true);
+  const [index, setIndex] = useState(false);
   const [builder, setBuilder] = useState(false);
-  const [playing, setPlaying] = useState(false);
+  const [playing, setPlaying] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [armorPage, setArmorPage] = useState(null);
   const [charmsPage, setCharmsPage] = useState(null);

@@ -1,0 +1,228 @@
+import { useEffect, useState, useRef } from "react";
+import "../../assets/css/pages/game/Lunch.css";
+import LifeBar from "../../components/game/common/LifeBar";
+import gifSuperAttack from "../../assets/images/attack.gif";
+
+const SECONDS = 10;
+const choices = ["defense", "attack", "superAttack"];
+
+function Lunch({ charactere }) {
+  const [tour, setTour] = useState(1);
+  const [timeRemaining, setTimeRemaining] = useState(SECONDS);
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  const [maxLifePoint, setMaxLifePoint] = useState(1000);
+  const [currentLifePoint, setCurrentLifePoint] = useState(maxLifePoint);
+  const cardRef = useRef(null);
+  const [imDead, setImDead] = useState(false);
+  const [isAttacked, setIsAttacked] = useState(false);
+
+  const [maxLifePointAd, setMaxLifePointAd] = useState(1000);
+  const [currentLifePointAd, setCurrentLifePointAd] = useState(maxLifePointAd);
+  const cardAdRef = useRef(null);
+  const [isDeadAd, setIsDeadAd] = useState(false);
+  const [isAttackedAd, setIsAttackedAd] = useState(false);
+  const [actionAd, setActionAd] = useState("");
+
+  useEffect(() => {
+    let timer;
+    if (isPlaying) {
+      clearInterval(timer);
+      timer = setInterval(() => {
+        setTimeRemaining((prevTime) => {
+          if (prevTime === 1) {
+            clearInterval(timer);
+            handleTimeout();
+            return SECONDS;
+          }
+          return prevTime - 1;
+        });
+      }, 1000);
+    } else {
+      clearInterval(timer);
+    }
+
+    return () => clearInterval(timer);
+  }, [tour, isPlaying]);
+
+  const actions = {
+    attack: {
+      defense: () => {
+        degat("low", false);
+      },
+      attack: () => {
+        degat("normal", true);
+        degat("normal", false);
+      },
+      superAttack: () => {
+        degat("normal", false);
+        degat("critical", true);
+      },
+    },
+    defense: {
+      defense: () => {},
+      attack: () => {
+        degat("low", true);
+      },
+      superAttack: () => {
+        degat("critical", false);
+      },
+    },
+    superAttack: {
+      defense: () => {
+        degat("critical", true);
+      },
+      attack: () => {
+        degat("normal", true);
+        degat("critical", false);
+      },
+      superAttack: () => {
+        degat("critical", true);
+        degat("critical", false);
+      },
+    },
+  };
+
+  const handleClickAction = (choice) => {
+    const choiceAdversaire = randomChoice();
+    setActionAd(choiceAdversaire);
+    setTimeout(() => {
+      setActionAd("");
+    }, 2000);
+    actions[choice][choiceAdversaire]();
+    isDead();
+  };
+
+  const randomChoice = () =>
+    choices[Math.floor(Math.random() * choices.length)];
+
+  const degat = (attack, isMe) => {
+    const pourcentage = attack === "low" ? 50 : attack === "normal" ? 100 : 200;
+    const value = Math.max(
+      isMe ? currentLifePoint - pourcentage : currentLifePointAd - pourcentage,
+      0
+    );
+
+    const containerAnimationClassList = isMe
+      ? cardRef.current?.querySelector(".containerAnimation")?.classList
+      : cardAdRef.current?.querySelector(".containerAnimation")?.classList;
+
+    if (containerAnimationClassList) {
+      containerAnimationClassList.add(`${attack}Attack`);
+    }
+
+    const updateLifePointFunction = isMe
+      ? setCurrentLifePoint
+      : setCurrentLifePointAd;
+    const cardRefToUpdate = isMe ? cardRef : cardAdRef;
+
+    updateLifePointFunction(value);
+    animateCard(cardRefToUpdate);
+
+    setTimeout(() => {
+      containerAnimationClassList?.remove(`${attack}Attack`);
+    }, 500);
+  };
+
+  const animateCard = (ref) => {
+    ref.current.classList.add("animate");
+    ref.current.addEventListener(
+      "animationend",
+      () => ref.current.classList.remove("animate"),
+      { once: true }
+    );
+  };
+
+  const isDead = () => {
+    if (currentLifePoint <= 0 && currentLifePointAd <= 0) {
+      // console.log(`Egalité`);
+      setIsDeadAd(true);
+      setImDead(true);
+      setIsPlaying(false);
+    } else if (currentLifePoint <= 0) {
+      // console.log(`Vous êtes mort`);
+      setImDead(true);
+      setIsPlaying(false);
+    } else if (currentLifePointAd <= 0) {
+      // console.log(`Adversaire mort`);
+      setIsDeadAd(true);
+    } else {
+      setTour((prevKey) => prevKey + 1);
+      setTimeRemaining(SECONDS);
+      return;
+    }
+
+    setIsPlaying(false);
+  };
+
+  const handleTimeout = () => {
+    setActionAd("attack");
+    setTimeout(() => {
+      setActionAd("");
+    }, 2000);
+    degat("low", true);
+    isDead();
+  };
+  return (
+    <div className="gameContainer">
+      {/* <div className=""></div> */}
+      <div className="game">
+        <div className="header">
+          <div className="top">
+            <div>stat</div>
+            <div>Temps restant : {timeRemaining} secondes</div>
+            <div>menu</div>
+          </div>
+          <div className="bottom">Tour {tour}</div>
+        </div>
+        <div className="body">
+          <div className="myPart">
+            <div className="card" ref={cardRef}>
+              <figure>
+                <img
+                  className={`charactere ${imDead && "dead"}`}
+                  src={charactere.path_cover}
+                  alt={charactere.name}
+                />
+              </figure>
+              <div className="containerAnimation"></div>
+            </div>
+            <LifeBar currentLife={currentLifePoint} maxLife={maxLifePoint} />
+          </div>
+          <div className="adversairePart">
+            <div className="card" ref={cardAdRef}>
+              <figure>
+                <img
+                  className={`charactere ${isDeadAd && "dead"}`}
+                  src="src/assets/images/monster/Grimclaw.webp"
+                  alt="Tigrex"
+                />
+              </figure>
+              <div className="containerAnimation"></div>
+            </div>
+            <LifeBar
+              currentLife={currentLifePointAd}
+              maxLife={maxLifePointAd}
+            />
+            <div className="actionText">{actionAd}</div>
+          </div>
+        </div>
+        <div className="footer">
+          {choices.map((choice) => (
+            <button
+              disabled={!isPlaying}
+              key={choice}
+              onClick={() => {
+                handleClickAction(choice);
+              }}
+            >
+              {choice}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Lunch;
