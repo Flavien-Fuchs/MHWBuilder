@@ -2,122 +2,141 @@
 import { useState } from "react";
 import "../css/Items.css";
 import { ImCross } from "react-icons/im";
+import WeaponsCategory from "./WeaponsCategory";
 
 function Weapons({ weapons, handleWeapon, closePage }) {
   const [typeChosen, setTypeChosen] = useState(false);
-  const [weaponType, setWeaponType] = useState(null);
-  const [searchTerm, setSearchterm] = useState("")
+  const [weaponType, setWeaponType] = useState("");
+  const [searchTerm, setSearchterm] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
-  const [filterByType, setfilterByType] = useState(null)
+  const [filterByType, setfilterByType] = useState(null);
 
   const handlefilterByType = (event) => setfilterByType(event.target.value);
   const handleSelectOption = (event) => setSelectedOption(event.target.value);
-  const handleSearchTerm = (event) => setSearchterm(event.target.value)
+  const handleSearchTerm = (event) => setSearchterm(event.target.value);
   const handleChoiseType = (type) => {
     setWeaponType(type);
     setTypeChosen(true);
   };
+
   const backWeapon = () => setTypeChosen(false);
 
-  let newWeapons = weapons.filter((weapon) =>
-    (weapon.type === weaponType && weapon.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      weapon.elements.find(element => element.type === selectedOption)) ||
-    (weapon.type === weaponType && weapon.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      selectedOption === "") ||
-    (weapon.type === weaponType && weapon.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      selectedOption === "0" && weapon.elements.length === 0)
+  let newWeapons = weapons.filter(
+    (weapon) =>
+      (weapon.type === weaponType &&
+        weapon.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        weapon.elements.find((element) => element.type === selectedOption)) ||
+      (weapon.type === weaponType &&
+        weapon.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        selectedOption === "") ||
+      (weapon.type === weaponType &&
+        weapon.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        selectedOption === "0" &&
+        weapon.elements.length === 0)
   );
 
-
-  filterByType === 'Attack' && newWeapons.sort((a, b) => b.attack.display - a.attack.display)
-  filterByType === 'Element' && newWeapons.sort((a, b) => {
-    const damageA = a.elements[0]?.damage || 0;
-    const damageB = b.elements[0]?.damage || 0;
-    return damageB - damageA;
-  })
+  filterByType === "Attack" &&
+    newWeapons.sort((a, b) => b.attack.display - a.attack.display);
+  filterByType === "Element" &&
+    newWeapons.sort((a, b) => {
+      const damageA = a.elements[0]?.damage || 0;
+      const damageB = b.elements[0]?.damage || 0;
+      return damageB - damageA;
+    });
 
   return (
     <>
       {!typeChosen ? (
-        <div className="GlobalItemContainer">
-
+        <div className="globalItemContainer">
           <div className="itemNavBar">
-            <div className='closeButton' onClick={closePage} >
+            <div className="closeButton" onClick={closePage}>
               <ImCross />
             </div>
           </div>
-
           <div className="typeContainer">
-            <div className="weaponType" onClick={() => handleChoiseType("great-sword")}>
-              <img src="./src/images/ArmorsIcons/great-sword.png" alt="great-sword" />
-              Great Sword
-            </div>
-            <div className="weaponType" onClick={() => handleChoiseType("sword-and-shield")}>
-              <img src="./src/images/ArmorsIcons/sword-and-shield.png" alt="sword-and-shield" />
-              Sword & Shield
-            </div>
-            <div className="weaponType" onClick={() => handleChoiseType("dual-blades")}>
-              <img src="./src/images/ArmorsIcons/dual-blades.png" alt="dual-blades" />
-              Dual Blades
-            </div>
-            <div className="weaponType" onClick={() => handleChoiseType("long-sword")}>
-              <img src="./src/images/ArmorsIcons/long-sword.png" alt="long-sword" />
-              Long Sword
-            </div>
-            <div className="weaponType" onClick={() => handleChoiseType("hammer")}>
-              <img src="./src/images/ArmorsIcons/hammer.png" alt="hammer" />
-              Hammer
-            </div>
-            <div className="weaponType" onClick={() => handleChoiseType("hunting-horn")}>
-              <img src="./src/images/ArmorsIcons/hunting-horn.png" alt="hunting-horn" />
-              Hunting Horn
-            </div>
-            <div className="weaponType" onClick={() => handleChoiseType("lance")}>
-              <img src="./src/images/ArmorsIcons/lance.png" alt="lance" />
-              Lance
-            </div>
-            <div className="weaponType" onClick={() => handleChoiseType("gunlance")}>
-              <img src="./src/images/ArmorsIcons/gunlance.png" alt="gunlance" />
-              Gunlance
-            </div>
-            <div className="weaponType" onClick={() => handleChoiseType("switch-axe")}>
-              <img src="./src/images/ArmorsIcons/switch-axe.png" alt="switch-axe" />
-              Switch Axe
-            </div>
-            <div className="weaponType" onClick={() => handleChoiseType("charge-blade")}>
-              <img src="./src/images/ArmorsIcons/charge-blade.png" alt="charge-blade" />
-              Charge Blade
-            </div>
-            <div className="weaponType" onClick={() => handleChoiseType("insect-glaive")}>
-              <img src="./src/images/ArmorsIcons/insect-glaive.png" alt="insect-glaive" />
-              Insect Glaive
-            </div>
-            <div className="weaponType" onClick={() => handleChoiseType("bow")}>
-              <img src="./src/images/ArmorsIcons/bow.png" alt="bow" />
-              Bow
-            </div>
-            <div className="weaponType" onClick={() => handleChoiseType("light-bowgun")}>
-              <img src="./src/images/ArmorsIcons/light-bowgun.png" alt="light-bowgun" />
-              Light Bowgun
-            </div>
-            <div className="weaponType" onClick={() => handleChoiseType("heavy-bowgun")}>
-              <img src="./src/images/ArmorsIcons/heavy-bowgun.png" alt="heavy-bowgun" />
-              Heavy Bowgun
-            </div>
+            <WeaponsCategory
+              handleChoiseType={() => handleChoiseType("great-sword")}
+              weaponType={"great-sword"}
+              name={"Great Sword"}
+            />
+            <WeaponsCategory
+              handleChoiseType={() => handleChoiseType("sword-and-shield")}
+              weaponType={"sword-and-shield"}
+              name={"Sword & Shield"}
+            />
+            <WeaponsCategory
+              handleChoiseType={() => handleChoiseType("long-sword")}
+              weaponType={"long-sword"}
+              name={"Long Sword"}
+            />
+            <WeaponsCategory
+              handleChoiseType={() => handleChoiseType("hammer")}
+              weaponType={"hammer"}
+              name={"Hammer"}
+            />
+            <WeaponsCategory
+              handleChoiseType={() => handleChoiseType("hunting-horn")}
+              weaponType={"hunting-horn"}
+              name={"Hunting Horn"}
+            />
+            <WeaponsCategory
+              handleChoiseType={() => handleChoiseType("gunlance")}
+              weaponType={"gunlance"}
+              name={"Gunlance"}
+            />
+            <WeaponsCategory
+              handleChoiseType={() => handleChoiseType("switch-axe")}
+              weaponType={"switch-axe"}
+              name={"Switch Axe"}
+            />
+            <WeaponsCategory
+              handleChoiseType={() => handleChoiseType("charge-blade")}
+              weaponType={"charge-blade"}
+              name={"Charge Blade"}
+            />
+            <WeaponsCategory
+              handleChoiseType={() => handleChoiseType("insect-glaive")}
+              weaponType={"insect-glaive"}
+              name={"Insect Glaive"}
+            />
+            <WeaponsCategory
+              handleChoiseType={() => handleChoiseType("bow")}
+              weaponType={"bow"}
+              name={"Bow"}
+            />
+            <WeaponsCategory
+              handleChoiseType={() => handleChoiseType("light-bowgun")}
+              weaponType={"light-bowgun"}
+              name={"Light Bowgun"}
+            />
+            <WeaponsCategory
+              handleChoiseType={() => handleChoiseType("heavy-bowgun")}
+              weaponType={"heavy-bowgun"}
+              name={"Heavy Bowgun"}
+            />
+            <WeaponsCategory
+              handleChoiseType={() => handleChoiseType("dual-blades")}
+              weaponType={"dual-blades"}
+              name={"Dual Blades"}
+            />
+            <WeaponsCategory
+              handleChoiseType={() => handleChoiseType("lance")}
+              weaponType={"lance"}
+              name={"Lance"}
+            />
           </div>
         </div>
       ) : (
-        <div className="GlobalItemContainer">
-
+        <div className="globalItemContainer">
           <div className="itemNavBar">
-            <div className='closeButton' onClick={closePage} >
+            <div className="closeButton" onClick={closePage}>
               <ImCross />
             </div>
             <div className="searchBar">
               <button onClick={backWeapon}>Choise weapon&apos;stype</button>
               <input
-                name='search-bar'
-                id='search-bar'
+                name="search-bar"
+                id="search-bar"
                 value={searchTerm}
                 onChange={handleSearchTerm}
                 placeholder="Search item by name"
@@ -127,7 +146,11 @@ function Weapons({ weapons, handleWeapon, closePage }) {
                 <span>Filter by :</span>
 
                 <div>
-                  <select name="elements" value={selectedOption} onChange={handleSelectOption}>
+                  <select
+                    name="elements"
+                    value={selectedOption}
+                    onChange={handleSelectOption}
+                  >
                     <option value="">Elements</option>
                     <option value="fire">Fire</option>
                     <option value="poison">Poison</option>
@@ -173,17 +196,45 @@ function Weapons({ weapons, handleWeapon, closePage }) {
                     {weapon.elements[0].type})
                   </p>
                 )}
-                <p>Affinity : {weapon.attributes.affinity ? (`${weapon.attributes.affinity}%`) : ("0%")}</p>
-                {weapon.durability && <div className="sharpnessContainer">
-                  <p>Sharpness : </p>
-                  <div className="sharpness red" style={{ "width": `${weapon.durability[0].red / 3}px` }}></div>
-                  <div className="sharpness orange" style={{ "width": `${weapon.durability[0].orange / 3}px` }}></div>
-                  <div className="sharpness yellow" style={{ "width": `${weapon.durability[0].yellow / 3}px` }}></div>
-                  <div className="sharpness green" style={{ "width": `${weapon.durability[0].green / 3}px` }}></div>
-                  <div className="sharpness blue" style={{ "width": `${weapon.durability[0].blue / 3}px` }}></div>
-                  <div className="sharpness white" style={{ "width": `${weapon.durability[0].white / 3}px` }}></div>
-                  <div className="sharpness purple" style={{ "width": `${weapon.durability[0].purple / 3}px` }}></div>
-                </div>}
+                <p>
+                  Affinity :{" "}
+                  {weapon.attributes.affinity
+                    ? `${weapon.attributes.affinity}%`
+                    : "0%"}
+                </p>
+                {weapon.durability && (
+                  <div className="sharpnessContainer">
+                    <p>Sharpness : </p>
+                    <div
+                      className="sharpness red"
+                      style={{ width: `${weapon.durability[0].red / 3}px` }}
+                    ></div>
+                    <div
+                      className="sharpness orange"
+                      style={{ width: `${weapon.durability[0].orange / 3}px` }}
+                    ></div>
+                    <div
+                      className="sharpness yellow"
+                      style={{ width: `${weapon.durability[0].yellow / 3}px` }}
+                    ></div>
+                    <div
+                      className="sharpness green"
+                      style={{ width: `${weapon.durability[0].green / 3}px` }}
+                    ></div>
+                    <div
+                      className="sharpness blue"
+                      style={{ width: `${weapon.durability[0].blue / 3}px` }}
+                    ></div>
+                    <div
+                      className="sharpness white"
+                      style={{ width: `${weapon.durability[0].white / 3}px` }}
+                    ></div>
+                    <div
+                      className="sharpness purple"
+                      style={{ width: `${weapon.durability[0].purple / 3}px` }}
+                    ></div>
+                  </div>
+                )}
               </div>
             ))}
           </div>

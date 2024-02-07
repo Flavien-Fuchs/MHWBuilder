@@ -1,4 +1,4 @@
-.GlobalItemContainer {
+.globalItemContainer {
   position: absolute;
   z-index: 100;
   width: 100vw;
@@ -38,7 +38,6 @@
   }
 }
 
-
 .itemNavBar {
   position: sticky;
   top: 0;
@@ -53,7 +52,7 @@
 
   input,
   select {
-    margin: .5em 2em;
+    margin: 0.5em 2em;
   }
 }
 
@@ -83,7 +82,7 @@
   }
 
   select {
-    margin: .5em .5em;
+    margin: 0.5em 0.5em;
   }
 }
 
@@ -95,7 +94,7 @@
 
     input {
       width: 90%;
-      margin: .5em 0;
+      margin: 0.5em 0;
     }
   }
 
@@ -111,7 +110,7 @@
       flex-wrap: wrap;
 
       select {
-        margin: .5em .5em .5em 0;
+        margin: 0.5em 0.5em 0.5em 0;
       }
     }
   }
@@ -122,13 +121,13 @@
   top: 1em;
   right: 1em;
   color: var(--navbar);
-  transition: .2s;
+  transition: 0.2s;
   cursor: pointer;
-  padding: .3em;
+  padding: 0.3em;
 
   :hover {
     color: var(--neutral-white-color);
-    transition: .2s;
+    transition: 0.2s;
   }
 }
 
@@ -140,12 +139,11 @@ select {
   border: none;
 }
 
-
 .itemContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: .8em;
+  gap: 0.8em;
 }
 
 .item {
@@ -156,7 +154,7 @@ select {
   cursor: pointer;
 }
 
-.item>img {
+.item > img {
   max-height: 8em;
 }
 
@@ -185,7 +183,7 @@ li {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: .4em 0;
+  margin: 0.4em 0;
 
   .sharpness {
     height: 1em;
