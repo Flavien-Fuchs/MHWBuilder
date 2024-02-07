@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import "../../css/common/LifeBar.css";
 
+
 function LifeBar({ currentLife, maxLife }) {
   const [currentLifePoint, setCurrentLifePoint] = useState(
     (currentLife / maxLife) * 100
@@ -20,7 +21,7 @@ function LifeBar({ currentLife, maxLife }) {
     if (value > 60) {
       color = "green";
     } else if (value > 30) {
-      color = "yellow";
+      color = "#C38E00";
     } else {
       color = "red";
     }

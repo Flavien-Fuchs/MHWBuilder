@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import "../../assets/css/pages/game/Game.css";
+import "../css/game/Game.css";
 import SelectCharactere from "./Game/SelectCharactere";
 import Lunch from "./Game/Lunch";
 

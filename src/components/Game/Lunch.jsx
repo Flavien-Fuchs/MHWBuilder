@@ -1,7 +1,9 @@
 import { useEffect, useState, useRef } from "react";
-import "../../assets/css/pages/game/Lunch.css";
-import LifeBar from "../../components/game/common/LifeBar";
-import gifSuperAttack from "../../assets/images/attack.gif";
+import "../../css/game/Lunch.css";
+import LifeBar from "../../components/common/LifeBar";
+import Pause from "./Pause";
+import Stat from "./Stat";
+import Result from "./Result";
 
 const SECONDS = 10;
 const choices = ["defense", "attack", "superAttack"];
@@ -10,6 +12,7 @@ function Lunch({ charactere }) {
   const [tour, setTour] = useState(1);
   const [timeRemaining, setTimeRemaining] = useState(SECONDS);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [viewOverlay, setViewOverlay] = useState("");
 
   const [maxLifePoint, setMaxLifePoint] = useState(1000);
   const [currentLifePoint, setCurrentLifePoint] = useState(maxLifePoint);
@@ -165,13 +168,37 @@ function Lunch({ charactere }) {
   };
   return (
     <div className="gameContainer">
-      {/* <div className=""></div> */}
+      {!isPlaying && (
+        <div className="viewOverlay">
+          {viewOverlay === "Pause" ? (
+            <Pause
+              setIsPlaying={setIsPlaying}
+              setViewOverlay={setViewOverlay}
+            />
+          ) : viewOverlay === "Stat" ? (
+            <Stat setIsPlaying={setIsPlaying} 
+            setViewOverlay={setViewOverlay} />
+          ) : (
+            <Result
+              setIsPlaying={setIsPlaying}
+              setViewOverlay={setViewOverlay}
+            />
+          )}
+        </div>
+      )}
       <div className="game">
         <div className="header">
           <div className="top">
             <div>stat</div>
             <div>Temps restant : {timeRemaining} secondes</div>
-            <div>menu</div>
+            <div
+              onClick={() => {
+                setIsPlaying(false);
+                setViewOverlay("Pause");
+              }}
+            >
+              pause
+            </div>
           </div>
           <div className="bottom">Tour {tour}</div>
         </div>

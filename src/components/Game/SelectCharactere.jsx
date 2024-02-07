@@ -1,7 +1,7 @@
 import React from "react";
-import "../../assets/css/pages/game/SelectCharactere.css";
+import "../../css/game/SelectCharactere.css";
 import { characteres } from "../../assets/data/Characteres";
-import SelectCard from "../../components/game/common/SelectCard";
+import SelectCard from "../../components/common/SelectCard";
 import { useState } from "react";
 
 function SelectCharactere({ charactere, setCharactere, setPage }) {
