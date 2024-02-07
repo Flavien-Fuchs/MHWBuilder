@@ -3,7 +3,7 @@ export const monsters = [
     id: 1,
     name: "RATHALOS",
     descrip: `Le prédateur de la Forêt ancienne patrouillant les cieux à l'affût des intrus.`,
-    path: "src/assets/images/monster/Rathalos.webp",
+    path: "src/assets/images/monster/Rathalos1.webp",
     path_cover: "src/assets/images/characteres/chara_img_01.jpg",
     state: {
       health: 3250,
@@ -21,7 +21,7 @@ export const monsters = [
     id: 2,
     name: "DIABLOS",
     descrip: `Cette créature qui règne sur le Désert des termites est extrêmement territoriale et a tendance à charger brusquement.`,
-    path: "src/assets/images/monster/Diablos.webp",
+    path: "src/assets/images/monster/Diablos1.webp",
     path_cover: "src/assets/images/characteres/chara_img_01.jpg",
     state: {
       health: 3250,
@@ -39,7 +39,7 @@ export const monsters = [
     id: 3,
     name: "JYURATODUS",
     descrip: `LUne énorme wyverne aquatique qui utilise la boue qui l'entoure pour se protéger et pour attaquer.`,
-    path: "src/assets/images/monster/Jyuratodus.webp",
+    path: "src/assets/images/monster/Jyuratodus1.webp",
     path_cover: "src/assets/images/characteres/chara_img_01.jpg",
     state: {
       health: 2800,
@@ -57,7 +57,7 @@ export const monsters = [
     id: 4,
     name: "ZINOGRE",
     descrip: `Une wyverne à la fourrure électrique. Redoutable en état de surcharge.`,
-    path: "src/assets/images/monster/Zinogre.webp",
+    path: "src/assets/images/monster/Zinogre1.webp",
     path_cover: "src/assets/images/characteres/chara_img_01.jpg",
     state: {
       health: 3350,
@@ -75,7 +75,7 @@ export const monsters = [
     id: 5,
     name: "KUSHALA DAORA",
     descrip: `Un dragon ancien entouré par les vents, empêchant quiconque de l'approcher.`,
-    path: "src/assets/images/monster/Kushala_Daora.webp",
+    path: "src/assets/images/monster/Kushala_Daora1.webp",
     path_cover: "src/assets/images/characteres/chara_img_01.jpg",
     state: {
       health: 3980,

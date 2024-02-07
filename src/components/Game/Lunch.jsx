@@ -105,25 +105,19 @@ function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
 
   const degat = (attack, isMe) => {
     // isMe = false;
-    console.log("attaque");
     let dommmage = 0;
-    const types = ["fire", "water", "ice", "thunder", "dragron"];
+    const types = ["fire", "water", "ice", "thunder", "dragon"];
     if (isMe === true) {
-      console.log("enenemie");
-      console.log("attaque de lenemie :", dommmage);
       let elementDamageAd = 0;
       let type = "";
       let myResistanceElementale = 0;
       if (monster.state.elementalAttack) {
         elementDamageAd = monster.state.elementalAttack[0].damage;
         type = monster.state.elementalAttack[0].type;
-
         if (types.includes(type)) {
           type = type.charAt(0).toUpperCase() + type.slice(1);
           let resitanteName = `res${type}`;
-          console.log("type", resitanteName);
           myResistanceElementale = myState[resitanteName];
-          console.log("myResistanceElementale", myResistanceElementale);
         }
       }
       dommmage =
@@ -133,14 +127,12 @@ function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
             (elementDamageAd * myResistanceElementale * 10) / 100)) /
         MULTIPLICATEURFINALEAD;
     } else {
-      console.log("moi");
       let myElementDamage = 0;
       let type = "";
       let resistanceElementaleAd = 0;
-      if (myState.elementalAttack) {
+      if (myState.elementalAttack.length > 0) {
         myElementDamage = myState.elementalAttack[0].damage;
         type = myState.elementalAttack[0].type;
-
         if (types.includes(type)) {
           type = type.charAt(0).toUpperCase() + type.slice(1);
           let resitanteName = `res${type}`;
@@ -161,7 +153,6 @@ function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
         ? dommmage
         : dommmage * 2;
     dommmage = Math.round(dommmage);
-    console.log("dommmage", dommmage);
     const life = isMe
       ? currentLifePoint - dommmage
       : currentLifePointAd - dommmage;
@@ -198,16 +189,13 @@ function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
 
   const isDead = () => {
     if (currentLifePoint <= 0 && currentLifePointAd <= 0) {
-      // console.log(`Egalité`);
       setIsDeadAd(true);
       setImDead(true);
       setIsPlaying(false);
     } else if (currentLifePoint <= 0) {
-      // console.log(`Vous êtes mort`);
       setImDead(true);
       setIsPlaying(false);
     } else if (currentLifePointAd <= 0) {
-      // console.log(`Adversaire mort`);
       setIsDeadAd(true);
     } else {
       setTour((prevKey) => prevKey + 1);

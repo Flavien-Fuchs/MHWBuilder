@@ -39,7 +39,6 @@ function Game({
   }, []);
 
   const refreshComponent = () => {
-    console.log("rejouer");
     setKey((prevKey) => prevKey + 1);
   };
 

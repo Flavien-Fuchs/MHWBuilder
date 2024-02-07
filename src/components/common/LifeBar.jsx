@@ -45,7 +45,7 @@ function LifeBar({ currentLife, maxLife }) {
         style={{ width: `${currentLifePoint}%` }}
         ref={progressBarRef}
       >
-        {currentLifePoint}%
+        {/* {currentLifePoint}% */}{currentLife}
       </div>
     </div>
   );
