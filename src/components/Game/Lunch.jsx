@@ -176,12 +176,14 @@ function Lunch({ charactere }) {
               setViewOverlay={setViewOverlay}
             />
           ) : viewOverlay === "Stat" ? (
-            <Stat setIsPlaying={setIsPlaying} 
-            setViewOverlay={setViewOverlay} />
+            <Stat setIsPlaying={setIsPlaying} setViewOverlay={setViewOverlay} />
           ) : (
             <Result
               setIsPlaying={setIsPlaying}
               setViewOverlay={setViewOverlay}
+              charactere={charactere}
+              imDead={imDead}
+              isDeadAd={isDeadAd}
             />
           )}
         </div>
