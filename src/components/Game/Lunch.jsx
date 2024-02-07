@@ -5,22 +5,26 @@ import Pause from "./Pause";
 import Stat from "./Stat";
 import Result from "./Result";
 
-const SECONDS = 3;
+const SECONDS = 10;
 const choices = ["defense", "attack", "superAttack"];
+const MULTIPLICATION = 1;
+const MULTIPLICATEURFINALE = 1;
+const MULTIPLICATIONAD = 10;
+const MULTIPLICATEURFINALEAD = 30;
 
-function Lunch({ charactere,replay }) {
+function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
   const [tour, setTour] = useState(1);
   const [timeRemaining, setTimeRemaining] = useState(SECONDS);
   const [isPlaying, setIsPlaying] = useState(true);
   const [viewOverlay, setViewOverlay] = useState("");
 
-  const [maxLifePoint, setMaxLifePoint] = useState(500);
+  const [maxLifePoint, setMaxLifePoint] = useState(myState.health);
   const [currentLifePoint, setCurrentLifePoint] = useState(maxLifePoint);
   const cardRef = useRef(null);
   const [imDead, setImDead] = useState(false);
   const [isAttacked, setIsAttacked] = useState(false);
 
-  const [maxLifePointAd, setMaxLifePointAd] = useState(10);
+  const [maxLifePointAd, setMaxLifePointAd] = useState(monster.state.health);
   const [currentLifePointAd, setCurrentLifePointAd] = useState(maxLifePointAd);
   const cardAdRef = useRef(null);
   const [isDeadAd, setIsDeadAd] = useState(false);
@@ -100,11 +104,67 @@ function Lunch({ charactere,replay }) {
     choices[Math.floor(Math.random() * choices.length)];
 
   const degat = (attack, isMe) => {
-    const pourcentage = attack === "low" ? 50 : attack === "normal" ? 100 : 200;
-    const value = Math.max(
-      isMe ? currentLifePoint - pourcentage : currentLifePointAd - pourcentage,
-      0
-    );
+    // isMe = false;
+    console.log("attaque");
+    let dommmage = 0;
+    const types = ["fire", "water", "ice", "thunder", "dragron"];
+    if (isMe === true) {
+      console.log("enenemie");
+      console.log("attaque de lenemie :", dommmage);
+      let elementDamageAd = 0;
+      let type = "";
+      let myResistanceElementale = 0;
+      if (monster.state.elementalAttack) {
+        elementDamageAd = monster.state.elementalAttack[0].damage;
+        type = monster.state.elementalAttack[0].type;
+
+        if (types.includes(type)) {
+          type = type.charAt(0).toUpperCase() + type.slice(1);
+          let resitanteName = `res${type}`;
+          console.log("type", resitanteName);
+          myResistanceElementale = myState[resitanteName];
+          console.log("myResistanceElementale", myResistanceElementale);
+        }
+      }
+      dommmage =
+        ((monster.state.attack / MULTIPLICATIONAD) *
+          (100 / (100 + myState.augDefense)) +
+          (elementDamageAd -
+            (elementDamageAd * myResistanceElementale * 10) / 100)) /
+        MULTIPLICATEURFINALEAD;
+    } else {
+      console.log("moi");
+      let myElementDamage = 0;
+      let type = "";
+      let resistanceElementaleAd = 0;
+      if (myState.elementalAttack) {
+        myElementDamage = myState.elementalAttack[0].damage;
+        type = myState.elementalAttack[0].type;
+
+        if (types.includes(type)) {
+          type = type.charAt(0).toUpperCase() + type.slice(1);
+          let resitanteName = `res${type}`;
+          resistanceElementaleAd = monster.state[resitanteName];
+        }
+      }
+      dommmage =
+        ((myState.attack / 45) * (100 / (100 + monster.state.augDefense)) +
+          (myElementDamage -
+            (myElementDamage * resistanceElementaleAd * 10) / 100)) /
+        MULTIPLICATEURFINALE;
+    }
+
+    dommmage =
+      attack === "low"
+        ? dommmage / 2
+        : attack === "normal"
+        ? dommmage
+        : dommmage * 2;
+    dommmage = Math.round(dommmage);
+    console.log("dommmage", dommmage);
+    const life = isMe
+      ? currentLifePoint - dommmage
+      : currentLifePointAd - dommmage;
 
     const containerAnimationClassList = isMe
       ? cardRef.current?.querySelector(".containerAnimation")?.classList
@@ -119,7 +179,7 @@ function Lunch({ charactere,replay }) {
       : setCurrentLifePointAd;
     const cardRefToUpdate = isMe ? cardRef : cardAdRef;
 
-    updateLifePointFunction(value);
+    updateLifePointFunction(life);
     animateCard(cardRefToUpdate);
 
     setTimeout(() => {
@@ -174,6 +234,7 @@ function Lunch({ charactere,replay }) {
             <Pause
               setIsPlaying={setIsPlaying}
               setViewOverlay={setViewOverlay}
+              redirectToBuilder={redirectToBuilder}
             />
           ) : viewOverlay === "Stat" ? (
             <Stat setIsPlaying={setIsPlaying} setViewOverlay={setViewOverlay} />
@@ -184,6 +245,7 @@ function Lunch({ charactere,replay }) {
               charactere={charactere}
               imDead={imDead}
               replay={replay}
+              redirectToBuilder={redirectToBuilder}
             />
           )}
         </div>
@@ -223,7 +285,7 @@ function Lunch({ charactere,replay }) {
               <figure>
                 <img
                   className={`charactere ${isDeadAd && "dead"}`}
-                  src="src/assets/images/monster/Grimclaw.webp"
+                  src={monster.path}
                   alt="Tigrex"
                 />
               </figure>

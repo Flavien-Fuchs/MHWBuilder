@@ -1,7 +1,7 @@
 import React from "react";
 import "../../css/game/Pause.css";
 
-function Pause({ setIsPlaying, setViewOverlay }) {
+function Pause({ setIsPlaying, setViewOverlay, redirectToBuilder }) {
   return (
     <div className="containerPause">
       <h1 className="title">Pause</h1>
@@ -15,7 +15,9 @@ function Pause({ setIsPlaying, setViewOverlay }) {
         >
           return
         </div>
-        <div className="btnExit btn">Exit</div>
+        <div className="btnExit btn" onClick={redirectToBuilder}>
+          Exit
+        </div>
       </div>
     </div>
   );

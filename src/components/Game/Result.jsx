@@ -1,7 +1,14 @@
 import React from "react";
 import "../../css/game/Result.css";
 
-function Result({ setIsPlaying, setViewOverlay, charactere, imDead, replay }) {
+function Result({
+  setIsPlaying,
+  setViewOverlay,
+  charactere,
+  imDead,
+  replay,
+  redirectToBuilder,
+}) {
   return (
     <div className={`containerResult ${imDead && "dead"}`}>
       <div className="containerPersonnage">
@@ -15,7 +22,9 @@ function Result({ setIsPlaying, setViewOverlay, charactere, imDead, replay }) {
         </div>
       </div>
       <div className="containerBtn">
-        <div className="btnExit btn">Exit</div>
+        <div className="btnExit btn" onClick={redirectToBuilder}>
+          Exit
+        </div>
         <div
           className="btnReplay btn"
           onClick={() => {
