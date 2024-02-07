@@ -6,6 +6,12 @@ import Lunch from "./Game/Lunch";
 function Game() {
   const [page, setPage] = useState("selectCharactere");
   const [charactere, setCharactere] = useState();
+  const [key, setKey] = useState(0);
+
+  const refreshComponent = () => {
+    console.log("rejouer");
+    setKey((prevKey) => prevKey + 1);
+  };
 
   return (
     <div className="gameContainer">
@@ -16,7 +22,7 @@ function Game() {
           setPage={setPage}
         />
       ) : (
-        <Lunch charactere={charactere} />
+        <Lunch charactere={charactere} key={key} replay={refreshComponent} />
       )}
     </div>
   );

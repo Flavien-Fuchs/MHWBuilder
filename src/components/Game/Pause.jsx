@@ -3,7 +3,7 @@ import "../../css/game/Pause.css";
 
 function Pause({ setIsPlaying, setViewOverlay }) {
   return (
-    <div className="container">
+    <div className="containerPause">
       <h1 className="title">Pause</h1>
       <div className="containerBtn">
         <div

@@ -1,4 +1,4 @@
-.container {
+.containerResult {
   width: 100%;
   height: 100%;
   display: flex;
@@ -6,39 +6,70 @@
   align-items: center;
   flex-direction: column;
   gap: 40px;
-  backdrop-filter: blur(64px);
-  background-image: url("");
 
-  & .title {
-    text-transform: uppercase;
+  background-image: url("src/images/bg_pattern.jpg");
+  &.dead {
+    background-image: none;
+    backdrop-filter: blur(64px);
+  }
+
+  & .containerPersonnage {
+    position: relative;
+    & .result {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      font-size: xx-large;
+      font-weight: 800;
+      text-transform: uppercase;
+      /* position: absolute; */
+      color: var(--sharpness-orange);
+      &.dead {
+        color: var(--neutral-white-color);
+      }
+    }
+    & .charactere {
+      width: 80%;
+      height: auto;
+      &.dead {
+        filter: grayscale(1);
+        filter: brightness(50%);
+      }
+    }
   }
 
   & .containerBtn {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 20px;
-  }
-  & .btn {
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-transform: uppercase;
-  }
-  & .btnReturn {
-    background-color: var(--sharpness-purple);
 
-    &:hover {
-      background-color: var(--sharpness-purple-claire);
-      cursor: pointer;
-      box-shadow: var(--game-box-shadow);
+    & .btn {
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-transform: uppercase;
     }
-  }
-  & .btnExit {
-    background-color: var(--sharpness-red);
+    & .btnReplay {
+      background-color: var(--sharpness-green);
 
-    &:hover {
-      background-color: var(--sharpness-red-claire);
-      cursor: pointer;
-      box-shadow: var(--game-box-shadow);
+      &:hover {
+        background-color: var(--sharpness-green-claire);
+        cursor: pointer;
+        box-shadow: var(--game-box-shadow);
+      }
+    }
+    & .btnExit {
+      background-color: var(--sharpness-red);
+
+      &:hover {
+        background-color: var(--sharpness-red-claire);
+        cursor: pointer;
+        box-shadow: var(--game-box-shadow);
+      }
     }
   }
 }

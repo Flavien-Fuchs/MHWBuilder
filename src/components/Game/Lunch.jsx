@@ -5,22 +5,22 @@ import Pause from "./Pause";
 import Stat from "./Stat";
 import Result from "./Result";
 
-const SECONDS = 10;
+const SECONDS = 3;
 const choices = ["defense", "attack", "superAttack"];
 
-function Lunch({ charactere }) {
+function Lunch({ charactere,replay }) {
   const [tour, setTour] = useState(1);
   const [timeRemaining, setTimeRemaining] = useState(SECONDS);
   const [isPlaying, setIsPlaying] = useState(true);
   const [viewOverlay, setViewOverlay] = useState("");
 
-  const [maxLifePoint, setMaxLifePoint] = useState(1000);
+  const [maxLifePoint, setMaxLifePoint] = useState(500);
   const [currentLifePoint, setCurrentLifePoint] = useState(maxLifePoint);
   const cardRef = useRef(null);
   const [imDead, setImDead] = useState(false);
   const [isAttacked, setIsAttacked] = useState(false);
 
-  const [maxLifePointAd, setMaxLifePointAd] = useState(1000);
+  const [maxLifePointAd, setMaxLifePointAd] = useState(10);
   const [currentLifePointAd, setCurrentLifePointAd] = useState(maxLifePointAd);
   const cardAdRef = useRef(null);
   const [isDeadAd, setIsDeadAd] = useState(false);
@@ -183,7 +183,7 @@ function Lunch({ charactere }) {
               setViewOverlay={setViewOverlay}
               charactere={charactere}
               imDead={imDead}
-              isDeadAd={isDeadAd}
+              replay={replay}
             />
           )}
         </div>
