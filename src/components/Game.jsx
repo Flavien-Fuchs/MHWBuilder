@@ -34,7 +34,6 @@ function Game({
     elementalAttack: elementalAttack,
     multipli: findMultiplie(weapon.type)
   });
-  console.log("findMultiplie", findMultiplie(weapon.type));
 
   function findMultiplie(type) {
     for (let i = 0; i < armas.length; i++) {
