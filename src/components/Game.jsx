@@ -4,6 +4,7 @@ import "../css/game/Game.css";
 import SelectCharactere from "./Game/SelectCharactere";
 import Lunch from "./Game/Lunch";
 import { monsters } from "../assets/data/Monsters";
+import { armas } from "../assets/data/Armas";
 
 function Game({
   redirectToBuilder,
@@ -16,6 +17,7 @@ function Game({
   resDragon,
   attack,
   elementalAttack,
+  weapon
 }) {
   const [page, setPage] = useState("selectCharactere");
   const [charactere, setCharactere] = useState();
@@ -30,7 +32,18 @@ function Game({
     resDragon: resDragon,
     attack: attack,
     elementalAttack: elementalAttack,
+    multipli: findMultiplie(weapon.type)
   });
+  console.log("findMultiplie", findMultiplie(weapon.type));
+
+  function findMultiplie(type) {
+    for (let i = 0; i < armas.length; i++) {
+      if (armas[i].name === type) {
+        return armas[i].value;
+      }
+    }
+    return 0; 
+  }
 
   const [monster, setMonster] = useState(null);
   useEffect(() => {

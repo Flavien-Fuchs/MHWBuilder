@@ -7,8 +7,7 @@ import Result from "./Result";
 
 const SECONDS = 10;
 const choices = ["defense", "attack", "superAttack"];
-const MULTIPLICATION = 1;
-const MULTIPLICATEURFINALE = 1;
+const MULTIPLICATEURFINALE = 10;
 const MULTIPLICATIONAD = 10;
 const MULTIPLICATEURFINALEAD = 30;
 
@@ -104,7 +103,6 @@ function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
     choices[Math.floor(Math.random() * choices.length)];
 
   const degat = (attack, isMe) => {
-    // isMe = false;
     let dommmage = 0;
     const types = ["fire", "water", "ice", "thunder", "dragon"];
     if (isMe === true) {
@@ -140,9 +138,10 @@ function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
         }
       }
       dommmage =
-        ((myState.attack / 45) * (100 / (100 + monster.state.augDefense)) +
+        ((myState.attack / myState.multipli) *
+          (100 / (100 + monster.state.augDefense)) +
           (myElementDamage -
-            (myElementDamage * resistanceElementaleAd * 10) / 100)) /
+            (myElementDamage * resistanceElementaleAd * 10) / 100)) *
         MULTIPLICATEURFINALE;
     }
 
@@ -214,6 +213,10 @@ function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
     degat("low", true);
     isDead();
   };
+  const triche = () => {
+    setCurrentLifePointAd(0);
+    isDead();
+  };
   return (
     <div className="gameContainer">
       {!isPlaying && (
@@ -241,7 +244,7 @@ function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
       <div className="game">
         <div className="header">
           <div className="top">
-            <div>stat</div>
+            <div onClick={triche}>triche</div>
             <div>Temps restant : {timeRemaining} secondes</div>
             <div
               onClick={() => {

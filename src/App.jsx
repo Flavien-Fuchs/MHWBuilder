@@ -497,13 +497,15 @@ function App() {
               />
             )}
           </div>
-          <div
-            onClick={() => {
-              play();
-            }}
-          >
-            Play
-          </div>
+          {weapon && (
+            <button
+              onClick={() => {
+                play();
+              }}
+            >
+              Play
+            </button>
+          )}
         </div>
       )}
 
@@ -521,6 +523,7 @@ function App() {
             resDragon={resDragon}
             attack={attack}
             elementalAttack={elementalAttack}
+            weapon={weapon}
           />
         </div>
       )}
