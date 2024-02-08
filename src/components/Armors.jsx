@@ -103,6 +103,8 @@ function Armors({ armors, handleArmor, type, closePage }) {
               <div className="globalInfos">
                 <p className="paragrapheList">{armor.name}</p>
                 <p className="rarity">Rarity {armor.rarity}</p>
+              </div>
+              <div className="detailsInfos">
                 {!armor.assets ? (
                   <img src="./src/images/nullArmor.png" alt="armor" />
                 ) : armor.assets.imageMale ? (
@@ -110,56 +112,57 @@ function Armors({ armors, handleArmor, type, closePage }) {
                 ) : (
                   <img src={armor.assets.imageFemale} alt="armor" />
                 )}
-                <p className="stats">
-                  Defense : base {armor.defense.base} | max{armor.defense.max} |
-                  augmented {armor.defense.augmented}
-                </p>
-              </div>
-              <div className="detailsInfos">
-                <ul className="resistance">
-                  <ResistanceItem
-                    iconSrc="fire"
-                    altText="fire"
-                    label="Fire Resist"
-                    value={armor.resistances.fire}
-                  />
-                  <ResistanceItem
-                    iconSrc="water"
-                    altText="water"
-                    label="Water Resist"
-                    value={armor.resistances.water}
-                  />
-                  <ResistanceItem
-                    iconSrc="ice"
-                    altText="ice"
-                    label="Ice Resist"
-                    value={armor.resistances.ice}
-                  />
-                  <ResistanceItem
-                    iconSrc="thunder"
-                    altText="thunder"
-                    label="Thunder Resist"
-                    value={armor.resistances.thunder}
-                  />
-                  <ResistanceItem
-                    iconSrc="dragon"
-                    altText="dragon"
-                    label="Dragon Resist"
-                    value={armor.resistances.dragon}
-                  />
-                </ul>
-                {armor.skills && armor.skills.length > 0 && (
-                  <div>
-                    <p className="skillsList">skills list</p>
-                    <ul className="hideSkills">
-                      {armor.skills.map((skill, key) => (
-                        <li key={key}>
-                          {skill.skillName} - {skill.level}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+
+                <div className="stats">
+                  <ul className="resistance">
+                    <li>
+                      <img src={`./src/images/icons/defense-icon.png`} alt="defense" />
+                      Defense : {armor.defense.base} | {armor.defense.max} | {armor.defense.augmented}
+                    </li>
+                    <ResistanceItem
+                      iconSrc="fire"
+                      altText="fire"
+                      label="Fire Resist"
+                      value={armor.resistances.fire}
+                    />
+                    <ResistanceItem
+                      iconSrc="water"
+                      altText="water"
+                      label="Water Resist"
+                      value={armor.resistances.water}
+                    />
+                    <ResistanceItem
+                      iconSrc="ice"
+                      altText="ice"
+                      label="Ice Resist"
+                      value={armor.resistances.ice}
+                    />
+                    <ResistanceItem
+                      iconSrc="thunder"
+                      altText="thunder"
+                      label="Thunder Resist"
+                      value={armor.resistances.thunder}
+                    />
+                    <ResistanceItem
+                      iconSrc="dragon"
+                      altText="dragon"
+                      label="Dragon Resist"
+                      value={armor.resistances.dragon}
+                    />
+                  </ul>
+                  {armor.skills && armor.skills.length > 0 && (
+                    <div>
+                      <p className="skillsList">skills list</p>
+                      <ul className="hideSkills">
+                        {armor.skills.map((skill, key) => (
+                          <li key={key}>
+                            {skill.skillName} - {skill.level}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           );
