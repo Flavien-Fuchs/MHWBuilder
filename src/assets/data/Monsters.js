@@ -2,7 +2,7 @@ export const monsters = [
   {
     id: 1,
     name: "RATHALOS",
-    descrip: `Le prédateur de la Forêt ancienne patrouillant les cieux à l'affût des intrus.`,
+    descrip: `The predator of the ancient Forest patrolling the skies on the lookout for intruders.`,
     path: "src/assets/images/monster/Rathalos1.webp",
     path_cover: "src/assets/images/characteres/chara_img_01.jpg",
     state: {
@@ -20,8 +20,8 @@ export const monsters = [
   {
     id: 2,
     name: "DIABLOS",
-    descrip: `Cette créature qui règne sur le Désert des termites est extrêmement territoriale et a tendance à charger brusquement.`,
-    path: "src/assets/images/monster/Diablos1.webp",
+    descrip: `This creature that reigns over the Termite Desert is extremely territorial and tends to charge abruptly.`,
+    path: "src/assets/images/monster/Diablos2.webp",
     path_cover: "src/assets/images/characteres/chara_img_01.jpg",
     state: {
       health: 3250,
@@ -38,7 +38,7 @@ export const monsters = [
   {
     id: 3,
     name: "JYURATODUS",
-    descrip: `LUne énorme wyverne aquatique qui utilise la boue qui l'entoure pour se protéger et pour attaquer.`,
+    descrip: `A huge aquatic wyverne that uses the mud around it to protect itself and attack.`,
     path: "src/assets/images/monster/Jyuratodus1.webp",
     path_cover: "src/assets/images/characteres/chara_img_01.jpg",
     state: {
@@ -56,7 +56,7 @@ export const monsters = [
   {
     id: 4,
     name: "ZINOGRE",
-    descrip: `Une wyverne à la fourrure électrique. Redoutable en état de surcharge.`,
+    descrip: `A wyvern with electric fur. Formidable in a state of overload.`,
     path: "src/assets/images/monster/Zinogre1.webp",
     path_cover: "src/assets/images/characteres/chara_img_01.jpg",
     state: {
@@ -74,7 +74,7 @@ export const monsters = [
   {
     id: 5,
     name: "KUSHALA DAORA",
-    descrip: `Un dragon ancien entouré par les vents, empêchant quiconque de l'approcher.`,
+    descrip: `An ancient dragon surrounded by winds, preventing anyone from approaching it.`,
     path: "src/assets/images/monster/Kushala_Daora1.webp",
     path_cover: "src/assets/images/characteres/chara_img_01.jpg",
     state: {

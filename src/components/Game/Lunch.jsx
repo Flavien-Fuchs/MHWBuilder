@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState, useRef } from "react";
 import "../../css/game/Lunch.css";
 import LifeBar from "../../components/common/LifeBar";
@@ -7,7 +8,7 @@ import Result from "./Result";
 
 const SECONDS = 10;
 const choices = ["defense", "attack", "superAttack"];
-const MULTIPLICATEURFINALE = 10;
+const MULTIPLICATEURFINALE = 5;
 const MULTIPLICATIONAD = 10;
 const MULTIPLICATEURFINALEAD = 30;
 
@@ -244,8 +245,8 @@ function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
       <div className="game">
         <div className="header">
           <div className="top">
-            <div onClick={triche}>triche</div>
-            <div>Temps restant : {timeRemaining} secondes</div>
+            <div onClick={triche}>{tour}</div>
+            <div>Time remaining: {timeRemaining} seconds</div>
             <div
               onClick={() => {
                 setIsPlaying(false);
@@ -255,7 +256,6 @@ function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
               pause
             </div>
           </div>
-          <div className="bottom">Tour {tour}</div>
         </div>
         <div className="body">
           <div className="myPart">

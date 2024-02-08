@@ -31,7 +31,7 @@ function SelectCharactere({ charactere, setCharactere, setPage }) {
         </div>
       )} */}
       <div className="pageSelectCharaContainer">
-        <h2>Selection de l'avatar</h2>
+        <h2>Avatar Selection</h2>
         <div className="selectCharaContainer">
           {characteres.map((charactere) => (
             <SelectCard
