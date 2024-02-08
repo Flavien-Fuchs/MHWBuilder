@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 import { useLanguage } from "../utils/context/LanguageContext";
 import styles from "../css/SelectLang.module.css";
@@ -10,7 +11,8 @@ function SelectLang() {
     { name: "English", init: "en" },
   ];
 
-  const handleClickOpenSelectLanguage = () => setIsShowSelectLanguage(!isShowSelectLanguage);
+  const handleClickOpenSelectLanguage = () =>
+    setIsShowSelectLanguage(!isShowSelectLanguage);
 
   const changeLanguage = (newLanguage) => {
     setLanguage(newLanguage);
@@ -44,5 +46,12 @@ function SelectLang() {
     </div>
   );
 }
+
+SelectLang.propTypes = {
+  isShowSelectLanguage: PropTypes.bool.isRequired,
+  currentLanguage: PropTypes.string.isRequired,
+  setLanguage: PropTypes.func.isRequired,
+  getTranslation: PropTypes.func.isRequired,
+};
 
 export default SelectLang;
