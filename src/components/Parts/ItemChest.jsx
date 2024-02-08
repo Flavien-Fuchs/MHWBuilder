@@ -2,7 +2,7 @@
 function ItemChest({ chest, toggleDisplayItem, setArmorPage }) {
     return (
         chest ? (
-            <div className="slot chest" onClick={() => { toggleDisplayItem("chest") }}>
+            <div className="slot chest" onClick={() => toggleDisplayItem("chest")}>
                 {(!chest.assets ? (
                     <img src="./src/images/nullArmor.png" alt="armor" />
                 ) : chest.assets.imageMale ? (
@@ -12,7 +12,7 @@ function ItemChest({ chest, toggleDisplayItem, setArmorPage }) {
                 ))}
             </div>
         ) : (
-            <div className="slot chest empty" onClick={() => { setArmorPage("chest") }}>
+            <div className="slot chest empty" onClick={() => setArmorPage("chest")}>
             </div>
         )
     )

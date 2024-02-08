@@ -98,9 +98,7 @@ function Armors({ armors, handleArmor, type, closePage }) {
             <div
               key={key}
               className="item"
-              onClick={() => {
-                handleArmor(armor, type);
-              }}
+              onClick={() => handleArmor(armor, type)}
             >
               <div className="globalInfos">
                 <p className="paragrapheList">{armor.name}</p>

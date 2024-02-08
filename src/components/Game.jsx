@@ -25,9 +25,7 @@ function Game() {
 
   const actions = {
     attack: {
-      defense: () => {
-        degat(50, false);
-      },
+      defense: () => degat(50, false),
       attack: () => {
         degat(100, true), degat(100, false);
       },
@@ -36,20 +34,12 @@ function Game() {
       },
     },
     defense: {
-      defense: () => {
-        console.log("se passe rien");
-      },
-      attack: () => {
-        degat(50, true);
-      },
-      superAttack: () => {
-        degat(200, false);
-      },
+      defense: () => console.log("se passe rien"),
+      attack: () => degat(50, true),
+      superAttack: () => degat(200, false),
     },
     superAttack: {
-      defense: () => {
-        degat(200, true);
-      },
+      defense: () => degat(200, true),
       attack: () => {
         degat(100, true), degat(200, false);
       },
@@ -96,9 +86,7 @@ function Game() {
       cardRef.current.classList.add("animate");
       cardRef.current.addEventListener(
         "animationend",
-        () => {
-          cardRef.current.classList.remove("animate");
-        },
+        () => cardRef.current.classList.remove("animate"),
         { once: true }
       );
     } else {
@@ -111,9 +99,7 @@ function Game() {
 
       cardAdRef.current.addEventListener(
         "animationend",
-        () => {
-          cardAdRef.current.classList.remove("animate");
-        },
+        () => cardAdRef.current.classList.remove("animate"),
         { once: true }
       );
     }
@@ -193,9 +179,7 @@ function Game() {
           {choices.map((choice) => (
             <div
               key={choice}
-              onClick={() => {
-                handleClickAction(choice);
-              }}
+              onClick={() => handleClickAction(choice)}
             >
               {choice}
             </div>

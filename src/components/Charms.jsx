@@ -41,7 +41,7 @@ function Charms({ charms, handleCharms, closePage }) {
                 {newCharms.map((charm, key) => {
                     let actualCharm = charm.ranks[charm.ranks.length - 1]
 
-                    return (<div key={key} className="item" onClick={() => { handleCharms(charm) }} >
+                    return (<div key={key} className="item" onClick={() => handleCharms(charm)} >
                         <p>{charm.name}</p>
                         <p className="rarity">Rarity {actualCharm.rarity}</p>
                         <img className='imgCharm' src="./src/images/charm-icon.png" alt="charm" />
