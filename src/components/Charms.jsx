@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+/* eslint-disable react/prop-types */
 import "../css/Items.css";
 import { ImCross } from "react-icons/im";
 import { useState } from "react";
@@ -20,7 +20,7 @@ function Charms({ charms, handleCharms, closePage }) {
   });
 
   return (
-    <div className="GlobalItemContainer">
+    <div className="globalItemContainer">
       <div className="itemNavBar">
         <div className="closeButton" onClick={closePage}>
           <ImCross />
@@ -49,7 +49,7 @@ function Charms({ charms, handleCharms, closePage }) {
                 src="./src/images/charm-icon.png"
                 alt="charm"
               />
-              <p>skills list</p>
+              <p className="skillsList">skills list</p>
               <ul>
                 {actualCharm.skills.map((skill, key) => {
                   return (
@@ -66,11 +66,5 @@ function Charms({ charms, handleCharms, closePage }) {
     </div>
   );
 }
-
-Charms.propTypes = {
-  charms: PropTypes.array.isRequired,
-  handleCharms: PropTypes.func.isRequired,
-  closePage: PropTypes.func.isRequired,
-};
 
 export default Charms;
