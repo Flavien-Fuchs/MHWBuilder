@@ -52,6 +52,10 @@ function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
     return () => clearInterval(timer);
   }, [tour, isPlaying]);
 
+  useEffect(() => {
+    isDead();
+  }, [tour]);
+
   const actions = {
     attack: {
       defense: () => {
@@ -97,7 +101,9 @@ function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
       setActionAd("");
     }, 2000);
     actions[choice][choiceAdversaire]();
-    isDead();
+    setTour((prevKey) => prevKey + 1);
+    setTimeRemaining(SECONDS);
+    // isDead();
   };
 
   const randomChoice = () =>
@@ -165,12 +171,9 @@ function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
       containerAnimationClassList.add(`${attack}Attack`);
     }
 
-    const updateLifePointFunction = isMe
-      ? setCurrentLifePoint
-      : setCurrentLifePointAd;
+    isMe ? setCurrentLifePoint(life) : setCurrentLifePointAd(life);
     const cardRefToUpdate = isMe ? cardRef : cardAdRef;
 
-    updateLifePointFunction(life);
     animateCard(cardRefToUpdate);
 
     setTimeout(() => {
@@ -191,18 +194,13 @@ function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
     if (currentLifePoint <= 0 && currentLifePointAd <= 0) {
       setIsDeadAd(true);
       setImDead(true);
-      setIsPlaying(false);
     } else if (currentLifePoint <= 0) {
       setImDead(true);
-      setIsPlaying(false);
     } else if (currentLifePointAd <= 0) {
       setIsDeadAd(true);
     } else {
-      setTour((prevKey) => prevKey + 1);
-      setTimeRemaining(SECONDS);
       return;
     }
-
     setIsPlaying(false);
   };
 
@@ -212,11 +210,15 @@ function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
       setActionAd("");
     }, 2000);
     degat("low", true);
-    isDead();
+    setTour((prevKey) => prevKey + 1);
+    setTimeRemaining(SECONDS);
+    // isDead();
   };
   const triche = () => {
     setCurrentLifePointAd(0);
-    isDead();
+    setTour((prevKey) => prevKey + 1);
+    setTimeRemaining(SECONDS);
+    // isDead();
   };
   return (
     <div className="gameContainer">
@@ -245,7 +247,7 @@ function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
       <div className="game">
         <div className="header">
           <div className="top">
-            <div onClick={triche}>{tour}</div>
+            <div onClick={triche}>Turn {tour}</div>
             <div>Time remaining: {timeRemaining} seconds</div>
             <div
               onClick={() => {
