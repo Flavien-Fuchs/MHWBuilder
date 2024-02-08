@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 function Attack({ attack, elementalAttack, affinity, criticalBoost, sharpness }) {
 
     return (

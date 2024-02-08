@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 import "../css/Login.css";
 
 function Login({ handleApi, isLoading, armors, weapons, charms, skills }) {
@@ -52,5 +52,14 @@ function Login({ handleApi, isLoading, armors, weapons, charms, skills }) {
     </div>
   );
 }
+
+Login.propTypes = {
+  handleApi: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  armors: PropTypes.array,
+  weapons: PropTypes.array,
+  charms: PropTypes.array,
+  skills: PropTypes.array,
+};
 
 export default Login;

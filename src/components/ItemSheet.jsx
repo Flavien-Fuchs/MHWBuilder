@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 import "../css/ItemSheet.css";
 import ItemSheetSingle from "./ItemSheetSingle";
 import ItemCharm from "./Parts/ItemCharm";
@@ -72,5 +72,22 @@ function ItemSheet({
     </div>
   );
 }
+
+ItemSheet.propTypes = {
+  head: PropTypes.string.isRequired,
+  chest: PropTypes.string.isRequired,
+  gloves: PropTypes.string.isRequired,
+  waist: PropTypes.string.isRequired,
+  legs: PropTypes.string.isRequired,
+  weapon: PropTypes.string.isRequired,
+  charm: PropTypes.string.isRequired,
+  setArmorPage: PropTypes.func.isRequired,
+  setWeaponPage: PropTypes.func.isRequired,
+  setCharmsPage: PropTypes.func.isRequired,
+  setBuilder: PropTypes.func.isRequired,
+  deleteItem: PropTypes.func.isRequired,
+  displayItem: PropTypes.string,
+  setDisplayItem: PropTypes.func.isRequired,
+};
 
 export default ItemSheet;
