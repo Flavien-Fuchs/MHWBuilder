@@ -1,0 +1,79 @@
+.pageSelectCharaContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* background-image: url(src/assets/images/bg_pattern.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: black; */
+  }
+  
+  .selectCharaContainer {
+    overflow-y: auto;
+    padding: 10px;
+    display: grid;
+    grid: auto-flow auto / repeat(3, 1fr);
+    gap: 10px;
+  }
+  
+  .modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: url(src/assets/images/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    & .afficheChara {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      & figure {
+        width: 70%;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+  
+  @media (min-width: 920px) {
+    .selectCharaContainer {
+      padding: 20px;
+      grid: auto-flow auto / repeat(5, 1fr);
+      gap: 20px;
+    }
+    .modal {
+      padding: 20px;
+      & .afficheChara {
+        flex-direction: row;
+        flex: 1;
+        & figure {
+          height: 60%;
+          img {
+            width: auto;
+            height: 100%;
+          }
+        }
+        & .info {
+          width: auto;
+        }
+      }
+    }
+  }
+  
+  @media (min-width: 1250px) {
+    .selectCharaContainer {
+      padding: 20px;
+      grid: auto-flow auto / repeat(6, 1fr);
+      gap: 20px;
+    }
+  }
