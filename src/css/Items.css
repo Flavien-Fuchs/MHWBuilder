@@ -71,7 +71,7 @@
 
 .buttonWeaponsType {
   border: 1px solid var(--rank-off);
-  background-color: var(--rank-popup);
+  background-color: var(--color-button-weapon);
   color: var(--neutral-white-color);
 
   &:hover {
