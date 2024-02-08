@@ -16,11 +16,46 @@
   color: var(--neutral-white-color);
   transition: 0.2s;
   background-color: var(--background-slot);
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
 
   img {
     width: 100%;
     animation: .5s unScale;
   }
+}
+
+.head.empty {
+  background-image: url(../images/backgroundItems/teteArmor3.png);
+}
+
+.chest.empty {
+  background-image: url(../images/backgroundItems/torseArmor.png);
+}
+
+.gloves.empty {
+  background-image: url(../images/backgroundItems/mainArmor.png);
+}
+
+.waist.empty {
+  background-image: url(../images/backgroundItems/tailleArmor.png);
+}
+
+.legs.empty {
+  background-image: url(../images/backgroundItems/jambeArmor.png);
+}
+
+.weapon.empty {
+  background-image: url(../images/backgroundItems/epee.png);
+}
+
+.charm.empty {
+  background-image: url(../images/backgroundItems/amulette.png);
+  background-size: 90%;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(20);
 }
 
 @keyframes unScale {

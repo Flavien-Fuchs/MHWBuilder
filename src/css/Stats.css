@@ -97,7 +97,8 @@
 }
 
 .statPopup {
-    max-width: 87%;
+    width: 87%;
+    max-width: 390px;
     margin-bottom: .5em;
     background-color: var(--rank-popup);
     color: var(--neutral-white-color);

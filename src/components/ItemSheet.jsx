@@ -22,6 +22,7 @@ function ItemSheet({
   setArmorPage,
   setWeaponPage,
   setCharmsPage,
+  setBuilder,
   deleteItem,
   displayItem,
   setDisplayItem
@@ -45,26 +46,27 @@ function ItemSheet({
         setArmorPage={setArmorPage}
         setWeaponPage={setWeaponPage}
         setCharmsPage={setCharmsPage}
+        setBuilder={setBuilder}
         toggleDisplayItem={toggleDisplayItem}
         deleteItem={deleteItem}
       />}
       <div className="part">
-        <ItemHead head={head} toggleDisplayItem={toggleDisplayItem} setArmorPage={setArmorPage} />
-        <ItemCharm charm={charm} toggleDisplayItem={toggleDisplayItem} setCharmsPage={setCharmsPage} />
+        <ItemHead head={head} toggleDisplayItem={toggleDisplayItem} setArmorPage={setArmorPage} setBuilder={setBuilder} />
+        <ItemCharm charm={charm} toggleDisplayItem={toggleDisplayItem} setCharmsPage={setCharmsPage} setBuilder={setBuilder} />
       </div>
 
       <div className="part">
-        <ItemWeapon weapon={weapon} toggleDisplayItem={toggleDisplayItem} setWeaponPage={setWeaponPage} />
-        <ItemChest chest={chest} toggleDisplayItem={toggleDisplayItem} setArmorPage={setArmorPage} />
-        <ItemGloves gloves={gloves} toggleDisplayItem={toggleDisplayItem} setArmorPage={setArmorPage} />
+        <ItemWeapon weapon={weapon} toggleDisplayItem={toggleDisplayItem} setWeaponPage={setWeaponPage} setBuilder={setBuilder} />
+        <ItemChest chest={chest} toggleDisplayItem={toggleDisplayItem} setArmorPage={setArmorPage} setBuilder={setBuilder} />
+        <ItemGloves gloves={gloves} toggleDisplayItem={toggleDisplayItem} setArmorPage={setArmorPage} setBuilder={setBuilder} />
       </div>
 
       <div className="part">
-        <ItemWaist waist={waist} toggleDisplayItem={toggleDisplayItem} setArmorPage={setArmorPage} />
+        <ItemWaist waist={waist} toggleDisplayItem={toggleDisplayItem} setArmorPage={setArmorPage} setBuilder={setBuilder} />
       </div>
 
       <div className="part">
-        <ItemLegs legs={legs} toggleDisplayItem={toggleDisplayItem} setArmorPage={setArmorPage} />
+        <ItemLegs legs={legs} toggleDisplayItem={toggleDisplayItem} setArmorPage={setArmorPage} setBuilder={setBuilder} />
       </div>
 
     </div>

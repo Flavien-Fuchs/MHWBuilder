@@ -14,7 +14,7 @@ function ItemHead({ head, toggleDisplayItem, setArmorPage }) {
                 </div>
             ) : (
 
-                <div className="slot head" onClick={() => { setArmorPage("head") }}>
+                <div className="slot head empty" onClick={() => setArmorPage("head")}>
                 </div>
             )
     )
