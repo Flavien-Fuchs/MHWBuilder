@@ -69,23 +69,23 @@ body {
   flex-wrap: wrap;
 }
 
-.body>.title {
+.body > .title {
   padding: 1em 0;
   color: var(--neutral-white-color);
   width: 100%;
 }
 
-.body>.title img {
+.body > .title img {
   max-width: 300px;
 }
 
 .title img {
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .title img:hover {
   scale: 1.1;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .statContainer {
@@ -114,4 +114,12 @@ body {
   background-color: var(--navbar);
   border-radius: 20px;
   border: 3px solid var(--background-login);
+}
+
+.btnPlay {
+  text-transform: uppercase;
+  background-color: var(--game-main-bg-color);
+  margin-bottom: 20px;
+  border: thin solid var( --neutral-white-color);
+  box-shadow: var(--game-box-shadow);
 }

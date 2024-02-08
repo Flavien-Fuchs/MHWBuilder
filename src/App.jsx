@@ -405,8 +405,6 @@ function App() {
     setCharmsPage(null);
   };
 
-  /* console.log(playerSkills) */
-
   const play = () => {
     setBuilder(false);
     setPlaying(true);
@@ -436,6 +434,17 @@ function App() {
           <div className="title">
             <img src="./src/images/logo.png" alt="logo" />
           </div>
+
+          <button
+            className="btnPlay"
+            onClick={() => {
+              play();
+            }}
+            disabled={!weapon}
+          >
+            Play
+          </button>
+
           <div className="globalContainer">
             <ItemSheet
               head={head}
@@ -498,15 +507,6 @@ function App() {
               />
             )}
           </div>
-          {weapon && (
-            <button
-              onClick={() => {
-                play();
-              }}
-            >
-              Play
-            </button>
-          )}
         </div>
       )}
 

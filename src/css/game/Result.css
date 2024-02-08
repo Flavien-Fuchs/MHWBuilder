@@ -7,7 +7,7 @@
   flex-direction: column;
   gap: 40px;
 
-  background-image: url("src/images/bg_pattern.jpg");
+  background-image: url("src/images/background.jpg");
   &.dead {
     background-image: none;
     backdrop-filter: blur(64px);
@@ -36,6 +36,7 @@
     & .charactere {
       width: 80%;
       height: auto;
+      filter: contrast(135%);
       &.dead {
         filter: grayscale(1);
         filter: brightness(50%);

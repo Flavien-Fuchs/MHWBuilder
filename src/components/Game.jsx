@@ -17,7 +17,7 @@ function Game({
   resDragon,
   attack,
   elementalAttack,
-  weapon
+  weapon,
 }) {
   const [page, setPage] = useState("selectCharactere");
   const [charactere, setCharactere] = useState();
@@ -32,7 +32,7 @@ function Game({
     resDragon: resDragon,
     attack: attack,
     elementalAttack: elementalAttack,
-    multipli: findMultiplie(weapon.type)
+    multipli: findMultiplie(weapon.type),
   });
 
   function findMultiplie(type) {
@@ -41,7 +41,7 @@ function Game({
         return armas[i].value;
       }
     }
-    return 0; 
+    return 0;
   }
 
   const [monster, setMonster] = useState(null);
@@ -57,11 +57,7 @@ function Game({
   return (
     <div className="gameContainer">
       {page === "selectCharactere" ? (
-        <SelectCharactere
-          charactere={charactere}
-          setCharactere={setCharactere}
-          setPage={setPage}
-        />
+        <SelectCharactere setCharactere={setCharactere} setPage={setPage} />
       ) : (
         <Lunch
           charactere={charactere}

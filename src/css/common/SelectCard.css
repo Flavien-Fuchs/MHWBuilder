@@ -10,6 +10,7 @@
     width: 100%;
     height: auto;
     backface-visibility: hidden;
+    filter: contrast(135%);
   }
   & .name {
     width: 100%;
