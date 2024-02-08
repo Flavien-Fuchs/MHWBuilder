@@ -48,11 +48,11 @@ function Weapons({ weapons, handleWeapon, closePage }) {
     <>
       {!typeChosen ? (
         <div className="globalItemContainer">
-          <div className="itemNavBar">
-            <div className="closeButton" onClick={closePage}>
-              <ImCross />
-            </div>
+
+          <div className="closeButton" onClick={closePage}>
+            <ImCross />
           </div>
+
           <div className="typeContainer">
             <WeaponsCategory
               handleChoiseType={() => handleChoiseType("great-sword")}
@@ -133,7 +133,7 @@ function Weapons({ weapons, handleWeapon, closePage }) {
               <ImCross />
             </div>
             <div className="searchBar">
-              <button onClick={backWeapon}>Choise weapon&apos;stype</button>
+              <button className="buttonWeaponsType" onClick={backWeapon}>Choise weapon&apos;s type</button>
               <input
                 name="search-bar"
                 id="search-bar"
@@ -180,66 +180,75 @@ function Weapons({ weapons, handleWeapon, closePage }) {
                 className="item"
                 onClick={() => handleWeapon(weapon)}
               >
-                <p>{weapon.name}</p>
-                <p className="rarity">Rarity {weapon.rarity}</p>
-                {!weapon.assets ? (
-                  <img src="./src/images/nullArmor.png" alt="weapon" />
-                ) : weapon.assets.image ? (
-                  <img src={weapon.assets.image} alt="weapon" />
-                ) : (
-                  <img src={weapon.assets.icon} alt="weapon" />
-                )}
-                <p>Attack : {weapon.attack.display}</p>
-                {weapon.elements[0] && (
-                  <p>
-                    Element : {weapon.elements[0].damage} (
-                    {weapon.elements[0].type})
-                  </p>
-                )}
-                <p>
-                  Affinity :{" "}
-                  {weapon.attributes.affinity
-                    ? `${weapon.attributes.affinity}%`
-                    : "0%"}
-                </p>
-                {weapon.durability && (
-                  <div className="sharpnessContainer">
-                    <p>Sharpness : </p>
-                    <div
-                      className="sharpness red"
-                      style={{ width: `${weapon.durability[0].red / 3}px` }}
-                    ></div>
-                    <div
-                      className="sharpness orange"
-                      style={{ width: `${weapon.durability[0].orange / 3}px` }}
-                    ></div>
-                    <div
-                      className="sharpness yellow"
-                      style={{ width: `${weapon.durability[0].yellow / 3}px` }}
-                    ></div>
-                    <div
-                      className="sharpness green"
-                      style={{ width: `${weapon.durability[0].green / 3}px` }}
-                    ></div>
-                    <div
-                      className="sharpness blue"
-                      style={{ width: `${weapon.durability[0].blue / 3}px` }}
-                    ></div>
-                    <div
-                      className="sharpness white"
-                      style={{ width: `${weapon.durability[0].white / 3}px` }}
-                    ></div>
-                    <div
-                      className="sharpness purple"
-                      style={{ width: `${weapon.durability[0].purple / 3}px` }}
-                    ></div>
+                <div className="globalInfos">
+                  <p>{weapon.name}</p>
+                  <p className="rarity">Rarity {weapon.rarity}</p>
+                </div>
+
+                <div className="detailsInfos">
+                  {!weapon.assets ? (
+                    <img src="./src/images/nullArmor.png" alt="weapon" />
+                  ) : weapon.assets.image ? (
+                    <img src={weapon.assets.image} alt="weapon" />
+                  ) : (
+                    <img src={weapon.assets.icon} alt="weapon" />
+                  )}
+
+                  <div className="stats">
+                    <p>Attack : {weapon.attack.display}</p>
+                    {weapon.elements[0] && (
+                      <p>
+                        Element : {weapon.elements[0].damage} (
+                        {weapon.elements[0].type})
+                      </p>
+                    )}
+                    <p>
+                      Affinity :{" "}
+                      {weapon.attributes.affinity
+                        ? `${weapon.attributes.affinity}%`
+                        : "0%"}
+                    </p>
+                    {weapon.durability && (
+                      <div className="sharpnessContainer">
+                        <p>Sharpness : </p>
+                        <div
+                          className="sharpness red"
+                          style={{ width: `${weapon.durability[0].red / 3}px` }}
+                        ></div>
+                        <div
+                          className="sharpness orange"
+                          style={{ width: `${weapon.durability[0].orange / 3}px` }}
+                        ></div>
+                        <div
+                          className="sharpness yellow"
+                          style={{ width: `${weapon.durability[0].yellow / 3}px` }}
+                        ></div>
+                        <div
+                          className="sharpness green"
+                          style={{ width: `${weapon.durability[0].green / 3}px` }}
+                        ></div>
+                        <div
+                          className="sharpness blue"
+                          style={{ width: `${weapon.durability[0].blue / 3}px` }}
+                        ></div>
+                        <div
+                          className="sharpness white"
+                          style={{ width: `${weapon.durability[0].white / 3}px` }}
+                        ></div>
+                        <div
+                          className="sharpness purple"
+                          style={{ width: `${weapon.durability[0].purple / 3}px` }}
+                        ></div>
+                      </div>
+                    )}
                   </div>
-                )}
+                </div>
               </div>
             ))}
           </div>
-        </div>
-      )}
+        </div >
+      )
+      }
     </>
   );
 }

@@ -21,7 +21,7 @@ function Charms({ charms, handleCharms, closePage }) {
     })
 
     return (
-        <div className="GlobalItemContainer">
+        <div className="globalItemContainer">
             <div className='itemNavBar'>
                 <div className='closeButton' onClick={closePage} >
                     <ImCross />
@@ -45,7 +45,7 @@ function Charms({ charms, handleCharms, closePage }) {
                         <p>{charm.name}</p>
                         <p className="rarity">Rarity {actualCharm.rarity}</p>
                         <img className='imgCharm' src="./src/images/charm-icon.png" alt="charm" />
-                        <p>skills list</p>
+                        <p className='skillsList'>skills list</p>
                         <ul>
                             {actualCharm.skills.map((skill, key) => { return <li key={key}>{skill.skillName} - {skill.level}</li> })}
                         </ul>
