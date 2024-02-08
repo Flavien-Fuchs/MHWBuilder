@@ -2,7 +2,7 @@
 function ItemGloves({ gloves, toggleDisplayItem, setArmorPage }) {
     return (
         gloves ? (
-            <div className="slot gloves" onClick={() => { toggleDisplayItem("gloves"); }}>
+            <div className="slot gloves" onClick={() => toggleDisplayItem("gloves")}>
                 {(!gloves.assets ? (
                     <img src="./src/images/nullArmor.png" alt="armor" />
                 ) : gloves.assets.imageMale ? (
@@ -12,7 +12,7 @@ function ItemGloves({ gloves, toggleDisplayItem, setArmorPage }) {
                 ))}
             </div>
         ) : (
-            <div className="slot gloves" onClick={() => { setArmorPage("gloves"); }}>
+            <div className="slot gloves empty" onClick={() => setArmorPage("gloves")}>
             </div>
         )
     )

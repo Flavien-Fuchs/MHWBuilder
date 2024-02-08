@@ -2,7 +2,7 @@
 function ItemLegs({ legs, toggleDisplayItem, setArmorPage }) {
     return (
         legs ? (
-            <div className="slot legs" onClick={() => { toggleDisplayItem("legs"); }}>
+            <div className="slot legs" onClick={() => toggleDisplayItem("legs")}>
                 {(!legs.assets ? (
                     <img src="./src/images/nullArmor.png" alt="armor" />
                 ) : legs.assets.imageMale ? (
@@ -12,7 +12,7 @@ function ItemLegs({ legs, toggleDisplayItem, setArmorPage }) {
                 ))}
             </div>
         ) : (
-            <div className="slot legs" onClick={() => { setArmorPage("legs"); }}>
+            <div className="slot legs empty" onClick={() => setArmorPage("legs")}>
             </div>
         )
     )

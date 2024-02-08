@@ -70,7 +70,7 @@ body {
 }
 
 .body>.title {
-  margin: 1em 0;
+  padding: 1em 0;
   color: var(--neutral-white-color);
   width: 100%;
 }

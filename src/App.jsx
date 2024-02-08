@@ -448,6 +448,7 @@ function App() {
               setArmorPage={setArmorPage}
               setWeaponPage={setWeaponPage}
               setCharmsPage={setCharmsPage}
+              setBuilder={setBuilder}
               deleteItem={deleteItem}
               displayItem={displayItem}
               setDisplayItem={setDisplayItem}

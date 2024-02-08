@@ -31,9 +31,7 @@ function LifeBar({ currentLife, maxLife }) {
 
     progressBarRef.current.addEventListener(
       "animationend",
-      () => {
-        progressBarRef.current.classList.remove("animate");
-      },
+      () => progressBarRef.current.classList.remove("animate"),
       { once: true }
     );
   };

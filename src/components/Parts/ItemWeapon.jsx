@@ -13,7 +13,7 @@ function ItemWeapon({ weapon, toggleDisplayItem, setWeaponPage }) {
                     ))}
                 </div>
             ) : (
-                <div className="slot weapon" onClick={setWeaponPage}>
+                <div className="slot weapon empty" onClick={setWeaponPage}>
                 </div>)
     )
 }

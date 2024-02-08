@@ -10,9 +10,7 @@ function SelectLang() {
     { name: "English", init: "en" },
   ];
 
-  const handleClickOpenSelectLanguage = () => {
-    setIsShowSelectLanguage(!isShowSelectLanguage);
-  };
+  const handleClickOpenSelectLanguage = () => setIsShowSelectLanguage(!isShowSelectLanguage);
 
   const changeLanguage = (newLanguage) => {
     setLanguage(newLanguage);
