@@ -69,13 +69,13 @@ body {
   flex-wrap: wrap;
 }
 
-.body > .title {
+.body>.title {
   padding: 1em 0;
   color: var(--neutral-white-color);
   width: 100%;
 }
 
-.body > .title img {
+.body>.title img {
   max-width: 300px;
 }
 
@@ -120,6 +120,7 @@ body {
   text-transform: uppercase;
   background-color: var(--game-main-bg-color);
   margin-bottom: 20px;
-  border: thin solid var( --neutral-white-color);
+  border: thin solid var(--neutral-white-color);
   box-shadow: var(--game-box-shadow);
+  color: var(--neutral-white-color);
 }
