@@ -1,0 +1,37 @@
+:root {
+  --border-color: rgb(39, 172, 101);
+  --neutral-white-color: white;
+  --neutral-black-color: black;
+  --background-item: rgba(38, 38, 38, 0.5);
+  --navbar: grey;
+  --background-slot: rgba(255, 255, 255, 0.6);
+  --background-login: #250f03aa;
+  --bg-stat: rgba(134, 69, 23, 0.4);
+  --sharpness-red-claire: rgb(255, 61, 61);
+  --sharpness-red: red;
+  --sharpness-orange: orange;
+  --sharpness-yellow: yellow;
+  --sharpness-green: green;
+  --sharpness-green-claire: rgb(56, 128, 56);
+  --sharpness-blue: blue;
+  --sharpness-white: white;
+  --sharpness-purple: purple;
+  --sharpness-purple-claire: rgb(122, 41, 122);
+  --rank-on: rgb(58, 179, 215);
+  --rank-off: rgb(150, 150, 150);
+  --rank-popup: rgb(66, 35, 13);
+  --game-main-bg-color: #333;
+  --game-second-bg-color: #f3e600;
+  --game-main-color: white;
+  --game-transparent-bg: rgba(0, 0, 0, 0.541);
+  --game-box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  --armor-container-box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  --color-dark-text: #bb86fc;
+  --color-button-weapon: rgb(40, 26, 21);
+}

@@ -1,0 +1,27 @@
+.selectCardContainer {
+  width: 100%;
+  box-shadow: var(--game-transparent-bg);
+  background-color: var(--game-main-bg-color);
+
+  & figure {
+    padding: 0;
+  }
+  & img {
+    width: 100%;
+    height: auto;
+    backface-visibility: hidden;
+    filter: contrast(135%);
+  }
+  & .name {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    text-align: center;
+  }
+  &:hover {
+    box-shadow: var(--game-box-shadow);
+  }
+}

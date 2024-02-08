@@ -1,0 +1,44 @@
+.login {
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background: url(../images/wallpaper-desktop.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.login .container {
+  height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container>img {
+  width: 80%;
+  max-width: 350px;
+}
+
+.loginContainer {
+  background-color: var(--background-login);
+  padding: 1em 2em;
+  border-radius: 1em;
+  color: var(--neutral-white-color);
+}
+
+.loginContainer img {
+  width: 80px;
+}
+
+footer {
+  font-size: .8em;
+  height: 60px;
+  background-color: var(--rank-popup);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--neutral-white-color)
+}

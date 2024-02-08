@@ -1,6 +1,7 @@
 #root {
   text-align: center;
   min-height: 100vh;
+  width: 100vw;
 }
 
 * {
@@ -10,7 +11,10 @@
 }
 
 body {
-  background-color: rgb(42, 42, 42);
+  background: url(./src/images/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .logo {
@@ -52,18 +56,71 @@ body {
   color: #888;
 }
 
-.globalContainer {
-  width: 100vw;
-  min-height: 100vh;
+.body {
   position: relative;
+}
+
+.globalContainer {
+  min-height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
 
-.globalContainer>h1 {
-  margin: 1em;
-  color: white;
+.body>.title {
+  padding: 1em 0;
+  color: var(--neutral-white-color);
   width: 100%;
+}
+
+.body>.title img {
+  max-width: 300px;
+}
+
+.title img {
+  transition: 0.2s;
+}
+
+.title img:hover {
+  scale: 1.1;
+  transition: 0.2s;
+}
+
+.statContainer {
+  width: 100%;
+  max-width: 400px;
+  max-height: 620px;
+  margin: 0.5em 1em;
+  padding: 1em;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--navbar) var(--background-login);
+  background-color: var(--background-login);
+  border-radius: 10px;
+  color: var(--neutral-white-color);
+}
+
+.statContainer::-webkit-scrollbar {
+  width: 12px;
+}
+
+.statContainer::-webkit-scrollbar-track {
+  background: var(--background-login);
+}
+
+.statContainer::-webkit-scrollbar-thumb {
+  background-color: var(--navbar);
+  border-radius: 20px;
+  border: 3px solid var(--background-login);
+}
+
+.btnPlay {
+  text-transform: uppercase;
+  background-color: var(--game-main-bg-color);
+  margin-bottom: 20px;
+  border: thin solid var(--neutral-white-color);
+  box-shadow: var(--game-box-shadow);
+  color: var(--neutral-white-color);
 }
