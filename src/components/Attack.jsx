@@ -72,7 +72,8 @@ Attack.propTypes = {
   elementalAttack: PropTypes.array.isRequired,
   affinity: PropTypes.number.isRequired,
   criticalBoost: PropTypes.number.isRequired,
-  sharpness: PropTypes.array.isRequired,
+  sharpness: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
+    .isRequired,
 };
 
 export default Attack;

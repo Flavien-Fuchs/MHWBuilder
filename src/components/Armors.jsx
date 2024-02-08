@@ -6,8 +6,8 @@ import ResistanceItem from "./ResistanceItem";
 
 function Armors({ armors, handleArmor, type, closePage }) {
   const [searchTerm, setSearchterm] = useState("");
-  const [filterByDefense, setFilterByDefense] = useState(null);
-  const [filterByResistance, setFilterByResistance] = useState(null);
+  const [filterByDefense, setFilterByDefense] = useState(undefined);
+  const [filterByResistance, setFilterByResistance] = useState(undefined);
 
   const handleFilterByDefense = (event) =>
     setFilterByDefense(event.target.value);

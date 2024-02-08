@@ -9,7 +9,7 @@ function Weapons({ weapons, handleWeapon, closePage }) {
   const [weaponType, setWeaponType] = useState("");
   const [searchTerm, setSearchterm] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
-  const [filterByType, setfilterByType] = useState(null);
+  const [filterByType, setfilterByType] = useState("");
 
   const handlefilterByType = (event) => setfilterByType(event.target.value);
   const handleSelectOption = (event) => setSelectedOption(event.target.value);

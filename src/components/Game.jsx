@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+import PropTypes from "prop-types";
 import React, { useEffect, useState, useRef } from "react";
 import "../css/Game.css";
 import Timer from "./common/Timer";
@@ -177,10 +177,7 @@ function Game() {
         </div>
         <div className="footer">
           {choices.map((choice) => (
-            <div
-              key={choice}
-              onClick={() => handleClickAction(choice)}
-            >
+            <div key={choice} onClick={() => handleClickAction(choice)}>
               {choice}
             </div>
           ))}
@@ -189,5 +186,13 @@ function Game() {
     </div>
   );
 }
+
+Game.propTypes = {
+  maxLifePoint: PropTypes.number.isRequired,
+  currentLifePoint: PropTypes.number.isRequired,
+  maxLifePointAd: PropTypes.number.isRequired,
+  currentLifePointAd: PropTypes.number.isRequired,
+  choices: PropTypes.array.isRequired,
+};
 
 export default Game;

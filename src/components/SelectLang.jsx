@@ -6,6 +6,7 @@ import styles from "../css/SelectLang.module.css";
 function SelectLang() {
   const [isShowSelectLanguage, setIsShowSelectLanguage] = useState(false);
   const { currentLanguage, setLanguage, getTranslation } = useLanguage();
+
   const languages = [
     { name: "Francais", init: "fr" },
     { name: "English", init: "en" },
