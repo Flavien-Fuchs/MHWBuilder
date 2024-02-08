@@ -9,8 +9,6 @@ import ItemLegs from "./Parts/ItemLegs";
 import ItemWaist from "./Parts/ItemWaist";
 import ItemWeapon from "./Parts/ItemWeapon";
 
-
-
 function ItemSheet({
   head,
   chest,
@@ -25,62 +23,97 @@ function ItemSheet({
   setBuilder,
   deleteItem,
   displayItem,
-  setDisplayItem
+  setDisplayItem,
 }) {
-
   const toggleDisplayItem = (type) => {
-    setDisplayItem(type)
-  }
+    setDisplayItem(type);
+  };
 
   return (
     <div className="itemShit">
-      {displayItem && <ItemSheetSingle
-        type={displayItem}
-        head={head}
-        chest={chest}
-        gloves={gloves}
-        waist={waist}
-        legs={legs}
-        weapon={weapon}
-        charm={charm}
-        setArmorPage={setArmorPage}
-        setWeaponPage={setWeaponPage}
-        setCharmsPage={setCharmsPage}
-        setBuilder={setBuilder}
-        toggleDisplayItem={toggleDisplayItem}
-        deleteItem={deleteItem}
-      />}
+      {displayItem && (
+        <ItemSheetSingle
+          type={displayItem}
+          head={head}
+          chest={chest}
+          gloves={gloves}
+          waist={waist}
+          legs={legs}
+          weapon={weapon}
+          charm={charm}
+          setArmorPage={setArmorPage}
+          setWeaponPage={setWeaponPage}
+          setCharmsPage={setCharmsPage}
+          setBuilder={setBuilder}
+          toggleDisplayItem={toggleDisplayItem}
+          deleteItem={deleteItem}
+        />
+      )}
       <div className="part">
-        <ItemHead head={head} toggleDisplayItem={toggleDisplayItem} setArmorPage={setArmorPage} setBuilder={setBuilder} />
-        <ItemCharm charm={charm} toggleDisplayItem={toggleDisplayItem} setCharmsPage={setCharmsPage} setBuilder={setBuilder} />
+        <ItemHead
+          head={head}
+          toggleDisplayItem={toggleDisplayItem}
+          setArmorPage={setArmorPage}
+          setBuilder={setBuilder}
+        />
+        <ItemCharm
+          charm={charm}
+          toggleDisplayItem={toggleDisplayItem}
+          setCharmsPage={setCharmsPage}
+          setBuilder={setBuilder}
+        />
       </div>
 
       <div className="part">
-        <ItemWeapon weapon={weapon} toggleDisplayItem={toggleDisplayItem} setWeaponPage={setWeaponPage} setBuilder={setBuilder} />
-        <ItemChest chest={chest} toggleDisplayItem={toggleDisplayItem} setArmorPage={setArmorPage} setBuilder={setBuilder} />
-        <ItemGloves gloves={gloves} toggleDisplayItem={toggleDisplayItem} setArmorPage={setArmorPage} setBuilder={setBuilder} />
+        <ItemWeapon
+          weapon={weapon}
+          toggleDisplayItem={toggleDisplayItem}
+          setWeaponPage={setWeaponPage}
+          setBuilder={setBuilder}
+        />
+        <ItemChest
+          chest={chest}
+          toggleDisplayItem={toggleDisplayItem}
+          setArmorPage={setArmorPage}
+          setBuilder={setBuilder}
+        />
+        <ItemGloves
+          gloves={gloves}
+          toggleDisplayItem={toggleDisplayItem}
+          setArmorPage={setArmorPage}
+          setBuilder={setBuilder}
+        />
       </div>
 
       <div className="part">
-        <ItemWaist waist={waist} toggleDisplayItem={toggleDisplayItem} setArmorPage={setArmorPage} setBuilder={setBuilder} />
+        <ItemWaist
+          waist={waist}
+          toggleDisplayItem={toggleDisplayItem}
+          setArmorPage={setArmorPage}
+          setBuilder={setBuilder}
+        />
       </div>
 
       <div className="part">
-        <ItemLegs legs={legs} toggleDisplayItem={toggleDisplayItem} setArmorPage={setArmorPage} setBuilder={setBuilder} />
+        <ItemLegs
+          legs={legs}
+          toggleDisplayItem={toggleDisplayItem}
+          setArmorPage={setArmorPage}
+          setBuilder={setBuilder}
+        />
       </div>
-
     </div>
   );
 }
 
 ItemSheet.propTypes = {
-  head: PropTypes.string.isRequired,
-  chest: PropTypes.string.isRequired,
-  gloves: PropTypes.string.isRequired,
-  waist: PropTypes.string.isRequired,
-  legs: PropTypes.string.isRequired,
-  weapon: PropTypes.string.isRequired,
-  charm: PropTypes.string.isRequired,
+  head: PropTypes.object,
+  chest: PropTypes.object,
+  gloves: PropTypes.object,
+  waist: PropTypes.object,
+  legs: PropTypes.object,
+  weapon: PropTypes.object,
+  charm: PropTypes.object,
   setArmorPage: PropTypes.func.isRequired,
   setWeaponPage: PropTypes.func.isRequired,
   setCharmsPage: PropTypes.func.isRequired,

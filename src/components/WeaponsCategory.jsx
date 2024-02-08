@@ -1,6 +1,6 @@
 import "../css/Items.css";
+import PropTypes from "prop-types";
 
-// eslint-disable-next-line react/prop-types
 function WeaponsCategory({ handleChoiseType, weaponType, name }) {
   return (
     <div className="weaponType" onClick={handleChoiseType}>
@@ -12,5 +12,10 @@ function WeaponsCategory({ handleChoiseType, weaponType, name }) {
     </div>
   );
 }
+WeaponsCategory.propTypes = {
+  handleChoiseType: PropTypes.func.isRequired,
+  weaponType: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+};
 
 export default WeaponsCategory;

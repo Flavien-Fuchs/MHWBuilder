@@ -1,6 +1,6 @@
 import "../css/Items.css";
+import PropTypes from "prop-types";
 
-// eslint-disable-next-line react/prop-types
 function ResistanceItem({ iconSrc, altText, label, value }) {
   return (
     <div>
@@ -11,4 +11,10 @@ function ResistanceItem({ iconSrc, altText, label, value }) {
     </div>
   );
 }
+ResistanceItem.propTypes = {
+  iconSrc: PropTypes.string.isRequired,
+  altText: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+};
 export default ResistanceItem;

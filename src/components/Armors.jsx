@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 import "../css/Items.css";
 import { useState } from "react";
 import { ImCross } from "react-icons/im";
@@ -168,5 +168,12 @@ function Armors({ armors, handleArmor, type, closePage }) {
     </div>
   );
 }
+
+Armors.propTypes = {
+  armors: PropTypes.array.isRequired,
+  handleArmor: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
+  closePage: PropTypes.func.isRequired,
+};
 
 export default Armors;

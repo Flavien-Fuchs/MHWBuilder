@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 import { useState } from "react";
 import "../css/Items.css";
 import { ImCross } from "react-icons/im";
@@ -243,5 +243,11 @@ function Weapons({ weapons, handleWeapon, closePage }) {
     </>
   );
 }
+
+Weapons.propTypes = {
+  weapons: PropTypes.array.isRequired,
+  handleWeapon: PropTypes.func.isRequired,
+  closePage: PropTypes.func.isRequired,
+};
 
 export default Weapons;

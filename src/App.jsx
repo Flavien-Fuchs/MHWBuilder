@@ -11,7 +11,6 @@ import Game from "./components/Game";
 import Skills from "./components/Skills";
 import Charms from "./components/Charms";
 
-
 function App() {
   //states for pages
   const [index, setIndex] = useState(true);
@@ -21,7 +20,7 @@ function App() {
   const [armorPage, setArmorPage] = useState(null);
   const [charmsPage, setCharmsPage] = useState(null);
   const [weaponPage, setWeaponPage] = useState(null);
-  const [displayItem, setDisplayItem] = useState(null)
+  const [displayItem, setDisplayItem] = useState(null);
   //states for API results
   const [armors, setArmors] = useState(null);
   const [weapons, setWeapons] = useState(null);
@@ -53,22 +52,18 @@ function App() {
   const [sharpness, setSharpness] = useState([]);
   const [playerSkills, setPlayerSkills] = useState([]);
 
-
   //Function for API
 
   const handleApi = () => {
     setIsLoading(true);
 
-    Promise.all([
-      armorApi(),
-      weaponApi(),
-      charmsApi(),
-      skillsApi(),
-    ]).then(() => {
-      setIsLoading(false);
-      setIndex(false);
-      setBuilder(true);
-    });
+    Promise.all([armorApi(), weaponApi(), charmsApi(), skillsApi()]).then(
+      () => {
+        setIsLoading(false);
+        setIndex(false);
+        setBuilder(true);
+      }
+    );
   };
 
   const armorApi = () => {
@@ -140,7 +135,7 @@ function App() {
         armor.resistances.ice,
         armor.resistances.thunder,
         armor.resistances.dragon
-      )
+      );
 
       addSkills(action, pastArmor.skills, armor.skills);
     } else {
@@ -167,7 +162,6 @@ function App() {
         armor.resistances.dragon
       );
       addSkills(action, null, armor.skills);
-
     }
   }
 
@@ -211,57 +205,50 @@ function App() {
     thunder,
     dragon
   ) {
-
     if (action === "add") {
       setResFire(resFire + fire);
       setResWater(resWater + water);
       setResIce(resIce + ice);
-      setResThunder(resThunder + thunder)
-      setResDragon(resDragon + dragon)
+      setResThunder(resThunder + thunder);
+      setResDragon(resDragon + dragon);
     }
     if (action === "less") {
       setResFire(resFire - pastFire + fire);
       setResWater(resWater - pastWater + water);
       setResIce(resIce - pastIce + ice);
-      setResThunder(resThunder - pastThunder + thunder)
-      setResDragon(resDragon - pastDragon + dragon)
+      setResThunder(resThunder - pastThunder + thunder);
+      setResDragon(resDragon - pastDragon + dragon);
     }
     if (action === "delete") {
       setResFire(resFire - pastFire);
       setResWater(resWater - pastWater);
       setResIce(resIce - pastIce);
-      setResThunder(resThunder - pastThunder)
-      setResDragon(resDragon - pastDragon)
+      setResThunder(resThunder - pastThunder);
+      setResDragon(resDragon - pastDragon);
     }
-
   }
 
   function addSkills(action, pastSkills, selectSkills) {
-
-    let newPlayerSkills = [...playerSkills]
+    let newPlayerSkills = [...playerSkills];
 
     if (action === "less" || action === "delete") {
       if (pastSkills.length > 0) {
-
-        pastSkills.map(pastSkill => {
-          newPlayerSkills = newPlayerSkills.map(newPlayerSkill => {
+        pastSkills.map((pastSkill) => {
+          newPlayerSkills = newPlayerSkills.map((newPlayerSkill) => {
             if (newPlayerSkill.skillName === pastSkill.skillName) {
               if (newPlayerSkill.level - pastSkill.level > 0) {
                 return {
                   ...newPlayerSkill,
-                  level: newPlayerSkill.level - pastSkill.level
-                }
+                  level: newPlayerSkill.level - pastSkill.level,
+                };
+              } else {
+                return null;
               }
-              else {
-                return null
-              }
+            } else {
+              return newPlayerSkill;
             }
-            else {
-              return newPlayerSkill
-            }
-
-          })
-        })
+          });
+        });
       }
     }
 
@@ -272,77 +259,82 @@ function App() {
       }
       return false;
     }
-    newPlayerSkills.filter(removeValue)
+    newPlayerSkills.filter(removeValue);
 
     if (selectSkills.length > 0 && action !== "delete") {
-      selectSkills.map(selectSkill => {
-        if (newPlayerSkills.some(newPlayerSkill => newPlayerSkill.skillName === selectSkill.skillName)) {
-
-          newPlayerSkills = newPlayerSkills.map(newPlayerSkill => {
+      selectSkills.map((selectSkill) => {
+        if (
+          newPlayerSkills.some(
+            (newPlayerSkill) =>
+              newPlayerSkill.skillName === selectSkill.skillName
+          )
+        ) {
+          newPlayerSkills = newPlayerSkills.map((newPlayerSkill) => {
             if (newPlayerSkill.skillName === selectSkill.skillName) {
-
               return {
                 ...newPlayerSkill,
-                level: newPlayerSkill.level + selectSkill.level
-              }
+                level: newPlayerSkill.level + selectSkill.level,
+              };
+            } else {
+              return newPlayerSkill;
             }
-            else {
-              return newPlayerSkill
-            }
-          })
+          });
         } else {
-          newPlayerSkills.push(selectSkill)
+          newPlayerSkills.push(selectSkill);
         }
-      })
+      });
     }
-    setPlayerSkills(newPlayerSkills)
+    setPlayerSkills(newPlayerSkills);
   }
-
 
   // Functions on click
 
   const deleteItem = (selectedStuff, type) => {
     switch (type) {
       case "head":
-        addDefStats(selectedStuff, selectedStuff, "delete")
-        setHead(null)
+        addDefStats(selectedStuff, selectedStuff, "delete");
+        setHead(null);
         break;
       case "chest":
-        addDefStats(selectedStuff, selectedStuff, "delete")
-        setChest(null)
+        addDefStats(selectedStuff, selectedStuff, "delete");
+        setChest(null);
         break;
       case "gloves":
-        addDefStats(selectedStuff, selectedStuff, "delete")
-        setGloves(null)
+        addDefStats(selectedStuff, selectedStuff, "delete");
+        setGloves(null);
         break;
       case "waist":
-        addDefStats(selectedStuff, selectedStuff, "delete")
-        setWaist(null)
+        addDefStats(selectedStuff, selectedStuff, "delete");
+        setWaist(null);
         break;
       case "legs":
-        addDefStats(selectedStuff, selectedStuff, "delete")
-        setLegs(null)
+        addDefStats(selectedStuff, selectedStuff, "delete");
+        setLegs(null);
         break;
       case "weapon":
-        setWeapon(null)
-        setAttack(0)
-        setElementalAttack([])
-        setAffinity(0)
-        setCriticalBoost(125)
-        setSharpness([])
+        setWeapon(null);
+        setAttack(0);
+        setElementalAttack([]);
+        setAffinity(0);
+        setCriticalBoost(125);
+        setSharpness([]);
         break;
       case "charm":
-        addSkills("delete", selectedStuff.ranks[selectedStuff.ranks.length - 1].skills, selectedStuff.ranks[selectedStuff.ranks.length - 1].skills)
-        setCharm(null)
+        addSkills(
+          "delete",
+          selectedStuff.ranks[selectedStuff.ranks.length - 1].skills,
+          selectedStuff.ranks[selectedStuff.ranks.length - 1].skills
+        );
+        setCharm(null);
         break;
       default:
         break;
     }
-    setDisplayItem(null)
-  }
+    setDisplayItem(null);
+  };
 
   const handleArmor = (selectedArmor, type) => {
-    let armor = selectedArmor
+    let armor = selectedArmor;
     switch (type) {
       case "head":
         head !== null
@@ -384,20 +376,28 @@ function App() {
     setWeapon(weapon);
     setAttack(weapon.attack.display);
     setElementalAttack(weapon.elements);
-    weapon.attributes.affinity ? setAffinity(weapon.attributes.affinity) : setAffinity(0);
+    weapon.attributes.affinity
+      ? setAffinity(weapon.attributes.affinity)
+      : setAffinity(0);
     weapon.durability ? setSharpness(weapon.durability[0]) : setSharpness([]);
     setWeaponPage(null);
   };
 
   const handleCharms = (selectCharm) => {
-    setCharm(selectCharm)
-    charm ? (
-      addSkills("less", charm.ranks[charm.ranks.length - 1].skills, selectCharm.ranks[charm.ranks.length - 1].skills)
-    ) : (
-      addSkills("add", null, selectCharm.ranks[selectCharm.ranks.length - 1].skills)
-    )
+    setCharm(selectCharm);
+    charm
+      ? addSkills(
+          "less",
+          charm.ranks[charm.ranks.length - 1].skills,
+          selectCharm.ranks[charm.ranks.length - 1].skills
+        )
+      : addSkills(
+          "add",
+          null,
+          selectCharm.ranks[selectCharm.ranks.length - 1].skills
+        );
     setCharmsPage(null);
-  }
+  };
 
   const closePage = () => {
     setArmorPage(null);
