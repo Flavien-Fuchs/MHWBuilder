@@ -22,13 +22,14 @@ function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
   const [currentLifePoint, setCurrentLifePoint] = useState(maxLifePoint);
   const cardRef = useRef(null);
   const [imDead, setImDead] = useState(false);
+  const [myDamage, setMyDamage] = useState("");
   const [isAttacked, setIsAttacked] = useState(false);
 
   const [maxLifePointAd, setMaxLifePointAd] = useState(monster.state.health);
   const [currentLifePointAd, setCurrentLifePointAd] = useState(maxLifePointAd);
   const cardAdRef = useRef(null);
   const [isDeadAd, setIsDeadAd] = useState(false);
-  const [isAttackedAd, setIsAttackedAd] = useState(false);
+  const [damageAd, setDamageAd] = useState("");
   const [actionAd, setActionAd] = useState("");
 
   useEffect(() => {
@@ -158,17 +159,27 @@ function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
         : attack === "normal"
         ? dommmage
         : dommmage * 2;
-    dommmage = Math.round(dommmage);
+    dommmage = Math.round(dommmage * (0.8 + Math.random() * 0.5));
     const life = isMe
       ? currentLifePoint - dommmage
       : currentLifePointAd - dommmage;
+
+    isMe ? setMyDamage(dommmage) : setDamageAd(dommmage);
 
     const containerAnimationClassList = isMe
       ? cardRef.current?.querySelector(".containerAnimation")?.classList
       : cardAdRef.current?.querySelector(".containerAnimation")?.classList;
 
+    const containerDamageClassList = isMe
+      ? cardRef.current?.querySelector(".containerDamage")?.classList
+      : cardAdRef.current?.querySelector(".containerDamage")?.classList;
+
     if (containerAnimationClassList) {
       containerAnimationClassList.add(`${attack}Attack`);
+    }
+
+    if (containerDamageClassList) {
+      containerDamageClassList.add(`${attack}Attack`);
     }
 
     isMe ? setCurrentLifePoint(life) : setCurrentLifePointAd(life);
@@ -179,6 +190,10 @@ function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
     setTimeout(() => {
       containerAnimationClassList?.remove(`${attack}Attack`);
     }, 500);
+    setTimeout(() => {
+      containerDamageClassList?.remove(`${attack}Attack`);
+      isMe ? setMyDamage("") : setDamageAd("");
+    }, 1000);
   };
 
   const animateCard = (ref) => {
@@ -270,8 +285,10 @@ function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
                 />
               </figure>
               <div className="containerAnimation"></div>
+              {myDamage && <div className="containerDamage">{myDamage}</div>}
             </div>
             <LifeBar currentLife={currentLifePoint} maxLife={maxLifePoint} />
+            <div className="name">{charactere.name}</div>
           </div>
           <div className="adversairePart">
             <div className="card" ref={cardAdRef}>
@@ -283,11 +300,13 @@ function Lunch({ charactere, replay, redirectToBuilder, myState, monster }) {
                 />
               </figure>
               <div className="containerAnimation"></div>
+              {damageAd && <div className="containerDamage">{damageAd}</div>}
             </div>
             <LifeBar
               currentLife={currentLifePointAd}
               maxLife={maxLifePointAd}
             />
+            <div className="name">{monster.name}</div>
             <div className="actionText">{actionAd}</div>
           </div>
         </div>
