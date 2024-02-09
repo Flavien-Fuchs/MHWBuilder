@@ -75,7 +75,7 @@ export const monsters = [
     id: 5,
     name: "KUSHALA DAORA",
     descrip: `An ancient dragon surrounded by winds, preventing anyone from approaching it.`,
-    path: "src/assets/images/monster/Kushala_Daora1.webp",
+    path: "src/assets/images/monster/Kushala_Daora.webp",
     path_cover: "src/assets/images/characteres/chara_img_01.jpg",
     state: {
       health: 3980,

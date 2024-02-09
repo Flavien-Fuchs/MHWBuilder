@@ -69,13 +69,13 @@ body {
   flex-wrap: wrap;
 }
 
-.body>.title {
+.body > .title {
   padding: 1em 0;
   color: var(--neutral-white-color);
   width: 100%;
 }
 
-.body>.title img {
+.body > .title img {
   max-width: 300px;
 }
 
@@ -91,7 +91,6 @@ body {
 .statContainer {
   width: 100%;
   max-width: 400px;
-  max-height: 620px;
   margin: 0.5em 1em;
   padding: 1em;
   overflow-y: auto;
@@ -123,4 +122,10 @@ body {
   border: thin solid var(--neutral-white-color);
   box-shadow: var(--game-box-shadow);
   color: var(--neutral-white-color);
+}
+
+@media (min-width: 890px) {
+  .statContainer {
+    max-height: 620px;
+  }
 }

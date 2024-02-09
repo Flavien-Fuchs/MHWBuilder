@@ -23,6 +23,8 @@
     flex-direction: column;
 
     & .header {
+      z-index: 10000;
+      background-color: var(--background-item);
       & .bottom {
         display: flex;
       }
@@ -79,7 +81,21 @@
           &.animate {
             animation: glitch 0.5s linear;
           }
-
+          & .containerDamage {
+            position: absolute;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            font-size: xx-large;
+            font-weight: bold;
+            color: var(--sharpness-red);
+            animation: fadeInOut 2s ease-in-out forwards,
+              shake 1s ease-in-out 2s forwards,
+              moveUp 1s ease-in-out 3s forwards;
+          }
           & .containerAnimation {
             position: absolute;
             width: 120%;
@@ -101,6 +117,11 @@
               animation: criticalAttack 0.5s linear;
             }
           }
+        }
+        & .name {
+          font-weight: 700;
+          text-transform: uppercase;
+          color: var(--sharpness-orange);
         }
       }
 
@@ -141,7 +162,21 @@
           &.animate {
             animation: glitch 0.5s linear;
           }
-
+          & .containerDamage {
+            position: absolute;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            font-size: xx-large;
+            font-weight: bold;
+            color: var(--sharpness-red);
+            animation: fadeInOut 2s ease-in-out forwards,
+              shake 1s ease-in-out 2s forwards,
+              moveUp 1s ease-in-out 3s forwards;
+          }
           & .containerAnimation {
             position: absolute;
             width: 120%;
@@ -162,11 +197,15 @@
             }
           }
         }
-
+        & .name {
+          font-weight: 700;
+          text-transform: uppercase;
+          color: var(--sharpness-orange);
+        }
         & .actionText {
           font-weight: 700;
           text-transform: uppercase;
-          color: red;
+          color: var(--sharpness-red);
         }
       }
     }
@@ -292,5 +331,44 @@
 
   60% {
     background-image: url(src/assets/images/swordSlashes/RedSlashWide/File6.png);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-10px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(10px);
+  }
+}
+
+@keyframes moveUp {
+  0% {
+    transform: translateY(100px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
   }
 }
